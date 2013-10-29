@@ -1,0 +1,8 @@
+FROM ubuntu:quantal
+
+# Extend apt sources
+RUN echo "deb http://archive.ubuntu.com/ubuntu quantal main universe" > /etc/apt/sources.list
+RUN apt-get update
+
+# Install some basic packages
+RUN apt-get install -y git mercurial subversion zip unzip build-essential binutils-gold clang exuberant-ctags curl

@@ -1,0 +1,7 @@
+FROM janx/base
+
+# Install Chromium's depot_tools
+RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /depot_tools
+ENV PATH $PATH:/depot_tools
+RUN echo -e "\n# Add Chromium's depot_tools to the PATH" >> /root/.bashrc
+RUN echo "export PATH=\"\$PATH:/depot_tools\"" >> /root/.bashrc
