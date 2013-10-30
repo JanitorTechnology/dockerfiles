@@ -5,3 +5,21 @@ RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git /
 ENV PATH $PATH:/depot_tools
 RUN echo -e "\n# Add Chromium's depot_tools to the PATH" >> /root/.bashrc
 RUN echo "export PATH=\"\$PATH:/depot_tools\"" >> /root/.bashrc
+
+# Configure ninja
+ENV GYP_GENERATORS ninja
+RUN echo -e "\n# Build Chromium with ninja (faster than make)" >> /root/.bashrc
+RUN echo "export GYP_GENERATORS=\"ninja\"" >> /root/.bashrc
+
+# Download Chromium's sources
+RUN fetch chromium --nosvn=True
+RUN gclient sync
+
+# TODO Set up shared ccache
+
+# Start indexing the sources with OpenGrok
+# RUN ln -s /src /var/opengrok/src
+# TODO OpenGrok index -v -i *.o -i *.a
+
+# Build Chromium
+RUN cd /src && ninja -C out/Debug chrome -j18
