@@ -1,0 +1,18 @@
+FROM janx/base
+
+# Download Firefox's sources
+RUN hg clone http://hg.mozilla.org/mozilla-central/ /src
+
+# Configure build
+RUN echo "# Firefox build configuration" >> /src/mozilla/.mozconfig
+RUN echo "ac_add_options --enable-application=browser" >> /src/mozilla/.mozconfig
+RUN echo "ac_add_options --enable-debug" >> /src/mozilla/.mozconfig
+
+# TODO Set up shared ccache
+
+# Start indexing the sources with OpenGrok
+# RUN ln -s /src /var/opengrok/src
+# TODO OpenGrok index -v -i *.o -i *.a
+
+# Build Firefox
+RUN cd /src && ./mach build
