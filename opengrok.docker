@@ -1,8 +1,5 @@
 FROM janx/base
 
-# Install Java
-#RUN apt-get install -y default-jdk # fails in quantal with mknod `fuse-': Operation not permitted
-
 # Grab OpenGrok
 RUN curl -sL https://java.net/projects/opengrok/downloads/download/opengrok-0.11.1.tar.gz | tar zxv --transform s/-0.11.1//
 
@@ -13,4 +10,3 @@ RUN echo -e "\n# Add OpenGrok's bin folder to the PATH" >> /root/.bashrc
 RUN echo "export PATH=\"\$PATH:/opengrok/bin\"" >> /root/.bashrc
 
 # TODO install Jetty runner, launch source.war
-# TODO ln -s SOURCE_DIR /var/opengrok/src, OpenGrok index -v -i *.o -i *.a
