@@ -1,18 +1,28 @@
-FROM janx/base
+FROM ubuntu:14.04
 
-# Download Firefox's sources
-RUN hg clone http://hg.mozilla.org/mozilla-central/ /src
+RUN apt-get update
 
-# Configure build
-RUN echo "# Firefox build configuration" >> /src/mozilla/.mozconfig
-RUN echo "ac_add_options --enable-application=browser" >> /src/mozilla/.mozconfig
-RUN echo "ac_add_options --enable-debug" >> /src/mozilla/.mozconfig
+# Install some basic packages.
+RUN apt-get install -y git mercurial
 
-# TODO Set up shared ccache
+# Install Firefox build dependencies.
+# Source: https://developer.mozilla.org/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Ubuntu
+RUN apt-get install -y zip unzip mercurial g++ make autoconf2.13 yasm libgtk2.0-dev libglib2.0-dev libdbus-1-dev libdbus-glib-1-dev libasound2-dev libiw-dev libxt-dev mesa-common-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libpulse-dev
 
-# Start indexing the sources with OpenGrok
-# RUN ln -s /src /var/opengrok/src
-# TODO OpenGrok index -v -i *.o -i *.a
+# Building with clang is faster.
+RUN apt-get install -y clang
+ENV CC clang
+ENV CXX clang++
 
-# Build Firefox
-RUN cd /src && ./mach build
+# TODO useradd -m firefox ?
+
+# Download Firefox source code.
+ENV MOZREPO /firefox
+RUN git clone https://github.com/mozilla/gecko-dev $MOZREPO
+#RUN hg clone https://hg.mozilla.org/mozilla-central/ $MOZREPO
+
+# Configure Firefox build.
+ENV MOZCONFIG $MOZREPO/mozconfig
+RUN echo "# Firefox build options" >> $MOZCONFIG
+RUN echo "ac_add_options --enable-application=browser" >> $MOZCONFIG
+RUN echo "ac_add_options --disable-crashreporter" >> $MOZCONFIG
