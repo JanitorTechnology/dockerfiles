@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -qy git clang zip unzip mercurial g++ make
 # Don't build as root.
 RUN useradd -m user
 USER user
+ENV HOME /home/user
 WORKDIR /home/user
 
 # Download Firefox source code.
