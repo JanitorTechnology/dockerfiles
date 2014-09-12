@@ -1,8 +1,0 @@
-FROM ubuntu:precise
-
-# Extend apt sources
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-RUN apt-get update
-
-# Install some basic packages
-RUN apt-get install -y git mercurial subversion zip unzip curl build-essential binutils-gold clang exuberant-ctags default-jdk
