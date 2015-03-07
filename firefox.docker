@@ -2,8 +2,11 @@ FROM ubuntu:14.04
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Firefox build dependencies.
-# Packages after "clang" are from: https://developer.mozilla.org/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Ubuntu
+# Packages after "clang" are from https://developer.mozilla.org/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Ubuntu
 RUN apt-get update && apt-get install -qy git clang zip unzip mercurial g++ make autoconf2.13 yasm libgtk2.0-dev libglib2.0-dev libdbus-1-dev libdbus-glib-1-dev libasound2-dev libcurl4-openssl-dev libiw-dev libxt-dev mesa-common-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libpulse-dev m4 flex ccache
+ENV CC clang
+ENV CXX clang++
+ENV SHELL /bin/bash
 
 # Don't be root.
 RUN useradd -m user
@@ -11,25 +14,30 @@ USER user
 ENV HOME /home/user
 WORKDIR /home/user
 
-# Download Firefox source code.
+# Install Mozilla's moz-git-tools.
+ENV MOZ_GIT_TOOLS /home/user/moz-git-tools
+RUN git clone https://github.com/mozilla/moz-git-tools $MOZ_GIT_TOOLS \
+ && cd $MOZ_GIT_TOOLS \
+ && git submodule init \
+ && git submodule update
+ENV PATH $PATH:$MOZ_GIT_TOOLS
+RUN echo -e "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
+ && echo "export PATH=\"\$PATH:$MOZ_GIT_TOOLS\"" >> .bashrc
+
+# Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev firefox
 #RUN hg clone https://hg.mozilla.org/mozilla-central/ firefox
 WORKDIR firefox
 
-# Create a mozconfig file.
-RUN echo "# Firefox build options." >> mozconfig
-RUN echo "ac_add_options --enable-application=browser" >> mozconfig
-RUN echo "ac_add_options --disable-crashreporter" >> mozconfig
-RUN echo "ac_add_options --disable-crashreporter" >> mozconfig
-RUN echo >> mozconfig
-RUN echo "# Building with clang is faster." >> mozconfig
-RUN echo "export CC=clang" >> mozconfig
-RUN echo "export CXX=clang++" >> mozconfig
-
-# Set up build environment.
-ENV CC clang
-ENV CXX clang++
-ENV SHELL /bin/bash
+# Add mozconfig file.
+RUN echo "# Firefox build options." >> .bashrc \
+ && echo "ac_add_options --enable-application=browser" >> .bashrc \
+ && echo "ac_add_options --disable-crashreporter" >> .bashrc \
+ && echo "ac_add_options --disable-crashreporter" >> .bashrc \
+ && echo "" >> .bashrc \
+ && echo "# Building with clang is faster." >> .bashrc \
+ && echo "export CC=clang" >> .bashrc \
+ && echo "export CXX=clang++" >> .bashrc
 
 # Build Firefox.
 RUN ./mach build
