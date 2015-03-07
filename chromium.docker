@@ -9,7 +9,7 @@ RUN chmod +x /tmp/install-build-deps.sh
 RUN /tmp/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl
 RUN rm /tmp/install-build-deps.sh
 
-# Don't build as root.
+# Don't be root.
 RUN useradd -m user
 USER user
 ENV HOME /home/user
@@ -22,9 +22,9 @@ ENV PATH $PATH:$DEPOT_TOOLS
 RUN echo -e "\n# Add Chromium's depot_tools to the PATH." >> .bashrc
 RUN echo "export PATH=\"\$PATH:$DEPOT_TOOLS\"" >> .bashrc
 
-# Download Chromium sources.
+# Download Chromium source code.
 RUN fetch chromium --nosvn=True
 WORKDIR src
 
-# Build Chromium
+# Build Chromium.
 RUN ninja -C out/Release chrome -j18
