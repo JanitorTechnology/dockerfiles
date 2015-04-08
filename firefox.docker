@@ -21,7 +21,7 @@ RUN git clone https://github.com/mozilla/moz-git-tools $MOZ_GIT_TOOLS \
  && git submodule init \
  && git submodule update
 ENV PATH $PATH:$MOZ_GIT_TOOLS
-RUN echo -e "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
+RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
  && echo "export PATH=\"\$PATH:$MOZ_GIT_TOOLS\"" >> .bashrc
 
 # Download Firefox's source code.
