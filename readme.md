@@ -2,15 +2,22 @@
 
 Popular development environments as Docker containers.
 
-Full images available on [Docker Hub](https://hub.docker.com/u/janx/).
+All images are available on [Docker Hub](https://hub.docker.com/u/janx/).
 
-## Usage Example
+## Firefox
+
+    sudo docker run -ti janx/firefox
+    user@container:~/firefox$ ./mach build && ./mach run
+
+To build [janx/firefox](https://registyrc.hub.docker.com/u/janx/firefox/) yourself:
 
     sudo docker build -t janx/firefox - < firefox.docker
-    sudo docker run -ti janx/firefox /bin/bash
-    user@container:~/firefox$ ls
 
-## Supported Projects
+## Chromium
 
-- Firefox ([janx/firefox](https://registry.hub.docker.com/u/janx/firefox/))
-- Chromium ([janx/chromium](https://registry.hub.docker.com/u/janx/chromium/))
+    sudo docker run -ti janx/chromium
+    user@container:~/src$ ninja -C out/Release chrome -j18 && out/Release/chrome
+
+To build [janx/chromium](https://registry.hub.docker.com/u/janx/chromium/) yourself:
+
+    sudo docker build -t janx/chromium - < chromium.docker
