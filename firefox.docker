@@ -2,8 +2,8 @@ FROM ubuntu:14.04
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Firefox build dependencies.
-# Packages after "clang" are from https://developer.mozilla.org/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Ubuntu
-RUN apt-get update && apt-get install -qy git clang zip unzip mercurial g++ make autoconf2.13 yasm libgtk2.0-dev libglib2.0-dev libdbus-1-dev libdbus-glib-1-dev libasound2-dev libcurl4-openssl-dev libiw-dev libxt-dev mesa-common-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libpulse-dev m4 flex ccache
+# Packages after "clang" are from https://dxr.mozilla.org/mozilla-central/source/python/mozboot/mozboot/debian.py
+RUN apt-get update && apt-get install -qy git clang autoconf2.13 build-essential ccache python-dev python-pip python-setuptools unzip uuid zip libasound2-dev libcurl4-openssl-dev libdbus-1-dev libdbus-glib-1-dev libgconf2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libgtk2.0-dev libgtk-3-dev libiw-dev libnotify-dev libpulse-dev libxt-dev mesa-common-dev python-dbus yasm xvfb
 ENV CC clang
 ENV CXX clang++
 ENV SHELL /bin/bash
