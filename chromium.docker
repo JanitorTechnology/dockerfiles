@@ -22,6 +22,9 @@ ENV PATH $PATH:$DEPOT_TOOLS
 RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
  && echo "export PATH=\"\$PATH:$DEPOT_TOOLS\"" >> .bashrc
 
+# Force Chromium to build with clang.
+RUN echo "{ 'GYP_DEFINES': 'clang=1' }" > /home/user/chromium.gyp_env
+
 # Download Chromium's source code.
 RUN fetch chromium --nosvn=True
 WORKDIR src
