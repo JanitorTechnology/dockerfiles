@@ -33,7 +33,7 @@ WORKDIR firefox
 RUN echo "# Firefox build options." >> mozconfig \
  && echo "ac_add_options --enable-application=browser" >> mozconfig \
  && echo "ac_add_options --disable-crashreporter" >> mozconfig \
- && echo "ac_add_options --disable-crashreporter" >> mozconfig \
+ && echo "mk_add_options AUTOCLOBBER=1" >> mozconfig \
  && echo "" >> mozconfig \
  && echo "# Building with clang is faster." >> mozconfig \
  && echo "export CC=clang" >> mozconfig \
