@@ -21,3 +21,12 @@ To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
 To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
 
     sudo docker build -t janx/chromium - < chromium.docker
+
+## Thunderbird
+
+    sudo docker run -ti kewisch/thunderbird
+    user@container:~/thunderbird$ ./mozilla/mach build && ./mozilla/mach run
+
+To build *kewisch/thunderbird* yourself:
+
+    sudo docker build -t kewisch/thunderbird - < thunderbird.docker
