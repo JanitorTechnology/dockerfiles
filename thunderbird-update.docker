@@ -1,0 +1,12 @@
+FROM janx/thunderbird
+MAINTAINER Philipp Kewisch "mozilla@kewis.ch"
+
+# Upgrade all packages (temporarily regain administrator privileges).
+USER root
+RUN apt-get update -q && apt-get upgrade -qy
+USER user
+
+# Update and rebuild Thunderbird's source code.
+RUN cd /home/user/thunderbird \
+ && python client.py checkout \
+ && ./mozilla/mach build
