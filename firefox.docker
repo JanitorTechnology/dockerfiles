@@ -8,6 +8,19 @@ ENV CC clang
 ENV CXX clang++
 ENV SHELL /bin/bash
 
+# Install Node.js and npm.
+RUN git clone https://github.com/nodejs/node /tmp/node \
+ && cd /tmp/node \
+ && git checkout v5.6.0 \
+ && ./configure \
+ && make -j18 \
+ && make install \
+ && rm -rf /tmp/node
+
+# Install ESLint for Firefox.
+# Based on https://dxr.mozilla.org/mozilla-central/source/python/mach_commands.py#222
+RUN npm install -g eslint@1.10.3 eslint-plugin-html eslint-plugin-mozilla eslint-plugin-react
+
 # Don't be root.
 RUN useradd -m user
 USER user
