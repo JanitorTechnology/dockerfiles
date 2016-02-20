@@ -1,0 +1,52 @@
+FROM janx/chromium # also works with janx/firefox and janx/thunderbird.
+MAINTAINER Jan Keromnes "janx@linux.com"
+
+# Regain administrator privileges.
+USER root
+
+# Install various utilities for remote access.
+RUN apt-get update -q \
+ && apt-get install -qy git vim openssh-server supervisor xvfb fluxbox x11vnc \
+ && mkdir /var/run/sshd \
+ && touch /etc/supervisord.log
+
+# Install the latest Node.js and npm.
+RUN git clone https://github.com/nodejs/node /tmp/node \
+ && cd /tmp/node \
+ && git checkout v5.6.0 \
+ && ./configure \
+ && make -j18 \
+ && make install \
+ && rm -rf /tmp/node
+
+# Install Cloud9 and noVNC (without administrator privileges).
+USER user
+RUN curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+RUN git clone https://github.com/kanaka/noVNC /home/user/novnc/
+USER root
+
+# Configure Supervisor.
+WORKDIR /etc
+RUN echo "[supervisord]" >> supervisord.conf \
+ && echo "nodaemon=true" >> supervisord.conf \
+ && echo "[program:sshd]" >> supervisord.conf \
+ && echo "command=/usr/sbin/sshd -D" >> supervisord.conf \
+ && echo "[program:xvfb]" >> supervisord.conf \
+ && echo "command=/usr/bin/Xvfb :99 -screen 0 1280x864x16 -ac -pn -noreset" >> supervisord.conf \
+ && echo "user=user" >> supervisord.conf \
+ && echo "[program:x11vnc]" >> supervisord.conf \
+ && echo "command=x11vnc -shared -rfbport 5900 -display :99" >> supervisord.conf \
+ && echo "user=user" >> supervisord.conf \
+ && echo "autorestart=true" >> supervisord.conf \
+ && echo "[program:novnc]" >> supervisord.conf \
+ && echo "command=/home/user/novnc/utils/launch.sh --vnc localhost:5900 --listen 8088" >> supervisord.conf \
+ && echo "user=user" >> supervisord.conf \
+ && echo "[program:fluxbox]" >> supervisord.conf \
+ && echo "command=fluxbox" >> supervisord.conf \
+ && echo "user=user" >> supervisord.conf \
+ && echo "autorestart=true" >> supervisord.conf \
+ && echo "environment=DISPLAY=\":99\"" >> supervisord.conf
+
+# Expose the remote access ports and run the server.
+EXPOSE 22 8088
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
