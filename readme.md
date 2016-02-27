@@ -24,9 +24,18 @@ To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
 
 ## Thunderbird
 
-    sudo docker run -ti kewisch/thunderbird
+    sudo docker run -ti janx/thunderbird
     user@container:~/thunderbird$ ./mozilla/mach build && ./mozilla/mach run
 
-To build **kewisch/thunderbird** yourself:
+To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself:
 
-    sudo docker build -t kewisch/thunderbird - < thunderbird.docker
+    sudo docker build -t janx/thunderbird - < thunderbird.docker
+
+## Servo
+
+    sudo docker run -ti janx/servo
+    user@container:~/servo$ ./mach build -d && ./mach run -d
+
+To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
+
+    sudo docker build -t janx/servo - < servo.docker
