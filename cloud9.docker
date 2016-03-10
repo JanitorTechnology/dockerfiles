@@ -10,6 +10,10 @@ RUN apt-get update -q \
  && mkdir /var/run/sshd \
  && touch /etc/supervisord.log
 
+# Disallow logging in to SSH with a password.
+RUN sed -i "s/^.PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config \
+ && sed -i "s/^.ChallengeResponseAuthentication yes/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
+
 # Workaround for https://github.com/chjj/pty.js/issues/149.
 ENV CC gcc
 ENV CXX g++
