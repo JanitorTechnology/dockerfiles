@@ -6,7 +6,7 @@ USER root
 
 # Install various utilities for remote access.
 RUN apt-get update -q \
- && apt-get install -qy git vim openssh-server supervisor xvfb fluxbox x11vnc \
+ && apt-get install -qy curl git vim openssh-server supervisor xvfb fluxbox x11vnc \
  && mkdir /var/run/sshd \
  && touch /etc/supervisord.log
 
