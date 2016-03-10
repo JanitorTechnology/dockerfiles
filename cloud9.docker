@@ -10,15 +10,6 @@ RUN apt-get update -q \
  && mkdir /var/run/sshd \
  && touch /etc/supervisord.log
 
-# Install the latest Node.js and npm.
-RUN git clone https://github.com/nodejs/node /tmp/node \
- && cd /tmp/node \
- && git checkout v5.6.0 \
- && ./configure \
- && make -j18 \
- && make install \
- && rm -rf /tmp/node
-
 # Workaround for https://github.com/chjj/pty.js/issues/149.
 ENV CC gcc
 ENV CXX g++
