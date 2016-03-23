@@ -19,18 +19,18 @@ RUN hg clone https://hg.mozilla.org/comm-central/ thunderbird
 WORKDIR thunderbird
 RUN python client.py checkout
 
-# Add mozconfig file.
-RUN echo "# Thunderbird build options." >> mozconfig \
- && echo "ac_add_options --enable-application=mail" >> mozconfig \
- && echo "ac_add_options --enable-calendar" >> mozconfig \
- && echo "ac_add_options --disable-crashreporter" >> mozconfig \
- && echo "ac_add_options --enable-extensions=default,inspector" >> mozconfig \
- && echo "ac_add_options --with-ccache" >> mozconfig \
- && echo "mk_add_options AUTOCLOBBER=1" >> mozconfig \
- && echo "" >> mozconfig \
- && echo "# Building with clang is faster." >> mozconfig \
- && echo "export CC=clang" >> mozconfig \
- && echo "export CXX=clang++" >> mozconfig
+# Add .mozconfig file.
+RUN echo "# Thunderbird build options." >> .mozconfig \
+ && echo "ac_add_options --enable-application=mail" >> .mozconfig \
+ && echo "ac_add_options --enable-calendar" >> .mozconfig \
+ && echo "ac_add_options --disable-crashreporter" >> .mozconfig \
+ && echo "ac_add_options --enable-extensions=default,inspector" >> .mozconfig \
+ && echo "ac_add_options --with-ccache" >> .mozconfig \
+ && echo "mk_add_options AUTOCLOBBER=1" >> .mozconfig \
+ && echo "" >> .mozconfig \
+ && echo "# Building with clang is faster." >> .mozconfig \
+ && echo "export CC=clang" >> .mozconfig \
+ && echo "export CXX=clang++" >> .mozconfig
 
 # Set up mercurial so mach doesn't complain
 RUN mkdir -p /home/user/.mozbuild && ./mozilla/mach mercurial-setup -u
