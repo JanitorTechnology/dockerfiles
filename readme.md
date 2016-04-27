@@ -39,3 +39,17 @@ To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself
 To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
 
     sudo docker build -t janx/servo - < servo.docker
+
+# More Dockerfiles
+
+There are other great development Dockerfiles out there:
+
+## [KDE](https://github.com/rcatolino/kdesrcbuild-docker)
+
+    docker run -ti janx/kde
+    user@container:~/kde ./kdesrc-build --make-options=-j8 --no-src
+
+To build `janx/kde` yourself:
+
+    cd kde
+    docker build -t janx/kde - < kde.docker
