@@ -4,41 +4,45 @@ Popular development environments as Docker containers.
 
 All images are available on [Docker Hub](https://hub.docker.com/u/janx/).
 
-## Firefox
+## [Chromium](https://hub.docker.com/r/janx/chromium/)
 
-    sudo docker run -ti janx/firefox
-    user@container:~/firefox$ ./mach build && ./mach run
+    docker run -ti janx/chromium
+    user@container:~/chromium/src$ ninja -C out/Release chrome -j18
 
-To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
+To build `janx/chromium` yourself:
 
-    sudo docker build -t janx/firefox - < firefox.docker
+    cd chromium
+    docker build -t janx/chromium - < chromium.dockerfile
 
-## Chromium
+## [Firefox](https://hub.docker.com/r/janx/firefox/)
 
-    sudo docker run -ti janx/chromium
-    user@container:~/src$ ninja -C out/Release chrome -j18 && out/Release/chrome
+    docker run -ti janx/firefox
+    user@container:~/firefox$ ./mach build
 
-To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
+To build `janx/firefox` yourself:
 
-    sudo docker build -t janx/chromium - < chromium.docker
+    cd firefox
+    docker build -t janx/firefox - < firefox.dockerfile
 
-## Thunderbird
+## [Servo](https://servo.org/)
 
-    sudo docker run -ti janx/thunderbird
-    user@container:~/thunderbird$ ./mozilla/mach build && ./mozilla/mach run
+    docker run -ti janx/servo
+    user@container:~/servo$ ./mach build -d
 
-To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself:
+To build `janx/servo` yourself:
 
-    sudo docker build -t janx/thunderbird - < thunderbird.docker
+    cd servo
+    docker build -t janx/servo - < servo.dockerfile
 
-## Servo
+## [Thunderbird](https://hub.docker.com/r/janx/thunderbird/)
 
-    sudo docker run -ti janx/servo
-    user@container:~/servo$ ./mach build -d && ./mach run -d
+    docker run -ti janx/thunderbird
+    user@container:~/thunderbird$ ./mozilla/mach build
 
-To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
+To build `janx/thunderbird` yourself:
 
-    sudo docker build -t janx/servo - < servo.docker
+    cd thunderbird
+    docker build -t janx/thunderbird - < thunderbird.dockerfile
 
 # More Dockerfiles
 
