@@ -26,7 +26,7 @@ To build `janx/ubuntu-dev` yourself:
 To build `janx/chromium` yourself:
 
     cd chromium
-    docker build -t janx/chromium - < chromium.dockerfile
+    docker build -t janx/chromium -f chromium.dockerfile .
 
 ## [Firefox](https://hub.docker.com/r/janx/firefox/)
 
@@ -36,7 +36,7 @@ To build `janx/chromium` yourself:
 To build `janx/firefox` yourself:
 
     cd firefox
-    docker build -t janx/firefox - < firefox.dockerfile
+    docker build -t janx/firefox -f firefox.dockerfile .
 
 ## [Servo](https://servo.org/)
 
@@ -46,7 +46,7 @@ To build `janx/firefox` yourself:
 To build `janx/servo` yourself:
 
     cd servo
-    docker build -t janx/servo - < servo.dockerfile
+    docker build -t janx/servo -f servo.dockerfile .
 
 ## [Thunderbird](https://hub.docker.com/r/janx/thunderbird/)
 
@@ -56,7 +56,7 @@ To build `janx/servo` yourself:
 To build `janx/thunderbird` yourself:
 
     cd thunderbird
-    docker build -t janx/thunderbird - < thunderbird.dockerfile
+    docker build -t janx/thunderbird -f thunderbird.dockerfile .
 
 # More Dockerfiles
 
@@ -70,4 +70,4 @@ There are other great development Dockerfiles out there:
 To build `janx/kde` yourself:
 
     cd kde
-    docker build -t janx/kde - < kde.docker
+    docker build -t janx/kde -f kde.docker .
