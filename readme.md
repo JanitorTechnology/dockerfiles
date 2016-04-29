@@ -64,10 +64,10 @@ There are other great development Dockerfiles out there:
 
 ## [KDE](https://github.com/rcatolino/kdesrcbuild-docker)
 
-    docker run -ti janx/kde
-    user@container:~/kde ./kdesrc-build --make-options=-j8 --no-src
+    docker run -ti rcay/kdecore
+    user@container:~/kdesrc-build ./kdesrc-build --make-options=-j8 --no-src
 
-To build `janx/kde` yourself:
+To build `rcay/kdecore` yourself:
 
     cd kde
-    docker build -t janx/kde -f kde.docker .
+    docker build -t rcay/kdecore -f kde.docker .
