@@ -20,7 +20,7 @@ To build `janx/ubuntu-dev` yourself:
 
 ## [Chromium](https://hub.docker.com/r/janx/chromium/)
 
-    docker run -ti janx/chromium
+    docker run -ti janx/chromium /bin/bash
     user@container:~/chromium/src$ ninja -C out/Release chrome -j18
 
 To build `janx/chromium` yourself:
@@ -30,7 +30,7 @@ To build `janx/chromium` yourself:
 
 ## [Firefox](https://hub.docker.com/r/janx/firefox/)
 
-    docker run -ti janx/firefox
+    docker run -ti janx/firefox /bin/bash
     user@container:~/firefox$ ./mach build
 
 To build `janx/firefox` yourself:
@@ -40,7 +40,7 @@ To build `janx/firefox` yourself:
 
 ## [Servo](https://servo.org/)
 
-    docker run -ti janx/servo
+    docker run -ti janx/servo /bin/bash
     user@container:~/servo$ ./mach build -d
 
 To build `janx/servo` yourself:
@@ -50,7 +50,7 @@ To build `janx/servo` yourself:
 
 ## [Thunderbird](https://hub.docker.com/r/janx/thunderbird/)
 
-    docker run -ti janx/thunderbird
+    docker run -ti janx/thunderbird /bin/bash
     user@container:~/thunderbird$ ./mozilla/mach build
 
 To build `janx/thunderbird` yourself:
@@ -64,7 +64,7 @@ There are other great development Dockerfiles out there:
 
 ## [KDE](https://github.com/rcatolino/kdesrcbuild-docker)
 
-    docker run -ti rcay/kdecore
+    docker run -ti rcay/kdecore /bin/bash
     user@container:~/kdesrc-build ./kdesrc-build --make-options=-j8 --no-src
 
 To build `rcay/kdecore` yourself:
