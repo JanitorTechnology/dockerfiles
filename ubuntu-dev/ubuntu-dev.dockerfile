@@ -7,6 +7,7 @@ RUN apt-get update -q \
  && apt-get install -qy \
   asciidoc \
   build-essential \
+  cmake \
   curl \
   emacs \
   fluxbox \
@@ -16,6 +17,7 @@ RUN apt-get update -q \
   libexpat1-dev \
   libssl-dev \
   net-tools \
+  ninja-build \
   openssh-server \
   sudo \
   supervisor \
@@ -42,6 +44,22 @@ RUN mkdir /tmp/git \
  && make prefix=/usr install install-man -j18 \
  && rm -rf /tmp/git
 
+# Install the latest Clang.
+# From: https://developer.mozilla.org/en-US/docs/Mozilla/Testing/Clang_static_analysis#Installing_Clang
+RUN git clone http://llvm.org/git/llvm.git /usr/src/llvm \
+ && cd /usr/src/llvm/tools \
+ && git clone http://llvm.org/git/clang.git \
+ && cd clang \
+ && git config branch.master.rebase true \
+ && cd ../.. \
+ && git config branch.master.rebase true \
+ && mkdir obj \
+ && cd obj \
+ && cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
+ && ninja install
+ENV CC clang
+ENV CXX clang++
+
 # Install the latest Node.js and npm.
 # Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 RUN git clone https://github.com/nodejs/node /tmp/node \
@@ -58,12 +76,20 @@ RUN git clone https://github.com/nodejs/node /tmp/node \
  && echo "NPM_PACKAGES=\"/home/user/.npm-packages\"" >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:\$NPM_PACKAGES/bin\"" >> /home/user/.bashrc
 
+# Workaround for https://github.com/chjj/pty.js/issues/149.
+ENV CC gcc
+ENV CXX g++
+
 # Install Cloud9 and noVNC (without administrator privileges).
 USER user
 WORKDIR /home/user
 RUN curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/
 USER root
+
+# End workaround.
+ENV CC clang
+ENV CXX clang++
 
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
