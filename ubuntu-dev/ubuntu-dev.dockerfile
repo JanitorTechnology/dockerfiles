@@ -37,7 +37,8 @@ WORKDIR /home/user
 # Install the latest Git. TODO: profile-install
 RUN mkdir /tmp/git \
  && cd /tmp/git \
- && curl https://www.kernel.org/pub/software/scm/git/git-2.8.1.tar.xz | tar xf \
+ && curl https://www.kernel.org/pub/software/scm/git/git-2.8.2.tar.xz | tar xJ \
+ && cd git-2.8.2 \
  && make prefix=/usr install install-man -j18 \
  && rm -rf /tmp/git
 
