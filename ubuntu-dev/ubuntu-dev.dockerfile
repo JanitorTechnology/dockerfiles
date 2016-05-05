@@ -13,6 +13,7 @@ RUN apt-get update -q \
   fluxbox \
   gdb \
   gettext \
+  less \
   libcurl4-openssl-dev \
   libexpat1-dev \
   libssl-dev \
