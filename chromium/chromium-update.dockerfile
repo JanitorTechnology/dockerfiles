@@ -12,7 +12,6 @@ RUN cd /home/user/depot_tools \
 
 # Update and rebuild Chromium's source code.
 RUN cd /home/user/chromium/src \
- && git fetch origin \
- && git reset --hard origin/master \
- && gclient sync --jobs=18 \
- && ninja -v -C out/Release chrome -j18
+ && git rebase-update \
+ && gclient sync --delete --jobs=18 \
+ && ninja -C out/Default chrome -j18

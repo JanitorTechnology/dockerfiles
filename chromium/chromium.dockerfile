@@ -1,37 +1,36 @@
-FROM ubuntu:14.04
+FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
-# Install Chromium build dependencies.
-RUN echo "deb http://archive.ubuntu.com/ubuntu trusty multiverse" >> /etc/apt/sources.list # && dpkg --add-architecture i386
-RUN apt-get update -q && apt-get upgrade -qy && apt-get install -qy build-essential clang curl gdb git
-RUN curl -SL https://src.chromium.org/chrome/trunk/src/build/install-build-deps.sh > /tmp/install-build-deps.sh \
- && chmod +x /tmp/install-build-deps.sh \
- && /tmp/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl \
- && rm /tmp/install-build-deps.sh
+# Enable extended "multiverse" Ubuntu packages.
+RUN echo "deb http://archive.ubuntu.com/ubuntu xenial multiverse" >> /etc/apt/sources.list
 
 # Don't be root.
-RUN useradd -m user
 USER user
-ENV HOME /home/user
 WORKDIR /home/user
 
 # Install Chromium's depot_tools.
-ENV DEPOT_TOOLS /home/user/depot_tools
-RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git $DEPOT_TOOLS
-ENV PATH $PATH:$DEPOT_TOOLS
+RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+ENV PATH $PATH:/home/user/depot_tools
 RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
- && echo "export PATH=\"\$PATH:$DEPOT_TOOLS\"" >> .bashrc
+ && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc
 
 # Create the Chromium directory.
 RUN mkdir /home/user/chromium
 WORKDIR chromium
 
-# Force Chromium to build with clang.
-RUN echo "{ 'GYP_DEFINES': 'clang=1' }" > /home/user/chromium/chromium.gyp_env
-
 # Download Chromium's source code.
-RUN fetch chromium --nosvn=True
+RUN fetch --nohooks chromium --nosvn=True
+
+# Install Chromium build dependencies (with administrator privileges).
+RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
+ && sudo src/build/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl
+
+# Run Chromium post-sync hooks.
+RUN gclient runhooks
 WORKDIR src
 
+# Configure Chromium build.
+RUN gn gen out/Default
+
 # Build Chromium.
-RUN ninja -C out/Release chrome -j18
+RUN ninja -C out/Default chrome -j18
