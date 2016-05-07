@@ -35,7 +35,7 @@ WORKDIR src
 RUN gclient sync --delete --jobs=18
 
 # Configure Chromium build.
-RUN gn gen out/Default
+RUN gn gen out/Default --args="enable_nacl=false is_component_build=true"
 
 # Build Chromium.
 RUN ninja -C out/Default chrome -j18
