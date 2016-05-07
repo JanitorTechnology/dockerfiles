@@ -14,6 +14,11 @@ ENV PATH $PATH:/home/user/depot_tools
 RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
  && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc
 
+# Disable gyp_chromium for faster updates.
+ENV GYP_CHROMIUM_NO_ACTION 1
+RUN echo "\n# Disable gyp_chromium for faster updates." >> .bashrc \
+ && echo "export GYP_CHROMIUM_NO_ACTION=1" >> .bashrc
+
 # Create the Chromium directory.
 RUN mkdir /home/user/chromium
 WORKDIR chromium
