@@ -25,9 +25,9 @@ RUN fetch --nohooks chromium --nosvn=True
 RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
  && sudo src/build/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl
 
-# Run Chromium post-sync hooks.
-RUN gclient runhooks
+# Update Chromium third_party repos and run pre-compile hooks.
 WORKDIR src
+RUN gclient sync --delete --jobs=18
 
 # Configure Chromium build.
 RUN gn gen out/Default
