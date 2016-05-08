@@ -1,7 +1,7 @@
 FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
-# Install Servo build dependencies. python-dev
+# Install Servo build dependencies.
 # Packages are from https://github.com/servo/servo/blob/master/README.md#prerequisites
 # and https://github.com/servo/servo/issues/7512#issuecomment-216665988
 RUN apt-get update -q \
@@ -29,6 +29,10 @@ RUN apt-get update -q \
   xpra \
   libdbus-glib-1-dev
 ENV SHELL /bin/bash
+
+# Sadly, Servo can't be built with clang yet.
+ENV CC gcc
+ENV CXX g++
 
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
