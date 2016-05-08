@@ -10,7 +10,7 @@ Most images here are based on `janx/ubuntu-dev`, which is basically `ubuntu:16.0
 
 - Useful packages like `clang`, `git`, `vim`…
 - A `user` which can `sudo`
-- Remote access via `ssh`, [Cloud9](https://c9.io) and [noVNC](https://kanaka.github.io/noVNC/)
+- Remote access via `ssh`, [Cloud9 IDE](https://c9.io) and [noVNC](https://kanaka.github.io/noVNC/)
 - An extensible `supervisor` configuration
 
 To build [janx/ubuntu-dev](https://hub.docker.com/r/janx/ubuntu-dev/) yourself:
