@@ -6,11 +6,11 @@ All images are available on [Docker Hub](https://hub.docker.com/u/janx/).
 
 ## [Ubuntu-dev](https://hub.docker.com/r/janx/ubuntu-dev/)
 
-Most images will soon use `janx/ubuntu-dev`, which is basically `ubuntu:16.04` with:
+Most images here are based on `janx/ubuntu-dev`, which is basically `ubuntu:16.04` with:
 
 - Useful packages like `clang`, `git`, `vim`…
 - A `user` which can `sudo`
-- Remote access via `ssh`, [cloud9](https://c9.io) and [novnc](https://kanaka.github.io/noVNC/)
+- Remote access via `ssh`, [Cloud9](https://c9.io) and [noVNC](https://kanaka.github.io/noVNC/)
 - An extensible `supervisor` configuration
 
 To build `janx/ubuntu-dev` yourself:
@@ -38,7 +38,7 @@ To build `janx/firefox` yourself:
     cd firefox
     docker build -t janx/firefox -f firefox.dockerfile .
 
-## [Servo](https://servo.org/)
+## [Servo](https://hub.docker.com/r/janx/servo/)
 
     docker run -ti janx/servo /bin/bash
     user@container:~/servo$ ./mach build -d
