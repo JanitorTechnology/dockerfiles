@@ -30,7 +30,7 @@ RUN mkdir /home/user/chromium
 WORKDIR chromium
 
 # Download Chromium's source code.
-RUN fetch --nohooks chromium --nosvn=True
+RUN fetch --nohooks chromium
 
 # Install Chromium build dependencies (with administrator privileges).
 RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
