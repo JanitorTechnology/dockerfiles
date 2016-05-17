@@ -30,7 +30,8 @@ RUN apt-get update -q \
   mesa-common-dev \
   python-dbus \
   yasm \
-  xvfb
+  xvfb \
+ && pip install requests
 ENV SHELL /bin/bash
 
 # Don't be root.
