@@ -30,8 +30,7 @@ RUN apt-get update -q \
   mesa-common-dev \
   python-dbus \
   yasm \
-  xvfb \
- && pip install requests
+  xvfb
 ENV SHELL /bin/bash
 
 # Don't be root.
@@ -39,6 +38,7 @@ USER user
 WORKDIR /home/user
 
 # Install Mozilla's moz-git-tools.
+RUN pip install requests
 RUN git clone https://github.com/mozilla/moz-git-tools \
  && cd moz-git-tools \
  && git submodule init \
