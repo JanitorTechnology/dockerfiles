@@ -77,6 +77,12 @@ RUN git clone https://github.com/nodejs/node /tmp/node \
  && echo "NPM_PACKAGES=\"/home/user/.npm-packages\"" >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:\$NPM_PACKAGES/bin\"" >> /home/user/.bashrc
 
+# Install the latest rr.
+RUN cd /tmp \
+ && wget https://github.com/mozilla/rr/releases/download/4.2.0/rr-4.2.0-Linux-$(uname -m).deb -O rr.deb \
+ && dpkg -i rr.deb \
+ && rm -f rr.deb
+
 # Workaround for https://github.com/chjj/pty.js/issues/149.
 ENV CC gcc
 ENV CXX g++
