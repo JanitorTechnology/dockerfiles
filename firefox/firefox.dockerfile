@@ -31,7 +31,6 @@ RUN apt-get update -q \
   python-dbus \
   yasm \
   xvfb
-ENV SHELL /bin/bash
 
 # Don't be root.
 USER user

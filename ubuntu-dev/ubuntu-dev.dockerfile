@@ -26,6 +26,7 @@ RUN apt-get update -q \
   x11vnc \
   xvfb \
  && mkdir /var/run/sshd
+ENV SHELL /bin/bash
 
 # Disallow logging in to SSH with a password.
 RUN sed -i "s/^[#\s]*PasswordAuthentication\s.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
