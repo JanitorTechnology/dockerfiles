@@ -54,6 +54,10 @@ WORKDIR firefox
 # Add Firefox build configuration.
 ADD mozconfig /home/user/firefox/
 
+# Set up Mercurial extensions for Firefox.
+RUN mkdir -p /home/user/.mozbuild \
+ && ./mach mercurial-setup -u
+
 # Set up ESLint for Firefox.
 RUN ./mach eslint --setup
 
