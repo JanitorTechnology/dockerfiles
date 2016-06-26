@@ -57,6 +57,9 @@ ADD mozconfig /home/user/firefox/
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u
+ENV PATH $PATH:/home/user/.mozbuild/version-control-tools/git/commands
+RUN echo "\n# Add Mozilla's version control tools git commands to the PATH." >> .bashrc \
+ && echo "export PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> .bashrc
 
 # Set up ESLint for Firefox.
 RUN ./mach eslint --setup
