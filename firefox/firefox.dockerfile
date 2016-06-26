@@ -38,9 +38,8 @@ RUN git clone https://github.com/mozilla/moz-git-tools \
  && cd moz-git-tools \
  && git submodule init \
  && git submodule update
-ENV PATH $PATH:/home/user/moz-git-tools
 RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
- && echo "export PATH=\"\$PATH:/home/user/moz-git-tools\"" >> .bashrc
+ && echo "PATH=\"\$PATH:/home/user/moz-git-tools\"" >> .bashrc
 
 # Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev firefox
@@ -53,7 +52,9 @@ RUN sudo chown user:user /home/user/firefox/mozconfig
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mach mercurial-setup -u
+ && ./mach mercurial-setup -u \
+ && echo "\n# Add Mozilla's git commands to the PATH." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> /home/user/.bashrc
 
 # Build Firefox.
 RUN ./mach build
