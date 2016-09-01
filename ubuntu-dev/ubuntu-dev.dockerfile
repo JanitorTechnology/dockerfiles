@@ -1,12 +1,19 @@
 FROM ubuntu:16.04
 MAINTAINER Jan Keromnes "janx@linux.com"
 
+# Add source for the latest Clang packages.
+ADD llvm-snapshot.gpg.key /tmp
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
+ && apt-key add /tmp/llvm-snapshot.gpg.key \
+ && rm -f /tmp/llvm-snapshot.gpg.key
+
 # Install basic development packages, and build dependencies for Git and Cloud9.
 RUN apt-get update -q \
  && apt-get upgrade -qy \
  && apt-get install -qy \
   asciidoc \
   build-essential \
+  clang-3.9 \
   cmake \
   curl \
   emacs \
@@ -27,6 +34,8 @@ RUN apt-get update -q \
   xvfb \
  && mkdir /var/run/sshd
 ENV SHELL /bin/bash
+ENV CC clang-3.9
+ENV CXX clang++-3.9
 
 # Disallow logging in to SSH with a password.
 RUN sed -i "s/^[#\s]*PasswordAuthentication\s.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
@@ -45,22 +54,6 @@ RUN mkdir /tmp/git \
  && cd git-2.8.3 \
  && make prefix=/usr profile-install install-man -j18 \
  && rm -rf /tmp/git
-
-# Install the latest Clang.
-# From: https://developer.mozilla.org/en-US/docs/Mozilla/Testing/Clang_static_analysis#Installing_Clang
-RUN git clone http://llvm.org/git/llvm.git /usr/src/llvm \
- && cd /usr/src/llvm/tools \
- && git clone http://llvm.org/git/clang.git \
- && cd clang \
- && git config branch.master.rebase true \
- && cd ../.. \
- && git config branch.master.rebase true \
- && mkdir obj \
- && cd obj \
- && cmake .. -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
- && ninja install
-ENV CC clang
-ENV CXX clang++
 
 # Install the latest Node.js and npm.
 # Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
@@ -84,20 +77,12 @@ RUN cd /tmp \
  && dpkg -i rr.deb \
  && rm -f rr.deb
 
-# Workaround for https://github.com/chjj/pty.js/issues/149.
-ENV CC gcc
-ENV CXX g++
-
 # Install Cloud9 and noVNC (without administrator privileges).
 USER user
 WORKDIR /home/user
 RUN curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/
 USER root
-
-# End workaround.
-ENV CC clang
-ENV CXX clang++
 
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
