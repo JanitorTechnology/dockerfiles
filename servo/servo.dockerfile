@@ -24,10 +24,10 @@ RUN apt-get update -q \
   libglu1-mesa-dev \
   libgles2-mesa-dev \
   libegl1-mesa-dev \
+  libdbus-1-dev \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
-  xpra \
-  libdbus-glib-1-dev
+  xpra
 ENV SHELL /bin/bash
 
 # Sadly, Servo can't be built with clang yet.
