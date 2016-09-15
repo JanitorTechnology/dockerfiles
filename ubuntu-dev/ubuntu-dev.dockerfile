@@ -57,9 +57,10 @@ RUN mkdir /tmp/git \
 
 # Install the latest GitHub helper.
 RUN mkdir /tmp/hub \
+ && cd /tmp/hub \
  && curl -L https://github.com/github/hub/releases/download/v2.2.8/hub-linux-amd64-2.2.8.tgz | tar xz \
  && cd hub-linux-amd64-2.2.8 \
- && script/build -o /usr/local/bin/hub \
+ && ./install \
  && rm -rf /tmp/hub
 
 # Install the latest Node.js and npm.
