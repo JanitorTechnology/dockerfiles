@@ -55,6 +55,13 @@ RUN mkdir /tmp/git \
  && make prefix=/usr profile-install install-man -j18 \
  && rm -rf /tmp/git
 
+# Install the latest GitHub helper.
+RUN mkdir /tmp/hub \
+ && curl -L https://github.com/github/hub/releases/download/v2.2.8/hub-linux-amd64-2.2.8.tgz | tar xz \
+ && cd hub-linux-amd64-2.2.8 \
+ && script/build -o /usr/local/bin/hub \
+ && rm -rf /tmp/hub
+
 # Install the latest Node.js and npm.
 # Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 RUN git clone https://github.com/nodejs/node /tmp/node \
