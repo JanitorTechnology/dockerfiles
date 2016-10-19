@@ -67,7 +67,7 @@ RUN mkdir /tmp/hub \
 # Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 RUN git clone https://github.com/nodejs/node /tmp/node \
  && cd /tmp/node \
- && git checkout v6.5.0 \
+ && git checkout v6.9.0 \
  && ./configure \
  && make -j18 \
  && make install \
