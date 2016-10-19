@@ -50,8 +50,8 @@ WORKDIR /home/user
 # Install the latest Git.
 RUN mkdir /tmp/git \
  && cd /tmp/git \
- && curl https://www.kernel.org/pub/software/scm/git/git-2.10.0.tar.xz | tar xJ \
- && cd git-2.10.0 \
+ && curl https://www.kernel.org/pub/software/scm/git/git-2.10.1.tar.xz | tar xJ \
+ && cd git-2.10.1 \
  && make prefix=/usr profile-install install-man -j18 \
  && rm -rf /tmp/git
 
