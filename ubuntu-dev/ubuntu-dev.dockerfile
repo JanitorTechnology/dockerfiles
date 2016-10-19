@@ -58,8 +58,8 @@ RUN mkdir /tmp/git \
 # Install the latest GitHub helper.
 RUN mkdir /tmp/hub \
  && cd /tmp/hub \
- && curl -L https://github.com/github/hub/releases/download/v2.2.8/hub-linux-amd64-2.2.8.tgz | tar xz \
- && cd hub-linux-amd64-2.2.8 \
+ && curl -L https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz | tar xz \
+ && cd hub-linux-amd64-2.2.9 \
  && ./install \
  && rm -rf /tmp/hub
 
