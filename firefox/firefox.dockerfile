@@ -54,8 +54,5 @@ ADD mozconfig /home/user/firefox/
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u
 
-# Set up ESLint for Firefox.
-RUN ./mach eslint --setup
-
 # Build Firefox.
 RUN ./mach build
