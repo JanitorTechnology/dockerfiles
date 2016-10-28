@@ -1,10 +1,6 @@
 FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
-# Don't be root.
-USER user
-WORKDIR /home/user
-
 # Install Chromium's depot_tools.
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH $PATH:/home/user/depot_tools

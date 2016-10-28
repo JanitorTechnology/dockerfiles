@@ -3,9 +3,9 @@ MAINTAINER Philipp Kewisch "mozilla@kewis.ch"
 
 # Install Thunderbird build dependencies.
 # Packages after "mercurial" are from https://dxr.mozilla.org/mozilla-central/source/python/mozboot/mozboot/debian.py
-RUN apt-get update -q \
- && apt-get upgrade -qy \
- && apt-get install -qy \
+RUN sudo apt-get update -q \
+ && sudo apt-get upgrade -qy \
+ && sudo apt-get install -qy \
   mercurial \
   autoconf2.13 \
   build-essential \
@@ -32,10 +32,6 @@ RUN apt-get update -q \
   python-dbus \
   xvfb \
   yasm
-
-# Don't be root.
-USER user
-WORKDIR /home/user
 
 # Download Thunderbird's source code.
 RUN hg clone https://hg.mozilla.org/comm-central/ thunderbird \

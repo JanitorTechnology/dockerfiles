@@ -39,13 +39,19 @@ ENV SHELL /bin/bash
 ENV CC clang-3.9
 ENV CXX clang++-3.9
 
+# Add default Supervisor configuration.
+ADD supervisord.conf /etc/
+
 # Disallow logging in to SSH with a password.
-RUN sed -i "s/^[#\s]*PasswordAuthentication\s.*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
- && sed -i "s/^[#\s]*ChallengeResponseAuthentication\s.*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
+RUN sed -i "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
+ && sed -i "s/^[#\s]*ChallengeResponseAuthentication\s+[yn].*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
 
 # Add a user that can `sudo`.
 RUN useradd -m user \
  && echo "user ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/user
+
+# Don't be root.
+USER user
 ENV HOME /home/user
 WORKDIR /home/user
 
@@ -54,7 +60,8 @@ RUN mkdir /tmp/git \
  && cd /tmp/git \
  && curl https://www.kernel.org/pub/software/scm/git/git-2.10.1.tar.xz | tar xJ \
  && cd git-2.10.1 \
- && make prefix=/usr profile-install install-man -j18 \
+ && make prefix=/usr profile man -j18 \
+ && sudo make prefix=/usr PROFILE=BUILD install install-man \
  && rm -rf /tmp/git
 
 # Install the latest GitHub helper.
@@ -62,7 +69,7 @@ RUN mkdir /tmp/hub \
  && cd /tmp/hub \
  && curl -L https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz | tar xz \
  && cd hub-linux-amd64-2.2.9 \
- && ./install \
+ && sudo ./install \
  && rm -rf /tmp/hub
 
 # Install the latest Node.js and npm.
@@ -72,11 +79,10 @@ RUN git clone https://github.com/nodejs/node /tmp/node \
  && git checkout v6.9.1 \
  && ./configure \
  && make -j18 \
- && make install \
+ && sudo make install \
  && rm -rf /tmp/node \
  && mkdir /home/user/.npm-packages \
  && echo "prefix=/home/user/.npm-packages" >> /home/user/.npmrc \
- && chown -R user:user /home/user/.npm-packages /home/user/.npmrc \
  && echo "\n# NPM configuration." >> /home/user/.bashrc \
  && echo "NPM_PACKAGES=\"/home/user/.npm-packages\"" >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:\$NPM_PACKAGES/bin\"" >> /home/user/.bashrc
@@ -84,7 +90,7 @@ RUN git clone https://github.com/nodejs/node /tmp/node \
 # Install the latest rr.
 RUN cd /tmp \
  && wget https://github.com/mozilla/rr/releases/download/4.4.0/rr-4.4.0-Linux-$(uname -m).deb -O rr.deb \
- && dpkg -i rr.deb \
+ && sudo dpkg -i rr.deb \
  && rm -f rr.deb
 
 # Install the latest Vim.
@@ -93,20 +99,14 @@ RUN mkdir /tmp/vim \
  && curl -L https://github.com/vim/vim/archive/v8.0.0051.tar.gz | tar xz \
  && cd vim-8.0.0051/src \
  && make -j18 \
- && make install \
+ && sudo make install \
  && rm -rf /tmp/vim \
  && echo "\n# EDITOR configuration.\nEDITOR=vim" >> /home/user/.bashrc
 ENV EDITOR vim
 
-# Install Cloud9 and noVNC (without administrator privileges).
-USER user
-WORKDIR /home/user
+# Install Cloud9 and noVNC.
 RUN curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/
-USER root
-
-# Add default Supervisor configuration.
-ADD supervisord.conf /etc/
 
 # Expose remote access ports.
 EXPOSE 22 8088

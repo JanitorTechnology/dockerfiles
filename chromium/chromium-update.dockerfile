@@ -2,9 +2,7 @@ FROM janx/chromium
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages (temporarily regain administrator privileges).
-USER root
-RUN apt-get update -q && apt-get upgrade -qy
-USER user
+RUN sudo apt-get update -q && sudo apt-get upgrade -qy
 
 # Update Chromium's depot_tools.
 RUN cd /home/user/depot_tools \
