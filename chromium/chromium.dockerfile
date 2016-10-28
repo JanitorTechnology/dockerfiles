@@ -1,9 +1,6 @@
 FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
-# Enable extended "multiverse" Ubuntu packages.
-RUN echo "deb http://archive.ubuntu.com/ubuntu xenial multiverse" >> /etc/apt/sources.list
-
 # Don't be root.
 USER user
 WORKDIR /home/user

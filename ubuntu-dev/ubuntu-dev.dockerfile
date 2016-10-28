@@ -7,7 +7,10 @@ RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" >> /et
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
-# Install basic development packages, and build dependencies for Git and Cloud9.
+# Enable extended "multiverse" Ubuntu packages.
+RUN echo "deb http://archive.ubuntu.com/ubuntu xenial multiverse" >> /etc/apt/sources.list
+
+# Install basic development packages.
 RUN apt-get update -q \
  && apt-get upgrade -qy \
  && apt-get install -qy \

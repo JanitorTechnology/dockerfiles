@@ -28,7 +28,6 @@ RUN apt-get update -q \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
   xpra
-ENV SHELL /bin/bash
 
 # Sadly, Servo can't be built with clang yet.
 ENV CC gcc
