@@ -29,7 +29,6 @@ RUN apt-get update -q \
   openssh-server \
   sudo \
   supervisor \
-  vim \
   x11vnc \
   xvfb \
  && mkdir /var/run/sshd
@@ -84,6 +83,17 @@ RUN cd /tmp \
  && wget https://github.com/mozilla/rr/releases/download/4.4.0/rr-4.4.0-Linux-$(uname -m).deb -O rr.deb \
  && dpkg -i rr.deb \
  && rm -f rr.deb
+
+# Install the latest Vim.
+RUN mkdir /tmp/vim \
+ && cd /tmp/vim \
+ && curl -L https://github.com/vim/vim/archive/v8.0.0051.tar.gz | tar xz \
+ && cd vim-8.0.0051/src \
+ && make -j18 \
+ && make install \
+ && rm -rf /tmp/vim \
+ && echo "\n# EDITOR configuration.\nEDITOR=vim" >> /home/user/.bashrc
+ENV EDITOR vim
 
 # Install Cloud9 and noVNC (without administrator privileges).
 USER user
