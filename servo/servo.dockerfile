@@ -2,7 +2,7 @@ FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Servo build dependencies.
-# Packages are from https://github.com/servo/servo/blob/master/README.md#prerequisites
+# Packages are from https://github.com/servo/servo/blob/master/README.md#on-debian-based-linuxes
 # and https://github.com/servo/servo/issues/7512#issuecomment-216665988
 RUN sudo apt-get update -q \
  && sudo apt-get upgrade -qy \
