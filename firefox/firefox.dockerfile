@@ -21,16 +21,17 @@ RUN sudo apt-get update -q \
   libdbus-1-dev \
   libdbus-glib-1-dev \
   libgconf2-dev \
-  libgtk2.0-dev \
   libgtk-3-dev \
+  libgtk2.0-dev \
   libiw-dev \
   libnotify-dev \
   libpulse-dev \
+  libx11-xcb-dev \
   libxt-dev \
   mesa-common-dev \
   python-dbus \
-  yasm \
-  xvfb
+  xvfb \
+  yasm
 
 # Install Mozilla's moz-git-tools.
 RUN pip install requests
