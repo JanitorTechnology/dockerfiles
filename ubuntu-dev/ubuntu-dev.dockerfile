@@ -96,8 +96,8 @@ RUN cd /tmp \
 # Install the latest Vim.
 RUN mkdir /tmp/vim \
  && cd /tmp/vim \
- && curl -L https://github.com/vim/vim/archive/v8.0.0104.tar.gz | tar xz \
- && cd vim-8.0.0104/src \
+ && curl -L https://github.com/vim/vim/archive/v8.0.0134.tar.gz | tar xz \
+ && cd vim-8.0.0134/src \
  && make -j18 \
  && sudo make install \
  && rm -rf /tmp/vim \
