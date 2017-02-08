@@ -100,6 +100,9 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
 ENV PATH="${PATH}:/home/user/.cargo/bin"
 RUN rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
 
+# Install the latest ripgrep.
+RUN cargo install ripgrep
+
 # Install the latest Vim.
 RUN mkdir /tmp/vim \
  && cd /tmp/vim \
