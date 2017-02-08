@@ -50,6 +50,7 @@ WORKDIR firefox
 
 # Add Firefox build configuration.
 ADD mozconfig /home/user/firefox/
+RUN sudo chown user:user /home/user/firefox/mozconfig
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
