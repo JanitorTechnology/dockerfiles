@@ -93,6 +93,13 @@ RUN cd /tmp \
  && sudo dpkg -i rr.deb \
  && rm -f rr.deb
 
+# Install the latest Rust toolchain.
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
+ && echo "\n# Rust toolchain." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.cargo/bin\"" >> /home/user/.bashrc
+ENV PATH="${PATH}:/home/user/.cargo/bin"
+RUN rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
+
 # Install the latest Vim.
 RUN mkdir /tmp/vim \
  && cd /tmp/vim \
