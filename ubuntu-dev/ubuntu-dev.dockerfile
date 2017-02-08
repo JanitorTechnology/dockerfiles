@@ -103,6 +103,12 @@ RUN rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-comple
 # Install the latest ripgrep.
 RUN cargo install ripgrep
 
+# Install the latest z.
+RUN mkdir /home/user/.z \
+ && git clone https://github.com/rupa/z /home/user/.z/src \
+ && echo "\n# Enable z (faster than cd)." >> /home/user/.bashrc \
+ && echo ". /home/user/.z/src/z.sh" >> /home/user/.bashrc
+
 # Install the latest Vim.
 RUN mkdir /tmp/vim \
  && cd /tmp/vim \
