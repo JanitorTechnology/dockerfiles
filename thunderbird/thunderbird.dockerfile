@@ -41,6 +41,7 @@ WORKDIR thunderbird
 
 # Add Thunderbird build configuration.
 ADD .mozconfig /home/user/thunderbird/
+RUN sudo chown user:user /home/user/thunderbird/.mozconfig
 
 # Set up Mercurial so mach doesn't complain.
 RUN mkdir -p /home/user/.mozbuild \
