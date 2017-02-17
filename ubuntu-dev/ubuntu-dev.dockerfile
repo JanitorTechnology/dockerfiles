@@ -27,6 +27,7 @@ RUN apt-get update -q \
   libcurl4-openssl-dev \
   libexpat1-dev \
   libssl-dev \
+  mercurial \
   net-tools \
   ninja-build \
   openssh-server \

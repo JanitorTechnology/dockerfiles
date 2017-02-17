@@ -2,11 +2,10 @@ FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Firefox build dependencies.
-# Packages after "mercurial" are from https://dxr.mozilla.org/mozilla-central/source/python/mozboot/mozboot/debian.py
+# Packages are from https://dxr.mozilla.org/mozilla-central/source/python/mozboot/mozboot/debian.py
 RUN sudo apt-get update -q \
  && sudo apt-get upgrade -qy \
  && sudo apt-get install -qy \
-  mercurial \
   autoconf2.13 \
   build-essential \
   ccache \
