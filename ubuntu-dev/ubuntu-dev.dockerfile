@@ -125,11 +125,13 @@ RUN mkdir /tmp/vim \
 ENV EDITOR vim
 
 # Install Cloud9 and noVNC.
-RUN curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
+ && cd /home/user/.c9sdk \
+ && ./scripts/install-sdk.sh
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/
 
 # Expose remote access ports.
-EXPOSE 22 8088
+EXPOSE 22 8088 8089
 
 # Run all Supervisor services when the container starts.
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
