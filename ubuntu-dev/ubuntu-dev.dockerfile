@@ -47,6 +47,10 @@ ADD supervisord.conf /etc/
 RUN sed -i "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
  && sed -i "s/^[#\s]*ChallengeResponseAuthentication\s+[yn].*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
 
+# Fix logging in to SSH on some platforms by disabling `pam_loginuid.so`.
+# Source: https://gitlab.com/gitlab-org/gitlab-ce/issues/3027
+RUN sed -ri "s/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/" /etc/pam.d/sshd
+
 # Add a user that can `sudo`.
 RUN useradd -m user \
  && echo "user ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/user
