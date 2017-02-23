@@ -54,6 +54,9 @@ RUN sudo chown user:user /home/user/firefox/mozconfig
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u
+ENV PATH $PATH:/home/user/.mozbuild/version-control-tools/git/commands
+RUN echo "\n# Add Mozilla's version control tools git commands to the PATH." >> .bashrc \
+ && echo "export PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> .bashrc
 
 # Build Firefox.
 RUN ./mach build
