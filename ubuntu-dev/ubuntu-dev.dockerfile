@@ -52,13 +52,18 @@ RUN sed -i "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/
 RUN sed -ri "s/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/" /etc/pam.d/sshd
 
 # Add a user that can `sudo`.
-RUN useradd -m user \
+RUN useradd --create-home --shell /bin/bash user \
  && echo "user ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/user
 
 # Don't be root.
 USER user
 ENV HOME /home/user
 WORKDIR /home/user
+
+# Configure SSH to use Bash with colors by default.
+RUN mkdir /home/user/.ssh \
+ && touch /home/user/.ssh/authorized_keys \
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /home/user/.ssh/environment
 
 # Install the latest Git.
 RUN mkdir /tmp/git \
