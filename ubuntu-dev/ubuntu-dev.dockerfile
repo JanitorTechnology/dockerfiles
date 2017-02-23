@@ -72,6 +72,12 @@ RUN mkdir /tmp/git \
  && cd git-2.11.1 \
  && make prefix=/usr profile man -j18 \
  && sudo make prefix=/usr PROFILE=BUILD install install-man -j18 \
+ && cp contrib/completion/git-completion.bash /home/user/.git-completion.bash \
+ && cp contrib/completion/git-prompt.sh /home/user/.git-prompt.sh \
+ && echo "\n# Git completion helpers." >> /home/user/.bashrc \
+ && echo "source /home/user/.git-completion.bash" >> /home/user/.bashrc \
+ && echo "source /home/user/.git-prompt.sh" >> /home/user/.bashrc \
+ && echo "PS1=\$(echo \$PS1 | sed 's/\\s*\\$\\s*\$/\$(__git_ps1 \" (%s)\") \$ /')" >> /home/user/.bashrc \
  && rm -rf /tmp/git
 
 # Install the latest GitHub helper.
