@@ -16,7 +16,7 @@ RUN sudo apt-get update -q \
   gperf \
   python-virtualenv \
   python-pip \
-  libssl1.0-dev \
+  libssl-dev \
   libbz2-dev \
   libosmesa6-dev \
   libxmu6 \
