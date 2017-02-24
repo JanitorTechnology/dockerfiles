@@ -77,7 +77,7 @@ RUN mkdir /tmp/git \
  && echo "\n# Git completion helpers." >> /home/user/.bashrc \
  && echo "source /home/user/.git-completion.bash" >> /home/user/.bashrc \
  && echo "source /home/user/.git-prompt.sh" >> /home/user/.bashrc \
- && echo "PS1=\$(echo \$PS1 | sed 's/\\s*\\$\\s*\$/\$(__git_ps1 \" (%s)\") \$ /')" >> /home/user/.bashrc \
+ && echo "PS1=\$(echo \$PS1 | sed 's/\\s*\\\\\\\$\\s*\$/\$(__git_ps1 \" (%s)\") \\\$ /')" >> /home/user/.bashrc \
  && rm -rf /tmp/git
 
 # Install the latest GitHub helper.
