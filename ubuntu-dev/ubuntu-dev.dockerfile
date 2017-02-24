@@ -35,7 +35,8 @@ RUN apt-get update -q \
   supervisor \
   x11vnc \
   xvfb \
- && mkdir /var/run/sshd
+ && mkdir /var/run/sshd \
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-3.9
 ENV CXX clang++-3.9
