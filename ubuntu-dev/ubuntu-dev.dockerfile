@@ -16,6 +16,7 @@ RUN apt-get update -q \
  && apt-get install -qy \
   asciidoc \
   build-essential \
+  ccache \
   clang-3.9 \
   cmake \
   curl \
@@ -65,6 +66,10 @@ WORKDIR /home/user
 RUN mkdir /home/user/.ssh \
  && touch /home/user/.ssh/authorized_keys \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /home/user/.ssh/environment
+
+# Configure ccache with enough disk space to save large builds.
+RUN mkdir /home/user/.ccache \
+ && echo "max_size = 15G" > /home/user/.ccache/ccache.conf
 
 # Install the latest Git.
 RUN mkdir /tmp/git \
