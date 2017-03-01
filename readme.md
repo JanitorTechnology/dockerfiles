@@ -20,8 +20,8 @@ To build [janx/ubuntu-dev](https://hub.docker.com/r/janx/ubuntu-dev/) yourself:
 
 ## Chromium
 
-    docker run -ti janx/chromium /bin/bash
-    user@container:~/chromium/src$ ninja -C out/Release chrome -j18
+    docker run -it --rm janx/chromium /bin/bash
+    user@container:~/chromium/src (master) $ ninja -C out/Release chrome -j18
 
 To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
 
@@ -30,8 +30,8 @@ To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
 
 ## Firefox
 
-    docker run -ti janx/firefox /bin/bash
-    user@container:~/firefox$ ./mach build
+    docker run -it --rm janx/firefox /bin/bash
+    user@container:~/firefox (master) $ ./mach build
 
 To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
 
@@ -40,8 +40,8 @@ To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
 
 ## Servo
 
-    docker run -ti janx/servo /bin/bash
-    user@container:~/servo$ ./mach build -d
+    docker run -it --rm janx/servo /bin/bash
+    user@container:~/servo (master) $ ./mach build -d
 
 To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
 
@@ -50,8 +50,8 @@ To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
 
 ## Thunderbird
 
-    docker run -ti janx/thunderbird /bin/bash
-    user@container:~/thunderbird$ ./mozilla/mach build
+    docker run -it --rm janx/thunderbird /bin/bash
+    user@container:~/thunderbird $ ./mozilla/mach build
 
 To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself:
 
@@ -64,8 +64,8 @@ There are other great development Dockerfiles out there:
 
 ## [KDE](https://github.com/rcatolino/kdesrcbuild-docker)
 
-    docker run -ti rcay/kdecore /bin/bash
-    user@container:~/kdesrc-build ./kdesrc-build --make-options=-j8 --no-src
+    docker run -it --rm rcay/kdecore /bin/bash
+    user@container:~/kdesrc-build $ ./kdesrc-build --make-options=-j8 --no-src
 
 To build [rcay/kdecore](https://hub.docker.com/r/rcay/kdecore/) yourself:
 
