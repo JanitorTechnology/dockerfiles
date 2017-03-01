@@ -138,12 +138,12 @@ RUN git clone https://github.com/rupa/z /home/user/.z.sh \
 # Install the latest Vim.
 RUN mkdir /tmp/vim \
  && cd /tmp/vim \
- && curl -L https://github.com/vim/vim/archive/v8.0.0314.tar.gz | tar xz \
- && cd vim-8.0.0314/src \
+ && curl -L https://github.com/vim/vim/archive/v8.0.0390.tar.gz | tar xz \
+ && cd vim-8.0.0390/src \
  && make -j18 \
  && sudo make install \
  && rm -rf /tmp/vim \
- && echo "\n# EDITOR configuration.\nEDITOR=vim" >> /home/user/.bashrc
+ && echo "\n# Make Vim the default editor.\nEDITOR=vim" >> /home/user/.bashrc
 ENV EDITOR vim
 
 # Install Cloud9 and noVNC.
