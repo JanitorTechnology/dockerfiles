@@ -24,11 +24,13 @@ RUN apt-get update -q \
   fluxbox \
   gdb \
   gettext \
+  htop \
   less \
   libcurl4-openssl-dev \
   libexpat1-dev \
   libssl-dev \
   mercurial \
+  nano \
   net-tools \
   ninja-build \
   openssh-server \
