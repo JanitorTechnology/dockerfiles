@@ -68,7 +68,7 @@ WORKDIR /home/user
 RUN mkdir /home/user/.ssh \
  && touch /home/user/.ssh/authorized_keys \
  && touch /home/user/.ssh/config \
- && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /home/user/.ssh/environment
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /home/user/.ssh/environment \
  && chmod 700 /home/user/.ssh \
  && chmod 600 /home/user/.ssh/*
 
