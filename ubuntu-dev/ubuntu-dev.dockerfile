@@ -67,7 +67,10 @@ WORKDIR /home/user
 # Configure SSH to use Bash with colors by default.
 RUN mkdir /home/user/.ssh \
  && touch /home/user/.ssh/authorized_keys \
+ && touch /home/user/.ssh/config \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /home/user/.ssh/environment
+ && chmod 700 /home/user/.ssh \
+ && chmod 600 /home/user/.ssh/*
 
 # Configure ccache with enough disk space to save large builds.
 RUN mkdir /home/user/.ccache \
