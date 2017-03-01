@@ -149,7 +149,8 @@ ENV EDITOR vim
 # Install Cloud9 and noVNC.
 RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && cd /home/user/.c9sdk \
- && ./scripts/install-sdk.sh
+ && ./scripts/install-sdk.sh \
+ && npm install -g c9
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/
 
 # Expose remote access ports.
