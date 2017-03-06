@@ -6,7 +6,6 @@ mk_add_options AUTOCLOBBER=1
 
 # To enable Debug builds, uncomment the following lines.
 #ac_add_options --enable-debug
-#ac_add_options --enable-debug-symbols
 #ac_add_options --disable-optimize
 
 # To enable Artifact builds, uncomment the following lines.
