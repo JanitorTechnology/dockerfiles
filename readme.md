@@ -58,6 +58,16 @@ To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself
     cd thunderbird
     docker build -t janx/thunderbird -f thunderbird.dockerfile .
 
+## Janitor
+
+    docker run -it --rm janx/janitor /bin/bash
+    user@container:~/janitor (master) $ node app
+
+To build [janx/janitor](https://hub.docker.com/r/janx/janitor/) yourself:
+
+    cd janitor
+    docker build -t janx/janitor -f janitor.dockerfile .
+
 # More Dockerfiles
 
 There are other great development Dockerfiles out there:
