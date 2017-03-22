@@ -28,6 +28,7 @@ RUN apt-get update -q \
   less \
   libcurl4-openssl-dev \
   libexpat1-dev \
+  libnotify-bin \
   libssl-dev \
   mercurial \
   nano \
