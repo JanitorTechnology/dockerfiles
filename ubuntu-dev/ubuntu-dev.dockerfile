@@ -74,7 +74,7 @@ RUN mkdir /home/user/.ssh \
 
 # Configure ccache with enough disk space to save large builds.
 RUN mkdir /home/user/.ccache \
- && echo "max_size = 15G" > /home/user/.ccache/ccache.conf
+ && echo "max_size = 10G" > /home/user/.ccache/ccache.conf
 
 # Install the latest Git.
 RUN mkdir /tmp/git \
