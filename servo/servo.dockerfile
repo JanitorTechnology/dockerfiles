@@ -14,6 +14,9 @@ RUN sudo apt-get update -q \
   libglib2.0-dev \
   xorg-dev \
   gperf \
+  g++ \
+  build-essential \
+  cmake \
   python-virtualenv \
   python-pip \
   libssl-dev \
