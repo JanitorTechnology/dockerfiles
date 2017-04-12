@@ -3,7 +3,7 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Add source for the latest Clang packages.
 ADD llvm-snapshot.gpg.key /tmp
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
@@ -17,7 +17,7 @@ RUN apt-get update -q \
   asciidoc \
   build-essential \
   ccache \
-  clang-3.9 \
+  clang-4.0 \
   cmake \
   curl \
   emacs \
@@ -31,6 +31,7 @@ RUN apt-get update -q \
   libgl1-mesa-dev \
   libnotify-bin \
   libssl-dev \
+  lld-4.0 \
   mercurial \
   nano \
   net-tools \
@@ -41,10 +42,10 @@ RUN apt-get update -q \
   x11vnc \
   xvfb \
  && mkdir /var/run/sshd \
- && echo "SHELL=/bin/bash\nTERM=xterm-256color" >> /etc/environment
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color\nCC=clang-4.0\nCXX=clang++-4.0" >> /etc/environment
 ENV SHELL /bin/bash
-ENV CC clang-3.9
-ENV CXX clang++-3.9
+ENV CC clang-4.0
+ENV CXX clang++-4.0
 
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
