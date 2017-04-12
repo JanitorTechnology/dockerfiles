@@ -7,6 +7,10 @@ RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main" > /etc
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
+# Add source for the latest Mercurial packages.
+RUN echo "deb http://ppa.launchpad.net/mercurial-ppa/releases/ubuntu xenial main" > /etc/apt/sources.list.d/mercurial.list \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 41BD8711B1F0EC2B0D85B91CF59CE3A8323293EE
+
 # Enable extended "multiverse" Ubuntu packages.
 RUN echo "deb http://archive.ubuntu.com/ubuntu xenial multiverse" >> /etc/apt/sources.list
 
