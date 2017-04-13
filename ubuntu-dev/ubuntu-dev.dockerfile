@@ -41,6 +41,8 @@ RUN apt-get update -q \
   net-tools \
   ninja-build \
   openssh-server \
+  php \
+  php-curl \
   sudo \
   supervisor \
   x11vnc \
@@ -152,6 +154,14 @@ RUN mkdir /tmp/vim \
  && rm -rf /tmp/vim \
  && echo "\n# Make Vim the default editor.\nEDITOR=vim" >> /home/user/.bashrc
 ENV EDITOR vim
+
+# Install the latest Phabricator helper.
+RUN mkdir /home/user/.phacility \
+ && cd /home/user/.phacility \
+ && git clone https://github.com/phacility/libphutil \
+ && git clone https://github.com/phacility/arcanist \
+ && echo "\n# Phabricator helper." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.phacility/arcanist/bin\"" >> /home/user/.bashrc
 
 # Install Cloud9 and noVNC.
 RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
