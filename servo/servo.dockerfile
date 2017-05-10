@@ -32,10 +32,6 @@ RUN sudo apt-get update -q \
   xserver-xorg-video-dummy \
   xpra
 
-# Sadly, Servo can't be built with clang yet.
-ENV CC gcc
-ENV CXX g++
-
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
 RUN sudo sed -i "s/\(Xvfb :.*\)$/\1 +extension RANDR +extension RENDER +extension GLX/" /etc/supervisord.conf
