@@ -44,5 +44,8 @@ RUN sudo sed -i "s/\(Xvfb :.*\)$/\1 +extension RANDR +extension RENDER +extensio
 RUN git clone https://github.com/servo/servo
 WORKDIR servo
 
+# Configure Cloud9 to use Servo's source directory as workspace (-w).
+RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/servo/" /etc/supervisord.conf
+
 # Build Servo.
 RUN ./mach build -d

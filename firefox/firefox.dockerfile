@@ -56,5 +56,8 @@ RUN mkdir -p /home/user/.mozbuild \
  && echo "\n# Add Mozilla's git commands to the PATH." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> /home/user/.bashrc
 
+# Configure Cloud9 to use Firefox's source directory as workspace (-w).
+RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/firefox/" /etc/supervisord.conf
+
 # Build Firefox.
 RUN ./mach build
