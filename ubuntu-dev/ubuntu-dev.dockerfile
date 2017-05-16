@@ -170,7 +170,8 @@ RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && npm install -g c9
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
- && npm update
+ && npm update \
+ && node ./utils/use_require.js --as commonjs --with-app
 
 # Expose remote access ports.
 EXPOSE 22 8088 8089
