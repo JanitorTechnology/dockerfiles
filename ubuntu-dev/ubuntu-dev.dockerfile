@@ -23,6 +23,7 @@ RUN apt-get update -q \
   build-essential \
   ccache \
   clang-4.0 \
+  clang-tidy-4.0 \
   cmake \
   curl \
   emacs \
