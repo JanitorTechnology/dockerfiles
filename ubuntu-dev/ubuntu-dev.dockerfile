@@ -11,6 +11,10 @@ RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-4.0 main" > /etc
 RUN echo "deb http://ppa.launchpad.net/mercurial-ppa/releases/ubuntu xenial main" > /etc/apt/sources.list.d/mercurial.list \
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 41BD8711B1F0EC2B0D85B91CF59CE3A8323293EE
 
+# Add source for the latest Neovim packages.
+RUN echo "deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main" > /etc/apt/sources.list.d/neovim.list \
+ && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
+
 # Install basic development packages.
 RUN apt-get update -q \
  && apt-get upgrade -qy \
@@ -35,6 +39,7 @@ RUN apt-get update -q \
   lld-4.0 \
   mercurial \
   nano \
+  neovim \
   net-tools \
   ninja-build \
   openssh-server \
