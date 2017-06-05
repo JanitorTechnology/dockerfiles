@@ -6,5 +6,6 @@ RUN sudo apt-get update -q && sudo apt-get upgrade -qy
 
 # Update Janitor's source code and its dependencies.
 RUN cd /home/user/janitor \
- && git pull --rebase origin master \
+ && git fetch origin \
+ && git reset --hard origin/master \
  && npm update
