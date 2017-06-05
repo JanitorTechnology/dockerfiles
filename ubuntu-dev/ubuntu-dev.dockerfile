@@ -132,15 +132,18 @@ RUN cd /tmp \
  && sudo dpkg -i rr.deb \
  && rm -f rr.deb
 
-# Install the latest Rust toolchain.
+# Install the latest Rust toolchains (stable and nightly).
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
  && echo "\n# Rust toolchain." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.cargo/bin\"" >> /home/user/.bashrc
 ENV PATH="${PATH}:/home/user/.cargo/bin"
-RUN rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
+RUN rustup install nightly \
+ && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
 
-# Install the latest ripgrep, clippy and rustfmt.
-RUN cargo install ripgrep clippy rustfmt
+# Install the latest ripgrep, rustfmt and clippy.
+RUN cargo install ripgrep \
+ && cargo install rustfmt \
+ && rustup run nightly cargo install clippy
 
 # Install the latest z.
 RUN git clone https://github.com/rupa/z /home/user/.z.sh \
