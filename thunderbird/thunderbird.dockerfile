@@ -33,7 +33,7 @@ RUN sudo apt-get update -q \
   yasm
 
 # Download Thunderbird's source code.
-RUN hg clone https://hg.mozilla.org/comm-central/ thunderbird \
+RUN hg clone --uncompressed https://hg.mozilla.org/comm-central/ thunderbird \
  && cd thunderbird \
  && python client.py checkout
 WORKDIR thunderbird
