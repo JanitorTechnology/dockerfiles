@@ -140,6 +140,12 @@ ENV PATH="${PATH}:/home/user/.cargo/bin"
 RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
 
+# Install the latest Rust Language Server.
+RUN rustup component add rls --toolchain nightly \
+ && rustup component add rust-analysis --toolchain nightly \
+ && rustup component add rust-src --toolchain nightly \
+ && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
+
 # Install the latest ripgrep, rustfmt and clippy.
 RUN cargo install ripgrep \
  && cargo install rustfmt \
