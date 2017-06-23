@@ -179,7 +179,7 @@ RUN mkdir /home/user/.phacility \
 RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && cd /home/user/.c9sdk \
  && ./scripts/install-sdk.sh \
- && git reset HEAD --hard \
+ && git checkout -- node_modules \
  && npm install -g c9
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
