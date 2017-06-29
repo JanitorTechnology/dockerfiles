@@ -2,35 +2,11 @@ FROM janx/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Firefox build dependencies.
-# Packages are from https://dxr.mozilla.org/mozilla-central/source/python/mozboot/mozboot/debian.py
-RUN sudo apt-get update -q \
- && sudo apt-get upgrade -qy \
- && sudo apt-get install -qy \
-  autoconf2.13 \
-  build-essential \
-  ccache \
-  python-dev \
-  python-pip \
-  python-setuptools \
-  unzip \
-  uuid \
-  zip \
-  libasound2-dev \
-  libcurl4-openssl-dev \
-  libdbus-1-dev \
-  libdbus-glib-1-dev \
-  libgconf2-dev \
-  libgtk-3-dev \
-  libgtk2.0-dev \
-  libiw-dev \
-  libnotify-dev \
-  libpulse-dev \
-  libx11-xcb-dev \
-  libxt-dev \
-  mesa-common-dev \
-  python-dbus \
-  xvfb \
-  yasm
+# One-line setup command from:
+# https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Most_Distros_-_One_Line_Bootstrap_Command
+RUN wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
+ && python /tmp/bootstrap.py --no-interactive --application-choice=browser \
+ && rm -f /tmp/bootstrap.py
 
 # Install Mozilla's moz-git-tools.
 RUN pip install requests
@@ -43,7 +19,6 @@ RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
 
 # Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev firefox
-#RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-central/ firefox
 WORKDIR firefox
 
 # Add Firefox build configuration.
