@@ -1,5 +1,5 @@
 FROM janx/ubuntu-dev
-MAINTAINER Jan Keromnes "janx@linux.com"
+MAINTAINER Tim Nguyen "ntim.bugs@gmail.com"
 
 # Install Firefox build dependencies.
 # One-line setup command from:
