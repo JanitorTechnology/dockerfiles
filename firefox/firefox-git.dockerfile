@@ -5,7 +5,7 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 # One-line setup command from:
 # https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Most_Distros_-_One_Line_Bootstrap_Command
 RUN wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
- && python /tmp/bootstrap.py --no-interactive --application-choice=browser_artifact_mode \
+ && python /tmp/bootstrap.py --no-interactive --application-choice=browser \
  && rm -f /tmp/bootstrap.py
 
 # Install Mozilla's moz-git-tools.
