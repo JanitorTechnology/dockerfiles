@@ -1,5 +1,5 @@
-FROM janx/firefox
-MAINTAINER Jan Keromnes "janx@linux.com"
+FROM janx/firefox-hg
+MAINTAINER Tim Nguyen "ntim.bugs@gmail.com"
 
 # Upgrade all packages.
 RUN sudo apt-get update -q && sudo apt-get upgrade -qy && rustup update
