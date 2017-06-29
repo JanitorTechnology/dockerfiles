@@ -19,7 +19,6 @@ RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
 
 # Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev firefox
-#RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-central/ firefox
 WORKDIR firefox
 
 # Add Firefox build configuration.
