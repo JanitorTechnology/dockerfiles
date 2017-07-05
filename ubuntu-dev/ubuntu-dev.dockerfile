@@ -56,9 +56,6 @@ ENV SHELL /bin/bash
 ENV CC clang-4.0
 ENV CXX clang++-4.0
 
-# Add default Supervisor configuration.
-ADD supervisord.conf /etc/
-
 # Disallow logging in to SSH with a password.
 RUN sed -i "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
  && sed -i "s/^[#\s]*ChallengeResponseAuthentication\s+[yn].*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
@@ -185,6 +182,9 @@ RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
  && npm install \
  && node ./utils/use_require.js --as commonjs --with-app
+
+# Add default Supervisor configuration.
+ADD supervisord.conf /etc/
 
 # Expose remote access ports.
 EXPOSE 22 8088 8089
