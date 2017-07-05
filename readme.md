@@ -36,7 +36,12 @@ To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
 To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
 
     cd firefox
-    docker build -t janx/firefox -f firefox.dockerfile .
+    docker build -t janx/firefox -f firefox-git.dockerfile .
+
+Or for a Firefox image that uses Mercurial (`hg`) instead of Git:
+
+    cd firefox
+    docker build -t janx/firefox -f firefox-hg.dockerfile .
 
 ## Servo
 
