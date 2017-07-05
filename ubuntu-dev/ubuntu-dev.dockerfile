@@ -172,16 +172,22 @@ RUN mkdir /home/user/.phacility \
  && echo "\n# Phabricator helper." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.phacility/arcanist/bin\"" >> /home/user/.bashrc
 
-# Install Cloud9 and noVNC.
-RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
- && cd /home/user/.c9sdk \
- && ./scripts/install-sdk.sh \
- && git checkout -- node_modules \
- && npm install -g c9
+# Install the latest noVNC.
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
  && npm install \
  && node ./utils/use_require.js --as commonjs --with-app
+
+# Install the latest Cloud9 SDK with some useful IDE plugins.
+RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
+ && cd /home/user/.c9sdk/plugins \
+ && git clone https://github.com/nt1m/c9.ide.reviewcomments \
+ && cd /home/user/.c9sdk \
+ && ./scripts/install-sdk.sh \
+ && git checkout -- node_modules \
+ && npm install -g c9
+ADD client-workspace-janitor.js /home/user/.c9sdk/configs/
+RUN sudo chown user:user /home/user/.c9sdk/configs/client-workspace-janitor.js
 
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
