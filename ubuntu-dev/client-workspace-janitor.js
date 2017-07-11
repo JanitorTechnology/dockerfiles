@@ -42,15 +42,20 @@ module.exports = function (options) {
 
       case 'plugins/c9.core/settings':
         if (p.settings) {
-          // See all user settings: https://irccloud.mozilla.com/pastebin/a5dCP0qY/settings.user
-          // p.settings.user = {}; // reset user settings
-          p.settings.user = JSON.parse(p.settings.user);
-
-          // Use the Monokai theme by default.
-          p.settings.user.ace['@theme'] = 'ace/theme/monokai';
-
-          // Use a longer scrollback for the Terminal.
-          p.settings.user.terminal['@scrollback'] = 10000;
+          // Reset user settings
+          // Examples:
+          //   https://irccloud.mozilla.com/pastebin/a5dCP0qY/settings.user
+          //   https://gist.github.com/viankakrisna/7efa1fecb13e3dabf944eac8f111af50
+          p.settings.user = {
+            ace: {
+              // Use the Monokai theme by default.
+              '@theme': 'monokai'
+            },
+            terminal: {
+              // Use a longer scrollback for the Terminal.
+              '@scrollback': 10000
+            }
+          };
         }
         break;
     }
