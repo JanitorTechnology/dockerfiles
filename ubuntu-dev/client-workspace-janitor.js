@@ -49,7 +49,7 @@ module.exports = function (options) {
           p.settings.user = {
             ace: {
               // Use the Monokai theme by default.
-              '@theme': 'monokai'
+              '@theme': 'ace/theme/monokai'
             },
             terminal: {
               // Use a longer scrollback for the Terminal.
