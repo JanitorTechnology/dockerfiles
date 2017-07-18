@@ -7,6 +7,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
-          docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile ./ubuntu-dev/
+          cd ubuntu-dev
+          docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile .
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push janx/ubuntu-dev:latest
