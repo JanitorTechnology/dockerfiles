@@ -51,7 +51,7 @@ RUN apt-get update -q \
   x11vnc \
   xvfb \
  && mkdir /var/run/sshd \
- && echo "SHELL=/bin/bash\nTERM=xterm-256color\nCC=clang-4.0\nCXX=clang++-4.0" >> /etc/environment
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-4.0\nCXX=clang++-4.0" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-4.0
 ENV CXX clang++-4.0
