@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile ./ubuntu-dev/
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/ubuntu-dev:latest
