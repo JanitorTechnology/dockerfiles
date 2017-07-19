@@ -7,7 +7,7 @@ module.exports = function (options) {
   // Example: Remove the C runner
   // delete options.runners['C (simple)'];
 
-  var config = require('./client-default')(options);
+  var config = require('../client-default')(options);
   var includes = [
     'plugins/c9.ide.reviewcomments/c9.ide.reviewcomments',
     // 'plugins/c9.ide.desktop/c9.ide.desktop',
