@@ -90,8 +90,8 @@ RUN mkdir /tmp/git \
  && cd /tmp/git \
  && curl https://www.kernel.org/pub/software/scm/git/git-2.13.3.tar.xz | tar xJ \
  && cd git-2.13.3 \
- && make prefix=/usr profile-fast man -j18 \
- && sudo make prefix=/usr PROFILE=BUILD install install-man -j18 \
+ && make prefix=/usr all man -j18 \
+ && sudo make prefix=/usr install install-man -j18 \
  && cp contrib/completion/git-completion.bash /home/user/.git-completion.bash \
  && cp contrib/completion/git-prompt.sh /home/user/.git-prompt.sh \
  && echo "\n# Git completion helpers." >> /home/user/.bashrc \
