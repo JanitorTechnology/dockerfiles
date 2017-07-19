@@ -11,6 +11,8 @@ jobs:
       - setup_remote_docker
       - run: |
           cd ubuntu-dev
+          docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+          docker pull janx/ubuntu-dev:latest
+          docker pull ubuntu:16.04
           docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push janx/ubuntu-dev:latest
