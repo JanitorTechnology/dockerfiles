@@ -186,8 +186,8 @@ RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && ./scripts/install-sdk.sh \
  && git checkout -- node_modules \
  && npm install -g c9
-ADD client-workspace-janitor.js /home/user/.c9sdk/configs/
-RUN sudo chown user:user /home/user/.c9sdk/configs/client-workspace-janitor.js
+ADD workspace-janitor.js /home/user/.c9sdk/configs/ide/
+RUN sudo chown user:user /home/user/.c9sdk/configs/ide/workspace-janitor.js
 
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
