@@ -4,7 +4,7 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 # Download Janitor's source code and install its dependencies.
 RUN git clone --recursive https://github.com/JanitorTechnology/janitor /home/user/janitor \
  && cd /home/user/janitor \
- && npm update
+ && npm install
 WORKDIR /home/user/janitor
 
 # Add Janitor database with default values for local development.
