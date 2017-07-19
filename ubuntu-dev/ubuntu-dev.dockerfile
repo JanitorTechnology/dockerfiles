@@ -181,6 +181,7 @@ RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
 # Install the latest Cloud9 SDK with some useful IDE plugins.
 RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && cd /home/user/.c9sdk/plugins \
+ && git clone https://github.com/JanitorTechnology/c9.ide.janitorconfig \
  && git clone https://github.com/nt1m/c9.ide.reviewcomments \
  && cd /home/user/.c9sdk \
  && ./scripts/install-sdk.sh \

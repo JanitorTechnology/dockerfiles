@@ -9,9 +9,10 @@ module.exports = function (options) {
 
   var config = require('../client-default')(options);
   var includes = [
+    'plugins/c9.ide.janitorconfig/c9.ide.janitorconfig',
     'plugins/c9.ide.reviewcomments/c9.ide.reviewcomments',
     // 'plugins/c9.ide.desktop/c9.ide.desktop',
-    // 'plugins/harvard.cs50.debug',
+    // 'user-plugins/harvard.cs50.debug',
   ];
   var excludes = {
     // 'plugins/c9.ide.run/gui': true,
