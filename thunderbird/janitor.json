@@ -1,0 +1,31 @@
+{
+  "name": "Thunderbird",
+  "description": "The email client by Mozilla foundation.",
+  "icon": "https://janitor.technology/img/thunderbird.svg",
+  "docker": {
+    "image": "janx/thunderbird"
+  },
+  "ports": {
+    "22": {
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "./mozilla/mach build": "./mozilla/mach build",
+    "make -C objdir/calendar/lightning": "make -C objdir/calendar/lightning",
+    "./mozilla/mach run": {
+      "cmd": "./mozilla/mach run",
+      "openPort": "8088"
+    },
+    "./mozilla/mach clobber": "./mozilla/mach clobber",
+    "Update sources": "python client.py checkout"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "Servo",
+  "description": "Servo is a modern, high-performance browser engine designed for both application and embedded use.",
+  "icon": "https://janitor.technology/img/servo.svg",
+  "docker": {
+    "image": "janx/servo"
+  },
+  "ports": {
+    "22": {
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "./mach build --dev": "./mach build --dev",
+    "./mach build --release": "./mach build --release",
+    "./mach run --dev": {
+      "cmd": "./mach run --dev",
+      "openPort": "8088"
+    },
+    "./mach run --release": {
+      "cmd": "./mach run --release",
+      "openPort": "8088"
+    },
+    "./mach check": "./mach check",
+    "Update source code": "git fetch origin && git rebase origin/master",
+    "Send to code review": "hub pull-request"
+  }
+}

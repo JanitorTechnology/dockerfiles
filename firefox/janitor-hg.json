@@ -1,0 +1,33 @@
+{
+  "name": "Firefox (hg)",
+  "description": "The Firefox browser by Mozilla (Mercurial checkout).",
+  "icon": "https://janitor.technology/img/firefox.svg",
+  "docker": {
+    "image": "janx/firefox-hg"
+  },
+  "ports": {
+    "22": {
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "./mach build": "./mach build",
+    "./mach build faster": "./mach build faster",
+    "./mach build binaries": "./mach build binaries",
+    "./mach run": {
+      "cmd": "./mach run",
+      "openPort": "8088"
+    },
+    "./mach clobber": "./mach clobber",
+    "Update source code": "hg pull -u",
+    "Send to code review": "hg push review"
+  }
+}

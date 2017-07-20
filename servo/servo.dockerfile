@@ -51,3 +51,7 @@ RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/servo/" /etc/supervisord.con
 
 # Build Servo.
 RUN ./mach build -d
+
+# Configure Janitor for Servo
+ADD janitor.json /home/user/
+RUN sudo chown user:user /home/user/janitor.json
