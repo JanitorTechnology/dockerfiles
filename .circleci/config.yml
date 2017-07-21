@@ -1,6 +1,7 @@
 version: 2.0
 
 jobs:
+
   ubuntu-dev:
     docker:
       - image: docker:stable
@@ -13,11 +14,98 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push janx/ubuntu-dev:latest
 
+  chromium:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd chromium
+          docker build -t janx/chromium:base -f chromium.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/chromium:base
+
+  firefox-git:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd firefox
+          docker build -t janx/firefox:base -f firefox-git.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/firefox:base
+
+  firefox-hg:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd firefox
+          docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/firefox-hg:base
+
+  janitor:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd janitor
+          docker build -t janx/janitor:base -f janitor.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/janitor:base
+
+  servo:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd servo
+          docker build -t janx/servo:base -f servo.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/servo:base
+
+  thunderbird:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
+          cd thunderbird
+          docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker push janx/thunderbird:base
+
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - ubuntu-dev:
-        filters:
-          branches:
-            only: master
+      - ubuntu-dev
+      - chromium:
+        requires:
+          - ubuntu-dev
+      - firefox-git:
+        requires:
+          - ubuntu-dev
+      - firefox-hg:
+        requires:
+          - ubuntu-dev
+      - janitor:
+        requires:
+          - ubuntu-dev
+      - servo:
+        requires:
+          - ubuntu-dev
+      - thunderbird:
+        requires:
+          - ubuntu-dev
