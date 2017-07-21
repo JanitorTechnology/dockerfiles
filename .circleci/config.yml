@@ -85,39 +85,30 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push janx/thunderbird:base
 
-defaults: &only-master
-  filters:
-    branches:
-      only: master
-
 workflows:
   version: 2
 
   build_and_push:
     jobs:
       - ubuntu-dev:
-        <<: *only-master
+        filters:
+          branches:
+            only: master
       - chromium:
         requires:
           - ubuntu-dev
-        <<: *only-master
       - firefox-git:
         requires:
           - ubuntu-dev
-        <<: *only-master
       - firefox-hg:
         requires:
           - ubuntu-dev
-        <<: *only-master
       - janitor:
         requires:
           - ubuntu-dev
-        <<: *only-master
       - servo:
         requires:
           - ubuntu-dev
-        <<: *only-master
       - thunderbird:
         requires:
           - ubuntu-dev
-        <<: *only-master
