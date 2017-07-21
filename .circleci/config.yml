@@ -91,21 +91,21 @@ workflows:
   build_and_push:
     jobs:
       - ubuntu-dev
-      - chromium
+      - chromium:
           requires:
             - ubuntu-dev
-      - firefox-git
+      - firefox-git:
           requires:
             - ubuntu-dev
-      - firefox-hg
+      - firefox-hg:
           requires:
             - ubuntu-dev
-      - janitor
+      - janitor:
           requires:
             - ubuntu-dev
-      - servo
+      - servo:
           requires:
             - ubuntu-dev
-      - thunderbird
+      - thunderbird:
           requires:
             - ubuntu-dev
