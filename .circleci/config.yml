@@ -17,4 +17,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - ubuntu-dev
+      - ubuntu-dev:
+        filters:
+          branches:
+            only: master
