@@ -1,15 +1,9 @@
-defaults: &defaults
-  branches:
-    only:
-      - master
-    docker:
-      - image: docker:stable
-
 version: 2
 jobs:
 
   ubuntu-dev:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -20,7 +14,8 @@ jobs:
           docker push janx/ubuntu-dev:latest
 
   chromium:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -31,7 +26,8 @@ jobs:
           docker push janx/chromium:base
 
   firefox-git:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -42,7 +38,8 @@ jobs:
           docker push janx/firefox:base
 
   firefox-hg:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -53,7 +50,8 @@ jobs:
           docker push janx/firefox-hg:base
 
   janitor:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -64,7 +62,8 @@ jobs:
           docker push janx/janitor:base
 
   servo:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -75,7 +74,8 @@ jobs:
           docker push janx/servo:base
 
   thunderbird:
-    <<: *defaults
+    docker:
+      - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
@@ -89,23 +89,26 @@ workflows:
   version: 2
 
   build_and_push:
+    filters:
+      branches:
+        only: master
     jobs:
       - ubuntu-dev
       - chromium:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
       - firefox-git:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
       - firefox-hg:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
       - janitor:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
       - servo:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
       - thunderbird:
-          requires:
-            - ubuntu-dev
+        requires:
+          - ubuntu-dev
