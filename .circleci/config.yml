@@ -29,4 +29,6 @@ workflows:
   build-and-deploy:
     jobs:
       - ubuntu-dev
-      - chromium
+      - chromium:
+        requires:
+          - ubuntu-dev
