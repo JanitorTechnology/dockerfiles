@@ -8,11 +8,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd ubuntu-dev
-          docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/ubuntu-dev:latest
+      - run:
+          command: |
+            cd ubuntu-dev
+            docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/ubuntu-dev:latest
 
   chromium:
     docker:
@@ -20,11 +21,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd chromium
-          docker build -t janx/chromium:base -f chromium.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/chromium:base
+      - run:
+          command: |
+            cd chromium
+            docker build -t janx/chromium:base -f chromium.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/chromium:base
+          no_output_timeout: 30m
 
   firefox-git:
     docker:
@@ -32,11 +35,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd firefox
-          docker build -t janx/firefox:base -f firefox-git.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/firefox:base
+      - run:
+          command: |
+            cd firefox
+            docker build -t janx/firefox:base -f firefox-git.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/firefox:base
+          no_output_timeout: 30m
 
   firefox-hg:
     docker:
@@ -44,11 +49,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd firefox
-          docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/firefox-hg:base
+      - run:
+          command: |
+            cd firefox
+            docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/firefox-hg:base
+          no_output_timeout: 30m
 
   janitor:
     docker:
@@ -56,11 +63,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd janitor
-          docker build -t janx/janitor:base -f janitor.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/janitor:base
+      - run:
+          command: |
+            cd janitor
+            docker build -t janx/janitor:base -f janitor.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/janitor:base
 
   servo:
     docker:
@@ -68,11 +76,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd servo
-          docker build -t janx/servo:base -f servo.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/servo:base
+      - run:
+          command: |
+            cd servo
+            docker build -t janx/servo:base -f servo.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/servo:base
 
   thunderbird:
     docker:
@@ -80,11 +89,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          cd thunderbird
-          docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push janx/thunderbird:base
+      - run:
+          command: |
+            cd thunderbird
+            docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push janx/thunderbird:base
+          no_output_timeout: 30m
 
 workflows:
   version: 2
