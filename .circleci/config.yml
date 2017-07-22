@@ -1,7 +1,7 @@
 version: 2.0
 
 jobs:
-  ubuntu_dev:
+  ubuntu-dev:
     docker:
       - image: docker:stable
     steps:
@@ -28,7 +28,7 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - ubuntu_dev
+      - ubuntu-dev
       - chromium:
-        requires:
-          - ubuntu_dev
+          requires:
+            - ubuntu-dev
