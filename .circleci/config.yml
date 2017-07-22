@@ -27,7 +27,7 @@ jobs:
             docker build -t janx/chromium:base -f chromium.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push janx/chromium:base
-          no_output_timeout: 30m
+          no_output_timeout: 40m
 
   firefox-git:
     docker:
@@ -82,6 +82,7 @@ jobs:
             docker build -t janx/servo:base -f servo.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push janx/servo:base
+          no_output_timeout: 30m
 
   thunderbird:
     docker:
