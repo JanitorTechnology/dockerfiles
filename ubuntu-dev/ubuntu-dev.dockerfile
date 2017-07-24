@@ -112,7 +112,7 @@ RUN mkdir /tmp/hub \
 # Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 RUN git clone https://github.com/nodejs/node /tmp/node \
  && cd /tmp/node \
- && git checkout v8.1.4 \
+ && git checkout v8.2.1 \
  && ./configure \
  && make -j18 \
  && sudo make install \
