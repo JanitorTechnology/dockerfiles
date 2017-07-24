@@ -1,0 +1,30 @@
+{
+  "name": "Chromium",
+  "description": "The Chromium browser by Google.",
+  "icon": "https://janitor.technology/img/chromium.svg",
+  "docker": {
+    "image": "janx/chromium"
+  },
+  "ports": {
+    "22": {
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "ninja -C out/Default chrome (build)": "ninja -C out/Default chrome",
+    "out/Default/chrome (run)": {
+      "cmd": "out/Default/chrome",
+      "openPort": "8088"
+    },
+    "Update source code": "git rebase-update && gclient sync",
+    "Send to code review": "git cl upload"
+  }
+}

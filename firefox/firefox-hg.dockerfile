@@ -26,3 +26,7 @@ RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/firefox/" /etc/supervisord.c
 
 # Build Firefox.
 RUN ./mach build
+
+# Configure Janitor for Firefox
+ADD janitor-hg.json /home/user/janitor.json
+RUN sudo chown user:user /home/user/janitor.json

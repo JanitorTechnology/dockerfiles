@@ -28,3 +28,7 @@ RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/thunderbird/" /etc/superviso
 
 # Build Thunderbird.
 RUN ./mozilla/mach build
+
+# Configure Janitor for Thunderbird
+ADD janitor.json /home/user/
+RUN sudo chown user:user /home/user/janitor.json
