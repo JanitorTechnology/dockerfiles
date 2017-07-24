@@ -27,7 +27,7 @@ jobs:
             docker build -t janx/chromium:base -f chromium.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker push janx/chromium:base
-          no_output_timeout: 60m
+          no_output_timeout: 90m
 
   firefox-git:
     docker:
