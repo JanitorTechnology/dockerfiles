@@ -113,7 +113,8 @@ RUN mkdir /tmp/hub \
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
 # Install latest Node.js, npm and Yarn.
-RUN . /home/user/.nvm/nvm.sh \
+RUN export NVM_DIR="/home/user/.nvm" \
+ && . $NVM_DIR/nvm.sh \
  && nvm install node \
  && npm install -g yarn
 
