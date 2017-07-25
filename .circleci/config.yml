@@ -11,9 +11,10 @@ jobs:
       - run:
           command: |
             cd ubuntu-dev
-            docker build -t janx/ubuntu-dev:latest -f ubuntu-dev.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push janx/ubuntu-dev:latest
+            docker pull janx/ubuntu-dev
+            docker build --cache-from=janx/ubuntu-dev -t janx/ubuntu-dev -f ubuntu-dev.dockerfile .
+            docker push janx/ubuntu-dev
 
   chromium:
     docker:
@@ -24,8 +25,9 @@ jobs:
       - run:
           command: |
             cd chromium
-            docker build -t janx/chromium:base -f chromium.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/chromium:base -f chromium.dockerfile .
             docker push janx/chromium:base
           no_output_timeout: 90m
 
@@ -38,8 +40,9 @@ jobs:
       - run:
           command: |
             cd firefox
-            docker build -t janx/firefox:base -f firefox-git.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/firefox:base -f firefox-git.dockerfile .
             docker push janx/firefox:base
           no_output_timeout: 30m
 
@@ -52,8 +55,9 @@ jobs:
       - run:
           command: |
             cd firefox
-            docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
             docker push janx/firefox-hg:base
           no_output_timeout: 30m
 
@@ -66,8 +70,9 @@ jobs:
       - run:
           command: |
             cd janitor
-            docker build -t janx/janitor:base -f janitor.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/janitor:base -f janitor.dockerfile .
             docker push janx/janitor:base
 
   servo:
@@ -79,8 +84,9 @@ jobs:
       - run:
           command: |
             cd servo
-            docker build -t janx/servo:base -f servo.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/servo:base -f servo.dockerfile .
             docker push janx/servo:base
           no_output_timeout: 30m
 
@@ -93,8 +99,9 @@ jobs:
       - run:
           command: |
             cd thunderbird
-            docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
             docker push janx/thunderbird:base
           no_output_timeout: 30m
 
