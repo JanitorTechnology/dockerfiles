@@ -108,10 +108,10 @@ RUN mkdir /tmp/hub \
  && sudo ./install \
  && rm -rf /tmp/hub
 
-# Install the latest nvm
+# Install the latest Node Version Manager.
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
-# Install latest Node.js, npm and yarn
+# Install latest Node.js, npm and Yarn.
 RUN nvm install node \
  && nvm use node \
  && npm install -g yarn
