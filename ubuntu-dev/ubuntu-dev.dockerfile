@@ -109,20 +109,15 @@ RUN mkdir /tmp/hub \
  && sudo ./install \
  && rm -rf /tmp/hub
 
-# Install the latest Node.js and npm.
-# Non-sudo global packages: https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
-RUN git clone https://github.com/nodejs/node /tmp/node \
- && cd /tmp/node \
- && git checkout v8.2.1 \
- && ./configure \
- && make -j18 \
- && sudo make install \
- && rm -rf /tmp/node \
- && mkdir /home/user/.npm-packages \
- && echo "prefix=/home/user/.npm-packages" >> /home/user/.npmrc \
- && echo "\n# NPM configuration." >> /home/user/.bashrc \
- && echo "NPM_PACKAGES=\"/home/user/.npm-packages\"" >> /home/user/.bashrc \
- && echo "PATH=\"\$PATH:\$NPM_PACKAGES/bin\"" >> /home/user/.bashrc
+# Install the latest Node Version Manager.
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+# Install latest Node.js, npm and Yarn.
+ENV NVM_DIR="/home/user/.nvm"
+RUN . $NVM_DIR/nvm.sh \
+ && nvm install v8.2.1 \
+ && npm install -g yarn
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.2.1/bin"
 
 # Install the latest rr.
 RUN cd /tmp \
