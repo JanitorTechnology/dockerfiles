@@ -38,6 +38,7 @@ RUN apt-get update -q \
   libnotify-bin \
   libssl-dev \
   lld-4.0 \
+  locales \
   mercurial \
   nano \
   neovim \
