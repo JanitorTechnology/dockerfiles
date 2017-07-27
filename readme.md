@@ -65,13 +65,13 @@ To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself
 
 ## Janitor
 
-    docker run -it --rm janx/janitor /bin/bash
+    docker run -it --rm janitortechnology/janitor /bin/bash
     user@container:~/janitor (master) $ node app
 
-To build [janx/janitor](https://hub.docker.com/r/janx/janitor/) yourself:
+To build [janitortechnology/janitor](https://hub.docker.com/r/janitortechnology/janitor/) yourself:
 
     cd janitor
-    docker build -t janx/janitor -f janitor.dockerfile .
+    docker build -t janitortechnology/janitor -f janitor.dockerfile .
 
 # More Dockerfiles
 

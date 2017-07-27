@@ -1,4 +1,4 @@
-FROM janx/janitor
+FROM janitortechnology/janitor
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages.
