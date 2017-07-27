@@ -27,8 +27,8 @@ jobs:
             cd chromium
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker pull janx/ubuntu-dev
-            docker build -t janx/chromium:base -f chromium.dockerfile .
-            docker push janx/chromium:base
+            docker build -t janx/chromium -f chromium.dockerfile .
+            docker push janx/chromium
           no_output_timeout: 90m
 
   firefox-git:
@@ -42,8 +42,8 @@ jobs:
             cd firefox
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker pull janx/ubuntu-dev
-            docker build -t janx/firefox:base -f firefox-git.dockerfile .
-            docker push janx/firefox:base
+            docker build -t janx/firefox -f firefox-git.dockerfile .
+            docker push janx/firefox
           no_output_timeout: 30m
 
   firefox-hg:
@@ -57,8 +57,8 @@ jobs:
             cd firefox
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker pull janx/ubuntu-dev
-            docker build -t janx/firefox-hg:base -f firefox-hg.dockerfile .
-            docker push janx/firefox-hg:base
+            docker build -t janx/firefox-hg -f firefox-hg.dockerfile .
+            docker push janx/firefox-hg
           no_output_timeout: 30m
 
   servo:
@@ -72,8 +72,8 @@ jobs:
             cd servo
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker pull janx/ubuntu-dev
-            docker build -t janx/servo:base -f servo.dockerfile .
-            docker push janx/servo:base
+            docker build -t janx/servo -f servo.dockerfile .
+            docker push janx/servo
           no_output_timeout: 30m
 
   thunderbird:
@@ -87,8 +87,8 @@ jobs:
             cd thunderbird
             docker login -u $DOCKER_USER -p $DOCKER_PASS
             docker pull janx/ubuntu-dev
-            docker build -t janx/thunderbird:base -f thunderbird.dockerfile .
-            docker push janx/thunderbird:base
+            docker build -t janx/thunderbird -f thunderbird.dockerfile .
+            docker push janx/thunderbird
           no_output_timeout: 30m
 
 workflows:
