@@ -29,7 +29,7 @@ jobs:
             docker pull janx/ubuntu-dev
             docker build -t janx/chromium -f chromium.dockerfile .
             docker push janx/chromium
-          no_output_timeout: 90m
+          no_output_timeout: 8h
 
   firefox-git:
     docker:
