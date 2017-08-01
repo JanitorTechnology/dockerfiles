@@ -62,6 +62,9 @@ module.exports = function (options) {
           // Use the Monokai theme by default.
           p.settings.user.ace['@theme'] = 'ace/theme/monokai';
 
+          // Use a bigger code editor font size by default.
+          p.settings.user.ace['@fontSize'] = '14';
+
           if (!p.settings.user.terminal) {
             p.settings.user.terminal = {};
           }
