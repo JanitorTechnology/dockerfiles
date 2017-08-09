@@ -168,6 +168,9 @@ RUN mkdir /home/user/.phacility \
  && echo "\n# Phabricator helper." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.phacility/arcanist/bin\"" >> /home/user/.bashrc
 
+# Install the latest web-terminal.
+RUN npm install web-terminal -g
+
 # Install the latest noVNC.
 RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
@@ -190,7 +193,7 @@ RUN sudo chown user:user /home/user/.c9sdk/configs/ide/workspace-janitor.js
 ADD supervisord.conf /etc/
 
 # Expose remote access ports.
-EXPOSE 22 8088 8089
+EXPOSE 22 8087 8088 8089
 
 # Run all Supervisor services when the container starts.
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
