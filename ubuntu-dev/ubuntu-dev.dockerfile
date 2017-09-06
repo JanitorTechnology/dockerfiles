@@ -49,6 +49,7 @@ RUN apt-get update -q \
   php-curl \
   sudo \
   supervisor \
+  tmux \
   valgrind \
   x11vnc \
   xvfb \
