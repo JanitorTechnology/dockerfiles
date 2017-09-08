@@ -9,6 +9,7 @@ RUN sudo apt-get update -q \
  && sudo DEBIAN_FRONTEND=noninteractive apt-get install -qy \
   freeglut3-dev \
   autoconf \
+  libx11-dev \
   libfreetype6-dev \
   libgl1-mesa-dri \
   libglib2.0-dev \
