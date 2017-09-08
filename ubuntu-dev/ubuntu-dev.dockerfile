@@ -112,14 +112,14 @@ RUN mkdir /tmp/hub \
  && rm -rf /tmp/hub
 
 # Install the latest Node Version Manager.
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
- && nvm install v8.2.1 \
+ && nvm install v8.4.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.2.1/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.4.0/bin"
 
 # Install the latest rr.
 RUN cd /tmp \
