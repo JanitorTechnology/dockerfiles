@@ -91,8 +91,8 @@ RUN mkdir /home/user/.ccache \
 # Install the latest Git.
 RUN mkdir /tmp/git \
  && cd /tmp/git \
- && curl https://www.kernel.org/pub/software/scm/git/git-2.13.3.tar.xz | tar xJ \
- && cd git-2.13.3 \
+ && curl https://www.kernel.org/pub/software/scm/git/git-2.14.1.tar.xz | tar xJ \
+ && cd git-2.14.1 \
  && make prefix=/usr all man -j18 \
  && sudo make prefix=/usr install install-man -j18 \
  && cp contrib/completion/git-completion.bash /home/user/.git-completion.bash \
