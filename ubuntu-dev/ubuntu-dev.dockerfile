@@ -123,7 +123,7 @@ ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.4.0/bin"
 
 # Install the latest rr.
 RUN cd /tmp \
- && wget https://github.com/mozilla/rr/releases/download/4.5.0/rr-4.5.0-Linux-$(uname -m).deb -O rr.deb \
+ && wget https://github.com/mozilla/rr/releases/download/5.0.0/rr-5.0.0-Linux-$(uname -m).deb -O rr.deb \
  && sudo dpkg -i rr.deb \
  && rm -f rr.deb
 
