@@ -39,6 +39,7 @@ RUN apt-get update -q \
   libssl-dev \
   lld-5.0 \
   locales \
+  man \
   mercurial \
   nano \
   neovim \
