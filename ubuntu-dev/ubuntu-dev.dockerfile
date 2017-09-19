@@ -127,7 +127,7 @@ ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
  && nvm install v8.5.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.4.0/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.5.0/bin"
 
 # Install the latest rr.
 RUN cd /tmp \
