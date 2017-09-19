@@ -44,7 +44,6 @@ RUN apt-get update -q \
   nano \
   neovim \
   net-tools \
-  ninja-build \
   openssh-server \
   php \
   php-curl \
@@ -111,6 +110,14 @@ RUN mkdir /tmp/hub \
  && cd hub-linux-amd64-2.2.9 \
  && sudo ./install \
  && rm -rf /tmp/hub
+
+# Install the latest Ninja.
+RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
+ && cd /tmp/ninja \
+ && git checkout v1.8.2 \
+ && ./configure.py --bootstrap \
+ && sudo mv ninja /usr/bin/ninja \
+ && rm -rf /tmp/ninja
 
 # Install the latest Node Version Manager.
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
