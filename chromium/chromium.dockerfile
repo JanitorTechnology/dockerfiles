@@ -12,12 +12,6 @@ ENV GYP_CHROMIUM_NO_ACTION 1
 RUN echo "\n# Disable gyp_chromium for faster updates." >> .bashrc \
  && echo "export GYP_CHROMIUM_NO_ACTION=1" >> .bashrc
 
-# Disable Chromium's SUID sandbox, because it's not needed anymore.
-# Source: https://chromium.googlesource.com/chromium/src/+/master/docs/linux_suid_sandbox_development.md
-ENV CHROME_DEVEL_SANDBOX ""
-RUN echo "\n# Disable Chromium's SUID sandbox." >> .bashrc \
- && echo "export CHROME_DEVEL_SANDBOX=\"\"" >> .bashrc
-
 # Create the Chromium directory.
 RUN mkdir /home/user/chromium
 WORKDIR chromium
