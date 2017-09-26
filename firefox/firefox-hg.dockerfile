@@ -10,7 +10,9 @@ RUN sudo apt-get update -q \
  && rm -f /tmp/bootstrap.py
 
 # Download Firefox's source code.
-RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ firefox
+RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ firefox \
+ && cd firefox \
+ && hg update central
 WORKDIR firefox
 
 # Add Firefox build configuration.
