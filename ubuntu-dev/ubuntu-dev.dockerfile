@@ -125,9 +125,9 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.s
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
- && nvm install v8.5.0 \
+ && nvm install v8.6.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.5.0/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.6.0/bin"
 
 # Install the latest rr.
 RUN cd /tmp \
