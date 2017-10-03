@@ -123,6 +123,10 @@ RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
  && git checkout v1.8.2 \
  && ./configure.py --bootstrap \
  && sudo mv ninja /usr/bin/ninja \
+ && mv misc/bash-completion /home/user/.ninja-bash-completion \
+ && mv misc/zsh-completion /home/user/.ninja-zsh-completion \
+ && echo "\n# Ninja completion helpers." >> /home/user/.bashrc \
+ && echo ". /home/user/.ninja-bash-completion" >> /home/user/.bashrc \
  && rm -rf /tmp/ninja
 
 # Install the latest Node Version Manager.
