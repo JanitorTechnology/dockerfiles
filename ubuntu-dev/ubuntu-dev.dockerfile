@@ -47,6 +47,9 @@ RUN apt-get update -q \
   openssh-server \
   php \
   php-curl \
+  python-pip \
+  python-virtualenv \
+  python3-pip \
   sudo \
   supervisor \
   tmux \
@@ -54,6 +57,9 @@ RUN apt-get update -q \
   x11vnc \
   xvfb \
  && mkdir /var/run/sshd \
+ && pip install --upgrade pip \
+ && pip install --upgrade virtualenv \
+ && pip3 install --upgrade pip \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-5.0\nCXX=clang++-5.0" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-5.0
