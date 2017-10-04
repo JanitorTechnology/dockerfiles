@@ -158,7 +158,7 @@ RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
 
 # Install the latest Rust Language Server.
-RUN rustup component add rls --toolchain nightly \
+RUN rustup component add rls-preview --toolchain nightly \
  && rustup component add rust-analysis --toolchain nightly \
  && rustup component add rust-src --toolchain nightly \
  && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
