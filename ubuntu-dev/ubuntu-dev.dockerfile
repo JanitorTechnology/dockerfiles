@@ -16,14 +16,15 @@ RUN echo "deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main" > /
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
 
 # Install basic development packages.
-RUN apt-get update -q \
+RUN __LLVM_VERSION__="5.0" \
+ && apt-get update -q \
  && apt-get upgrade -qy \
  && apt-get install -qy \
   asciidoc \
   build-essential \
   ccache \
-  clang-5.0 \
-  clang-tidy-5.0 \
+  clang-${__LLVM_VERSION__} \
+  clang-tidy-${__LLVM_VERSION__} \
   cmake \
   curl \
   emacs \
@@ -37,7 +38,7 @@ RUN apt-get update -q \
   libgl1-mesa-dev \
   libnotify-bin \
   libssl-dev \
-  lld-5.0 \
+  lld-${__LLVM_VERSION__} \
   locales \
   man \
   mercurial \
@@ -60,7 +61,7 @@ RUN apt-get update -q \
  && pip install --upgrade pip \
  && pip install --upgrade virtualenv \
  && pip3 install --upgrade pip \
- && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-5.0\nCXX=clang++-5.0" >> /etc/environment
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-5.0
 ENV CXX clang++-5.0
@@ -95,10 +96,11 @@ RUN mkdir /home/user/.ccache \
  && echo "max_size = 10G" > /home/user/.ccache/ccache.conf
 
 # Install the latest Git.
-RUN mkdir /tmp/git \
+RUN __GIT_VERSION__="2.14.2" \
+ && mkdir /tmp/git \
  && cd /tmp/git \
- && curl https://www.kernel.org/pub/software/scm/git/git-2.14.2.tar.xz | tar xJ \
- && cd git-2.14.2 \
+ && curl https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
+ && cd git-${__GIT_VERSION__} \
  && make prefix=/usr all man -j18 \
  && sudo make prefix=/usr install install-man -j18 \
  && cp contrib/completion/git-completion.bash /home/user/.git-completion.bash \
@@ -110,10 +112,11 @@ RUN mkdir /tmp/git \
  && rm -rf /tmp/git
 
 # Install the latest GitHub helper.
-RUN mkdir /tmp/hub \
+RUN __HUB_VERSION__="2.2.9" \
+ && mkdir /tmp/hub \
  && cd /tmp/hub \
- && curl -L https://github.com/github/hub/releases/download/v2.2.9/hub-linux-amd64-2.2.9.tgz | tar xz \
- && cd hub-linux-amd64-2.2.9 \
+ && curl -L https://github.com/github/hub/releases/download/v${__HUB_VERSION__}/hub-linux-amd64-${__HUB_VERSION__}.tgz | tar xz \
+ && cd hub-linux-amd64-${__HUB_VERSION__} \
  && sudo ./install \
  && rm -rf /tmp/hub
 
@@ -140,8 +143,9 @@ RUN . $NVM_DIR/nvm.sh \
 ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.6.0/bin"
 
 # Install the latest rr.
-RUN cd /tmp \
- && wget https://github.com/mozilla/rr/releases/download/5.0.0/rr-5.0.0-Linux-$(uname -m).deb -O rr.deb \
+RUN __RR_VERSION__="5.0.0" \
+ && cd /tmp \
+ && wget https://github.com/mozilla/rr/releases/download/${__RR_VERSION__}/rr-${__RR_VERSION__}-Linux-$(uname -m).deb -O rr.deb \
  && sudo dpkg -i rr.deb \
  && rm -f rr.deb
 
@@ -170,10 +174,11 @@ RUN git clone https://github.com/rupa/z /home/user/.z.sh \
  && echo ". /home/user/.z.sh/z.sh" >> /home/user/.bashrc
 
 # Install the latest Vim.
-RUN mkdir /tmp/vim \
+RUN __VIM_VERSION__="8.0.1171" \
+ && mkdir /tmp/vim \
  && cd /tmp/vim \
- && curl -L https://github.com/vim/vim/archive/v8.0.1171.tar.gz | tar xz \
- && cd vim-8.0.1171/src \
+ && curl -L https://github.com/vim/vim/archive/v${__VIM_VERSION__}.tar.gz | tar xz \
+ && cd vim-${__VIM_VERSION__}/src \
  && make -j18 \
  && sudo make install \
  && rm -rf /tmp/vim \
