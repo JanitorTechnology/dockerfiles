@@ -71,6 +71,21 @@ module.exports = function (options) {
 
           // Use a longer scrollback for the Terminal.
           p.settings.user.terminal['@scrollback'] = 10000;
+
+          if (!p.settings.project) {
+            p.settings.user = {};
+          }
+
+          if (typeof p.settings.project === 'string') {
+            p.settings.project = JSON.parse(p.settings.project);
+          }
+
+          if (!p.settings.project.codeintel) {
+            p.settings.user.codeintel = {};
+          }
+
+          // Dismiss the codeintel popup because it's installed
+          p.settings.project.codeintel['@dismiss_installer'] = true;
         }
         break;
     }
