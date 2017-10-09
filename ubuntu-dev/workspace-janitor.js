@@ -73,7 +73,7 @@ module.exports = function (options) {
           p.settings.user.terminal['@scrollback'] = 10000;
 
           if (!p.settings.project) {
-            p.settings.user = {};
+            p.settings.project = {};
           }
 
           if (typeof p.settings.project === 'string') {
@@ -81,7 +81,7 @@ module.exports = function (options) {
           }
 
           if (!p.settings.project.codeintel) {
-            p.settings.user.codeintel = {};
+            p.settings.project.codeintel = {};
           }
 
           // Dismiss the codeintel popup because it's installed
