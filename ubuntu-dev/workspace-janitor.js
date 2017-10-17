@@ -24,7 +24,7 @@ module.exports = function (options) {
   }).filter(function(p) {
     // Fix "Cloud9 > Go To Your Dashboard" link.
     if (p.dashboardUrl && p.dashboardUrl.includes('c9.io')) {
-      p.dashboardUrl = 'https://janitor.technology/contributions/';
+      p.dashboardUrl = 'https://janitor.technology/containers/';
     }
 
     // Fix Cloud9 Account link.
