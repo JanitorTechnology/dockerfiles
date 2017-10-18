@@ -50,7 +50,6 @@ RUN __LLVM_VERSION__="5.0" \
   php-curl \
   python-pip \
   python-virtualenv \
-  python3-pip \
   sudo \
   supervisor \
   tmux \
@@ -60,8 +59,6 @@ RUN __LLVM_VERSION__="5.0" \
  && mkdir /var/run/sshd \
  && pip install --upgrade pip \
  && pip install --upgrade virtualenv \
- && pip3 install --upgrade pip \
- && cp /usr/local/bin/pip2 /usr/local/bin/pip \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-5.0
