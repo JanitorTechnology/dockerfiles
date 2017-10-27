@@ -10,16 +10,16 @@ RUN sudo apt-get update -q \
  && rm -f /tmp/bootstrap.py
 
 # Install Mozilla's moz-git-tools.
-RUN git clone https://github.com/mozilla/moz-git-tools \
- && cd moz-git-tools \
+RUN git clone https://github.com/mozilla/moz-git-tools /home/user/.moz-git-tools \
+ && cd /home/user/moz-git-tools/.moz-git-tools \
  && git submodule init \
  && git submodule update
-RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> .bashrc \
- && echo "PATH=\"\$PATH:/home/user/moz-git-tools\"" >> .bashrc
+RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.moz-git-tools\"" >> /home/user/.bashrc
 
 # Download Firefox's source code.
-RUN git clone https://github.com/mozilla/gecko-dev firefox
-WORKDIR firefox
+RUN git clone https://github.com/mozilla/gecko-dev /home/user/firefox
+WORKDIR /home/user/firefox
 
 # Add Firefox build configuration.
 ADD mozconfig /home/user/firefox/
