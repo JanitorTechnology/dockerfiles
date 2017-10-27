@@ -59,6 +59,7 @@ RUN __LLVM_VERSION__="5.0" \
  && mkdir /var/run/sshd \
  && pip install --upgrade pip \
  && pip install --upgrade virtualenv \
+ && pip install requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-5.0
