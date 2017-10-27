@@ -10,7 +10,6 @@ RUN sudo apt-get update -q \
  && rm -f /tmp/bootstrap.py
 
 # Install Mozilla's moz-git-tools.
-RUN pip install requests
 RUN git clone https://github.com/mozilla/moz-git-tools \
  && cd moz-git-tools \
  && git submodule init \
