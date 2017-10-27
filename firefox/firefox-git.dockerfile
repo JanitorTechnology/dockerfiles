@@ -11,7 +11,7 @@ RUN sudo apt-get update -q \
 
 # Install Mozilla's moz-git-tools.
 RUN git clone https://github.com/mozilla/moz-git-tools /home/user/.moz-git-tools \
- && cd /home/user/moz-git-tools/.moz-git-tools \
+ && cd /home/user/.moz-git-tools \
  && git submodule init \
  && git submodule update
 RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> /home/user/.bashrc \
