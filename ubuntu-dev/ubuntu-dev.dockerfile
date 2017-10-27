@@ -94,7 +94,7 @@ RUN mkdir /home/user/.ccache \
  && echo "max_size = 10G" > /home/user/.ccache/ccache.conf
 
 # Install the latest Git.
-RUN __GIT_VERSION__="2.14.2" \
+RUN __GIT_VERSION__="2.14.3" \
  && mkdir /tmp/git \
  && cd /tmp/git \
  && curl https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
@@ -136,9 +136,9 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.s
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
- && nvm install v8.6.0 \
+ && nvm install v8.7.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.6.0/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.7.0/bin"
 
 # Install the latest rr.
 RUN __RR_VERSION__="5.0.0" \
