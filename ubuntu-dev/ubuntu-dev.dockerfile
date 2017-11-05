@@ -66,8 +66,8 @@ ENV CC clang-5.0
 ENV CXX clang++-5.0
 
 # Disallow logging in to SSH with a password.
-RUN sed -i "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
- && sed -i "s/^[#\s]*ChallengeResponseAuthentication\s+[yn].*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
+RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
+ && sed -ri "s/^[#\s]*ChallengeResponseAuthentication\s+[yn].*$/ChallengeResponseAuthentication no/" /etc/ssh/sshd_config
 
 # Fix logging in to SSH on some platforms by disabling `pam_loginuid.so`.
 # Source: https://gitlab.com/gitlab-org/gitlab-ce/issues/3027
