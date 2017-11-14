@@ -1,0 +1,34 @@
+{
+  "name": "Discourse",
+  "description": "Discourse is the 100% open source discussion platform built for the next decade of the Internet.",
+  "icon": "https://janitor.technology/img/discourse.svg",
+  "docker": {
+    "image": "janitortechnology/discourse"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    },
+    "3000": {
+      "label": "Discourse",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Start web server": "bundle exec rails s",
+    "Run frontend (qunit) tests": "bundle exec rake qunit:test['400000']",
+    "Run backend (rspec) tests": "bundle exec rspec",
+    "Run plugin tests": "bundle exec rake plugin:spec",
+    "Update source code": "git fetch origin && git rebase origin/master",
+    "Send to code review": "hub pull-request"
+  }
+}
