@@ -16,7 +16,7 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     sudo gem install bundler mailcatcher && \
     mkdir ~/.local && npm config set prefix '~/.local' && \
     npm install -g svgo phantomjs-prebuilt && \
-    (cat /tmp/supervisord-append.conf | sudo tee /etc/supervisord.conf) && \
+    (cat /tmp/supervisord-append.conf | sudo tee -a /etc/supervisord.conf) && \
     sudo rm -f /tmp/supervisord-append.conf
 
 # Set up database and source code repo
