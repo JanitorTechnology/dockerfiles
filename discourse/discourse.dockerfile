@@ -17,7 +17,7 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     mkdir ~/.local && npm config set prefix '~/.local' && \
     npm install -g svgo phantomjs-prebuilt && \
     (cat /tmp/supervisord-append.conf | sudo tee /etc/supervisord.conf) && \
-    rm /tmp/supervisord-append.conf
+    sudo rm -f /tmp/supervisord-append.conf
 
 # Set up database and source code repo
 RUN sudo mkdir /var/run/postgresql/9.5-main.pg_stat_tmp && sudo chown postgres:postgres /var/run/postgresql/9.5-main.pg_stat_tmp && \
