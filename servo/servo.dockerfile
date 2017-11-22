@@ -29,6 +29,7 @@ RUN sudo apt-get update -q \
   libgles2-mesa-dev \
   libegl1-mesa-dev \
   libdbus-1-dev \
+  libpulse-dev \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
   xpra
