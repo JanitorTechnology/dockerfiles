@@ -44,9 +44,7 @@ RUN sudo mkdir /var/run/postgresql/9.5-main.pg_stat_tmp && sudo chown postgres:p
 WORKDIR /home/user/discourse
 
 # Configure Cloud9 to use Discourse's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/discourse/" /etc/supervisord.conf && \
-    printf "export DISCOURSE_PORT=\"3000\"" >> /home/user/.bashrc && \
-    printf "export DISCOURSE_RELATIVE_URL_ROOT=/`cat /proc/self/cgroup | grep docker | head -n 1 | sed 's_^.*docker\/__'`/\$DISCOURSE_PORT" >> /home/user/.bashrc
+RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/discourse/" /etc/supervisord.conf
 
 # Configure Janitor for Discourse
 ADD janitor.json /home/user/
