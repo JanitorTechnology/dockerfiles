@@ -95,7 +95,7 @@ RUN mkdir /home/user/.ccache \
  && echo "max_size = 10G" > /home/user/.ccache/ccache.conf
 
 # Install the latest Git.
-RUN __GIT_VERSION__="2.14.3" \
+RUN __GIT_VERSION__="2.15.0" \
  && mkdir /tmp/git \
  && cd /tmp/git \
  && curl https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
