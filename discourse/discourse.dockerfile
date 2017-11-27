@@ -14,7 +14,6 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     sudo apt-get -yqq install nodejs ruby2.3 python-software-properties vim curl expect debconf-utils git-core build-essential zlib1g-dev libssl-dev openssl libcurl4-openssl-dev libreadline6-dev libpcre3 libpcre3-dev imagemagick postgresql postgresql-contrib-9.5 libpq-dev postgresql-server-dev-9.5 redis-server advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant gnupg2 ruby2.3-dev libsqlite3-dev && \
     echo 'gem: --no-document' >> /home/user/.gemrc && \
     sudo gem install bundler mailcatcher && \
-    mkdir ~/.local && npm config set prefix '~/.local' && \
     npm install -g svgo phantomjs-prebuilt && \
     (cat /tmp/supervisord-append.conf | sudo tee -a /etc/supervisord.conf) && \
     sudo rm -f /tmp/supervisord-append.conf
