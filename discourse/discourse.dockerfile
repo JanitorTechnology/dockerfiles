@@ -14,7 +14,6 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     sudo apt-get -yqq install nodejs ruby2.3 python-software-properties vim curl expect debconf-utils git-core build-essential zlib1g-dev libssl-dev openssl libcurl4-openssl-dev libreadline6-dev libpcre3 libpcre3-dev imagemagick postgresql postgresql-contrib-9.5 libpq-dev postgresql-server-dev-9.5 redis-server advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant gnupg2 ruby2.3-dev libsqlite3-dev && \
     echo 'gem: --no-document' >> /home/user/.gemrc && \
     sudo gem install bundler mailcatcher && \
-    mkdir ~/.local && npm config set prefix '~/.local' && \
     npm install -g svgo phantomjs-prebuilt && \
     (cat /tmp/supervisord-append.conf | sudo tee -a /etc/supervisord.conf) && \
     sudo rm -f /tmp/supervisord-append.conf
@@ -44,9 +43,7 @@ RUN sudo mkdir /var/run/postgresql/9.5-main.pg_stat_tmp && sudo chown postgres:p
 WORKDIR /home/user/discourse
 
 # Configure Cloud9 to use Discourse's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/discourse/" /etc/supervisord.conf && \
-    printf "export DISCOURSE_PORT=\"3000\"\n" >> /home/user/.bashrc && \
-    printf "export DISCOURSE_RELATIVE_URL_ROOT=/`cat /proc/self/cgroup | grep docker | head -n 1 | sed 's_^.*docker\/__'`/\$DISCOURSE_PORT\n" >> /home/user/.bashrc
+RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/discourse/" /etc/supervisord.conf
 
 # Configure Janitor for Discourse
 ADD janitor.json /home/user/

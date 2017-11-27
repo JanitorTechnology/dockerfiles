@@ -24,7 +24,8 @@
     }
   },
   "scripts": {
-    "Start web server": "bundle exec rails s",
+    "Start web server": "bundle exec rails s -b 0.0.0.0",
+    "Create admin user": "bundle exec rake admin:create",
     "Run frontend (qunit) tests": "bundle exec rake qunit:test['400000']",
     "Run backend (rspec) tests": "bundle exec rspec",
     "Run plugin tests": "bundle exec rake plugin:spec",
