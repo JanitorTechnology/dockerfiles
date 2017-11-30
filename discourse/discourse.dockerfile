@@ -16,7 +16,7 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     sudo gem install bundler mailcatcher && \
     mkdir ~/.local/ && cd ~/.local/ && npm install svgo phantomjs-prebuilt && cd ~ && \
     ln -s ~/.local/node_modules/svgo/bin/svgo ~/.local/bin/ && \
-    ln -s ~/.local/node_modules/phantomjs-prebuilt/bin/phantomjs ~/.local/bin/ &&
+    ln -s ~/.local/node_modules/phantomjs-prebuilt/bin/phantomjs ~/.local/bin/ && \
     (cat /tmp/supervisord-append.conf | sudo tee -a /etc/supervisord.conf) && \
     sudo rm -f /tmp/supervisord-append.conf
 
