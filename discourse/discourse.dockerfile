@@ -14,7 +14,9 @@ RUN sudo apt-get -yqq install software-properties-common python-software-propert
     sudo apt-get -yqq install nodejs ruby2.3 python-software-properties vim curl expect debconf-utils git-core build-essential zlib1g-dev libssl-dev openssl libcurl4-openssl-dev libreadline6-dev libpcre3 libpcre3-dev imagemagick postgresql postgresql-contrib-9.5 libpq-dev postgresql-server-dev-9.5 redis-server advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant gnupg2 ruby2.3-dev libsqlite3-dev && \
     echo 'gem: --no-document' >> /home/user/.gemrc && \
     sudo gem install bundler mailcatcher && \
-    cd ~/.c9sdk/ && npm install svgo phantomjs-prebuilt && cd ~ && \
+    mkdir ~/.local/ && cd ~/.local/ && npm install svgo phantomjs-prebuilt && cd ~ && \
+    ln -s ~/.local/node_modules/svgo/bin/svgo ~/.local/bin/ &&
+    ln -s ~/.local/node_modules/phantomjs-prebuilt/bin/phantomjs ~/.local/bin/ &&
     (cat /tmp/supervisord-append.conf | sudo tee -a /etc/supervisord.conf) && \
     sudo rm -f /tmp/supervisord-append.conf
 
