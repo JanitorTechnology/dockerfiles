@@ -20,7 +20,8 @@
     },
     "3000": {
       "label": "Discourse",
-      "proxy": "https"
+      "proxy": "https",
+      "preview": true
     }
   },
   "scripts": {
