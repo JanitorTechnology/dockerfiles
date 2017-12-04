@@ -1,7 +1,7 @@
 # Dockerfiles
 
 [![Circle CI](https://img.shields.io/circleci/project/github/JanitorTechnology/dockerfiles.svg)](https://circleci.com/gh/JanitorTechnology/workflows/dockerfiles)
-[![Docker Hub](https://img.shields.io/docker/automated/JanitorTechnology/dockerfiles.svg)](https://hub.docker.com/r/janitortechnology/)
+[![Docker Hub](https://img.shields.io/docker/automated/janitortechnology/janitor.svg)](https://hub.docker.com/r/janitortechnology/)
 
 Popular development environments as Docker containers.
 
