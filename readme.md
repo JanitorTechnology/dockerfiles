@@ -1,8 +1,11 @@
 # Dockerfiles
 
+[![Circle CI](https://img.shields.io/circleci/project/github/JanitorTechnology/dockerfiles.svg)](https://circleci.com/gh/JanitorTechnology/workflows/dockerfiles)
+[![Docker Hub](https://img.shields.io/docker/automated/JanitorTechnology/dockerfiles.svg)](https://hub.docker.com/r/janitortechnology/)
+
 Popular development environments as Docker containers.
 
-All images are available on [Docker Hub](https://hub.docker.com/u/janx/).
+All images are available on Docker Hub (under [/janx/](https://hub.docker.com/u/janx/) or [/janitortechnology/](https://hub.docker.com/u/janitortechnology/)).
 
 ## Ubuntu-dev
 
