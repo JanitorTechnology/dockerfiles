@@ -7,11 +7,13 @@
   },
   "ports": {
     "22": {
+      "label": "SSH",
       "proxy": "none"
     },
     "8088": {
       "label": "VNC",
-      "proxy": "https"
+      "proxy": "https",
+      "preview": true
     },
     "8089": {
       "label": "Cloud9",
