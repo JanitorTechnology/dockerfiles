@@ -157,10 +157,12 @@ RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
 
 # Install the latest Rust Language Server.
-RUN rustup component add rls-preview --toolchain nightly \
- && rustup component add rust-analysis --toolchain nightly \
- && rustup component add rust-src --toolchain nightly \
- && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
+# FIXME: Re-enable this when `rls-preview` build is fixed in Rust Nightly.
+# Reference: https://github.com/rust-lang-nursery/rls/issues/611
+#RUN rustup component add rls-preview --toolchain nightly \
+# && rustup component add rust-analysis --toolchain nightly \
+# && rustup component add rust-src --toolchain nightly \
+# && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
 
 # Install the latest ripgrep, rustfmt and clippy.
 RUN cargo install ripgrep \
