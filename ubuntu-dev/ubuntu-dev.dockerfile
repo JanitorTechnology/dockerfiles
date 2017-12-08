@@ -175,7 +175,7 @@ RUN git clone https://github.com/rupa/z /home/user/.z.sh \
  && echo ". /home/user/.z.sh/z.sh" >> /home/user/.bashrc
 
 # Install the latest Vim.
-RUN __VIM_VERSION__="8.0.1367" \
+RUN __VIM_VERSION__="8.0.1376" \
  && mkdir /tmp/vim \
  && cd /tmp/vim \
  && curl -L https://github.com/vim/vim/archive/v${__VIM_VERSION__}.tar.gz | tar xz \
