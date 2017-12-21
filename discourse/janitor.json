@@ -10,12 +10,8 @@
       "label": "SSH",
       "proxy": "none"
     },
-    "8088": {
-      "label": "VNC",
-      "proxy": "https"
-    },
-    "8089": {
-      "label": "Cloud9",
+    "1080": {
+      "label": "MailCatcher",
       "proxy": "https"
     },
     "3000": {
@@ -23,8 +19,12 @@
       "proxy": "https",
       "preview": true
     },
-    "1080": {
-      "label": "MailCatcher",
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
       "proxy": "https"
     }
   },
