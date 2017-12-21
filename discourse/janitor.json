@@ -31,7 +31,7 @@
   "scripts": {
     "Start web server (puma)": "bundle exec rails s -b 0.0.0.0",
     "Start mail server (mailcatcher)": "mailcatcher -f --http-ip 0.0.0.0 --http-port 1080",
-    "Start background tasks (sidekiq)": "mailcatcher -f --http-ip 0.0.0.0 --http-port 1080",
+    "Start background tasks (sidekiq)": "bundle exec sidekiq",
     "Create admin user": "bundle exec rake admin:create",
     "Run frontend (qunit) tests": "bundle exec rake qunit:test['400000']",
     "Run backend (rspec) tests": "bundle exec rspec",
