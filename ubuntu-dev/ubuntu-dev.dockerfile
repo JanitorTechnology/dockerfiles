@@ -165,7 +165,7 @@ RUN rustup component add rls-preview \
 # Install the latest ripgrep, rustfmt and clippy.
 RUN cargo install ripgrep \
  && cargo install rustfmt \
- && rustup run nightly cargo install clippy
+ && cargo install clippy
 
 # Install the latest z.
 RUN git clone https://github.com/rupa/z /home/user/.z.sh \
