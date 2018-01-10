@@ -1,6 +1,10 @@
 FROM ubuntu:16.04
 MAINTAINER Jan Keromnes "janx@linux.com"
 
+# Install HTTPS transport for Ubuntu package sources.
+RUN apt-get update -q \
+ && apt-get install -qy apt-transport-https
+
 # Add source for the latest Clang packages.
 ADD llvm-snapshot.gpg.key /tmp
 RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" > /etc/apt/sources.list.d/llvm.list \
