@@ -3,7 +3,7 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Add source for the latest Clang packages.
 ADD llvm-snapshot.gpg.key /tmp
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" > /etc/apt/sources.list.d/llvm.list \
+RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
