@@ -142,7 +142,7 @@ RUN . $NVM_DIR/nvm.sh \
 ENV PATH="${PATH}:${NVM_DIR}/versions/node/v8.9.4/bin"
 
 # Install the latest rr.
-RUN __RR_VERSION__="5.0.0" \
+RUN __RR_VERSION__="5.1.0" \
  && cd /tmp \
  && wget https://github.com/mozilla/rr/releases/download/${__RR_VERSION__}/rr-${__RR_VERSION__}-Linux-$(uname -m).deb -O rr.deb \
  && sudo dpkg -i rr.deb \
