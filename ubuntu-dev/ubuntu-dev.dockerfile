@@ -168,7 +168,7 @@ RUN rustup component add rls-preview \
 
 # Install the latest ripgrep, rustfmt and clippy.
 RUN cargo install ripgrep \
- && cargo install rustfmt \
+ && cargo install rustfmt --force \
  && cargo install clippy
 
 # Install the latest z.
