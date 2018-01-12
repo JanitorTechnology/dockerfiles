@@ -21,12 +21,12 @@
     }
   },
   "scripts": {
-    "Build (ninja -C out/Default chrome)": "ninja -C out/Default chrome",
-    "Run (out/Default/chrome --no-sandbox)": {
+    "Build Chromium": "ninja -C out/Default chrome",
+    "Run Chromium": {
       "cmd": "out/Default/chrome --no-sandbox",
       "openPort": "8088"
     },
-    "Update source code (git rebase-update && gclient sync)": "git rebase-update && gclient sync",
-    "Send to code review (git cl upload)": "git cl upload"
+    "Update source code": "git rebase-update && gclient sync",
+    "Send to code review": "git cl upload"
   }
 }

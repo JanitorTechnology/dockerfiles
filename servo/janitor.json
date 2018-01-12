@@ -21,17 +21,17 @@
     }
   },
   "scripts": {
-    "./mach build --dev": "./mach build --dev",
-    "./mach build --release": "./mach build --release",
-    "./mach run --dev": {
+    "Build Servo (dev)": "./mach build --dev",
+    "Build Servo (release)": "./mach build --release",
+    "Run Servo (dev)": {
       "cmd": "./mach run --dev",
       "openPort": "8088"
     },
-    "./mach run --release": {
+    "Run Servo (release)": {
       "cmd": "./mach run --release",
       "openPort": "8088"
     },
-    "./mach check": "./mach check",
+    "Check coding style": "./mach check",
     "Update source code": "git fetch origin && git rebase origin/master",
     "Send to code review": "hub pull-request"
   }

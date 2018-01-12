@@ -21,14 +21,14 @@
     }
   },
   "scripts": {
-    "./mach build": "./mach build",
-    "./mach build faster": "./mach build faster",
-    "./mach build binaries": "./mach build binaries",
-    "./mach run": {
+    "Build Firefox": "./mach build",
+    "Build faster": "./mach build faster",
+    "Build binaries": "./mach build binaries",
+    "Run Firefox": {
       "cmd": "./mach run",
       "openPort": "8088"
     },
-    "./mach clobber": "./mach clobber",
+    "Clobber build": "./mach clobber",
     "Update source code": "git fetch origin && git rebase origin/master",
     "Send to code review": "git bz attach -e origin/master..HEAD"
   }
