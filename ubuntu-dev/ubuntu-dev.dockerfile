@@ -77,6 +77,10 @@ RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no
 # Source: https://gitlab.com/gitlab-org/gitlab-ce/issues/3027
 RUN sed -ri "s/^session\s+required\s+pam_loginuid.so$/session optional pam_loginuid.so/" /etc/pam.d/sshd
 
+# Use a UTF-8 locale by default (instead of "POSIX").
+RUN locale-gen en_US.UTF-8
+ENV LANG="en_US.UTF-8" LANGUAGE="en_US:en" LC_ALL="en_US.UTF-8"
+
 # Add a user that can `sudo`.
 RUN useradd --create-home --shell /bin/bash user \
  && echo "user ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/user
