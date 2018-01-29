@@ -27,6 +27,10 @@
       "openPort": "8088"
     },
     "Update source code": "git rebase-update && gclient sync",
-    "Send to code review": "git cl upload"
+    "Send to code review": "git cl upload",
+    "Trigger try jobs": "git cl try",
+    "Show try job results": "git cl try-results",
+    "Show code review comments": "git cl comments",
+    "Show all CL commands": "git cl help"
   }
 }
