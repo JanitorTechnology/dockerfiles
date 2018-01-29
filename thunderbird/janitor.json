@@ -22,12 +22,12 @@
   },
   "scripts": {
     "Build Thunderbird": "./mozilla/mach build",
-    "Build Lightning": "make -C objdir/calendar/lightning",
+    "Build Lightning": "make -C obj-x86_64-pc-linux-gnu/calendar/lightning",
     "Run Thunderbird": {
       "cmd": "./mozilla/mach run",
       "openPort": "8088"
     },
     "Clobber build": "./mozilla/mach clobber",
-    "Update sources": "python client.py checkout"
+    "Update source code": "python client.py checkout"
   }
 }
