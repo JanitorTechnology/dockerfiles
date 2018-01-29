@@ -7,7 +7,7 @@ RUN apt-get update -q \
 
 # Add source for the latest Clang packages.
 ADD llvm-snapshot.gpg.key /tmp
-RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" > /etc/apt/sources.list.d/llvm.list \
+RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
@@ -20,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main" > /
  && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
 
 # Install basic development packages.
-RUN __LLVM_VERSION__="5.0" \
+RUN __LLVM_VERSION__="6.0" \
  && apt-get update -q \
  && apt-get upgrade -qy \
  && apt-get install -qy \
@@ -43,6 +43,7 @@ RUN __LLVM_VERSION__="5.0" \
   libnotify-bin \
   libssl-dev \
   lld-${__LLVM_VERSION__} \
+  lldb-${__LLVM_VERSION__} \
   locales \
   man \
   mercurial \
@@ -66,8 +67,8 @@ RUN __LLVM_VERSION__="5.0" \
  && pip install requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
-ENV CC clang-5.0
-ENV CXX clang++-5.0
+ENV CC clang-6.0
+ENV CXX clang++-6.0
 
 # Disallow logging in to SSH with a password.
 RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
