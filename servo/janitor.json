@@ -32,7 +32,7 @@
       "openPort": "8088"
     },
     "Check coding style": "./mach check",
-    "Update source code": "git fetch origin && git rebase origin/master",
+    "Update source code": "git pull --rebase origin master",
     "Send to code review": "hub pull-request"
   }
 }

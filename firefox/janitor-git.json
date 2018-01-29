@@ -29,7 +29,7 @@
       "openPort": "8088"
     },
     "Clobber build": "./mach clobber",
-    "Update source code": "git fetch origin && git rebase origin/master",
+    "Update source code": "git pull --rebase origin master",
     "Send to code review": "git bz attach -e origin/master..HEAD"
   }
 }

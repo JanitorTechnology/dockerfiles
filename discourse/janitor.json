@@ -36,7 +36,7 @@
     "Run frontend (qunit) tests": "bundle exec rake qunit:test['400000']",
     "Run backend (rspec) tests": "bundle exec rspec",
     "Run plugin tests": "bundle exec rake plugin:spec",
-    "Update source code": "git fetch origin && git rebase origin/master",
+    "Update source code": "git pull --rebase origin master",
     "Send to code review": "hub pull-request"
   }
 }
