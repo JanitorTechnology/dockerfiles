@@ -4,7 +4,7 @@ FROM janx/ubuntu-dev
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH $PATH:/home/user/depot_tools
 ENV GYP_CHROMIUM_NO_ACTION 1
-RUN cat << EOD >> .bashrc
+RUN cat << EOD >> /home/user/.bashrc
 
 # Add Chromium's depot_tools to the PATH.
 export PATH="\$PATH:/home/user/depot_tools"
