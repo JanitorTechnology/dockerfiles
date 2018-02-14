@@ -3,21 +3,19 @@ FROM janx/ubuntu-dev
 # Install Chromium's depot_tools.
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH $PATH:/home/user/depot_tools
-ENV GYP_CHROMIUM_NO_ACTION 1
-RUN cat << EOD >> /home/user/.bashrc
+RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
+ && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc
 
-# Add Chromium's depot_tools to the PATH.
-export PATH="\$PATH:/home/user/depot_tools"
-
-# The next line enables bash completion for git cl.
-if [ -f "/home/user/depot_tools/git_cl_completion.sh" ]; then
-  . "/home/user/depot_tools/git_cl_completion.sh"
-fi
+# Enable bash completion for git cl.
+RUN echo "\n# The next line enables bash completion for git cl." >> .bashrc \
+ && echo "if [ -f \"/home/user/depot_tools/git_cl_completion.sh\" ]; then" >> .bashrc \
+ && echo "  . \"/home/user/depot_tools/git_cl_completion.sh\"" >> .bashrc \
+ && echo "fi" >> .bashrc
 
 # Disable gyp_chromium for faster updates.
-export GYP_CHROMIUM_NO_ACTION=1
-
-EOD
+ENV GYP_CHROMIUM_NO_ACTION 1
+RUN echo "\n# Disable gyp_chromium for faster updates." >> .bashrc \
+ && echo "export GYP_CHROMIUM_NO_ACTION=1" >> .bashrc
 
 # Create the Chromium directory.
 WORKDIR /home/user/chromium
