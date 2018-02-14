@@ -10,7 +10,7 @@ RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
 RUN echo "\n# The next line enables bash completion for git cl." >> .bashrc \
  && echo "if [ -f "/home/user/depot_tools/git_cl_completion.sh" ]; then" >> .bashrc \
  && echo "  . "/home/user/depot_tools/git_cl_completion.sh"" >> .bashrc \
- && echo "fi"
+ && echo "fi" >> .bashrc
 
 # Disable gyp_chromium for faster updates.
 ENV GYP_CHROMIUM_NO_ACTION 1
