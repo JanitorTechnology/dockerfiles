@@ -18,6 +18,7 @@ RUN echo "\n# Disable gyp_chromium for faster updates." >> .bashrc \
  && echo "export GYP_CHROMIUM_NO_ACTION=1" >> .bashrc
 
 # Create the Chromium directory.
+RUN mkdir /home/user/chromium
 WORKDIR /home/user/chromium
 
 # Download Chromium's source code.
