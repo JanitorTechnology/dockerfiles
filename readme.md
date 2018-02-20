@@ -5,11 +5,11 @@
 
 Popular development environments as Docker containers.
 
-All images are available on Docker Hub (under [/janx/](https://hub.docker.com/u/janx/) or [/janitortechnology/](https://hub.docker.com/u/janitortechnology/)).
+All images are available on Docker Hub under [/janitortechnology/](https://hub.docker.com/u/janitortechnology/) (previously under [/janx/](https://hub.docker.com/u/janx/)).
 
 ## Ubuntu-dev
 
-Most images here are based on `janx/ubuntu-dev`, which is basically `ubuntu:16.04` with:
+Most images here are based on `ubuntu-dev`, which is basically `ubuntu:16.04` with:
 
 - Useful packages like `clang`, `git`, `vim`…
 - A `user` which can `sudo`
@@ -31,6 +31,16 @@ To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
     cd chromium
     docker build -t janx/chromium -f chromium.dockerfile .
 
+## Discourse
+
+    docker run -it --rm janitortechnology/discourse /bin/bash
+    user@container:~/discourse (master) $ bundle exec rspec
+
+To build [janitortechnology/discourse](https://hub.docker.com/r/janitortechnology/discourse/) yourself:
+
+    cd discourse
+    docker build -t janitortechnology/discourse -f discourse.dockerfile .
+
 ## Firefox
 
     docker run -it --rm janx/firefox /bin/bash
@@ -44,7 +54,7 @@ To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
 Or for a Firefox image that uses Mercurial (`hg`) instead of Git:
 
     cd firefox
-    docker build -t janx/firefox -f firefox-hg.dockerfile .
+    docker build -t janx/firefox-hg -f firefox-hg.dockerfile .
 
 ## Servo
 
