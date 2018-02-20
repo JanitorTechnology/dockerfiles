@@ -117,6 +117,9 @@ workflows:
       - chromium:
           requires:
             - ubuntu-dev
+      - fennec:
+          requires:
+            - ubuntu-dev
       - firefox-git:
           requires:
             - ubuntu-dev
