@@ -56,6 +56,16 @@ Or for a Firefox image that uses Mercurial (`hg`) instead of Git:
     cd firefox
     docker build -t janx/firefox-hg -f firefox-hg.dockerfile .
 
+## Firefox for Android (Fennec)
+
+    docker run -it --rm janitortechnology/fennec /bin/bash
+    user@container:~/fennec (master) $ ./mach build
+
+To build [janitortechnology/fennec](https://hub.docker.com/r/janitortechnology/fennec/) yourself:
+
+    cd fennec
+    docker build -t janitortechnology/fennec -f fennec.dockerfile .
+
 ## Servo
 
     docker run -it --rm janx/servo /bin/bash
