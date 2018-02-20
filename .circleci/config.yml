@@ -31,6 +31,21 @@ jobs:
             docker push janx/chromium
           no_output_timeout: 90m
 
+  fennec:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          command: |
+            cd fennec
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker pull janx/ubuntu-dev
+            docker build -t janitortechnology/fennec -f fennec.dockerfile .
+            docker push janitortechnology/fennec
+          no_output_timeout: 30m
+
   firefox-git:
     docker:
       - image: docker:stable
