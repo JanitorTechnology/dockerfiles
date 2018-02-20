@@ -1,0 +1,35 @@
+{
+  "name": "Firefox for Android",
+  "description": "The Firefox browser for Android",
+  "icon": "https://janitor.technology/img/firefox.svg",
+  "docker": {
+    "image": "janitortechnology/fennec"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https",
+      "preview": true
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Build Fennec": "./mach build",
+    "Build Android APK": "./mach package",
+    "Install Android APK": "./mach install",
+    "Run Fennec": {
+      "cmd": "./mach run",
+      "openPort": "8088"
+    },
+    "Clobber build": "./mach clobber",
+    "Update source code": "hg pull -u",
+    "Send to code review": "hg push review"
+  }
+}
