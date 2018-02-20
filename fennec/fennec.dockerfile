@@ -15,7 +15,8 @@ RUN sudo apt-get update -q \
  && sudo apt-get install -qy default-jdk \
  && wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
  && python /tmp/bootstrap.py --no-interactive --application-choice=mobile_android \
- && rm -f /tmp/bootstrap.py
+ && rm -f /tmp/bootstrap.py \
+ && rustup target add armv7-linux-androideabi
  
 # Download Fennec's source code.
 RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ fennec \
