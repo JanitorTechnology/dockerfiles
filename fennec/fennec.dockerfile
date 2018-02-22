@@ -42,8 +42,8 @@ ADD janitor.json /home/user/janitor.json
 RUN sudo chown user:user /home/user/janitor.json
 
 # Build Fennec APK.
-RUN ./mach build \
- && ./mach package
+#RUN ./mach build \
+# && ./mach package
 
 # Configure Android Studio for Fennec.
 RUN ./mach gradle clean app:assembleLocalWithGeckoBinariesMinApi21PhotonDebug
