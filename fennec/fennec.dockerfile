@@ -24,13 +24,15 @@ RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ fennec \
  && hg update central
 WORKDIR fennec
 
-# Add Fennec build configuration.
+# Configure Fennec build.
 ADD mozconfig /home/user/fennec/
 RUN sudo chown user:user /home/user/fennec/mozconfig
 
-# Set up Mercurial extensions for Fennec.
+# Set up additional Fennec build dependencies.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mach mercurial-setup -u
+ && ./mach mercurial-setup -u \
+ && ./mach artifact toolchain --from-build proguard-jar \
+ && mv proguard /home/user/.mozbuild/
 
 # Configure Cloud9 to use Fennec's source directory as workspace (-w).
 RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/fennec/" /etc/supervisord.conf
