@@ -1,8 +1,8 @@
 # Build Firefox for Android (Fennec):
 ac_add_options --enable-application=mobile/android
 #ac_add_options --enable-official-branding
-#ac_add_options --enable-linker=lld
-#ac_add_options --disable-elf-hack
+ac_add_options --enable-linker=lld
+ac_add_options --disable-elf-hack
 #ac_add_options --with-ccache
 ac_add_options --target=arm-linux-androideabi
 mk_add_options AUTOCLOBBER=1
