@@ -28,7 +28,7 @@ RUN fetch --nohooks chromium
 RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
  && sudo src/build/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl
 RUN cd /tmp \
- && wget https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
+ && wget -q https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
  && sudo dpkg -i libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
  && rm -f libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb
 

@@ -4,8 +4,8 @@ FROM janx/ubuntu-dev
 # Package source: https://developer.android.com/studio/index.html#downloads
 RUN mkdir /tmp/android-studio \
  && cd /tmp/android-studio \
- && wget -O android-studio.zip https://dl.google.com/dl/android/studio/ide-zips/3.0.1.0/android-studio-ide-171.4443003-linux.zip \
- && unzip -q android-studio.zip \
+ && wget -qO android-studio.zip https://dl.google.com/dl/android/studio/ide-zips/3.0.1.0/android-studio-ide-171.4443003-linux.zip \
+ && unzip -qq android-studio.zip \
  && mv android-studio /home/user \
  && rm -rf /tmp/android-studio
 
@@ -17,7 +17,7 @@ RUN sudo apt-get update -q \
  && python /tmp/bootstrap.py --no-interactive --application-choice=mobile_android \
  && rm -f /tmp/bootstrap.py \
  && rustup target add armv7-linux-androideabi
- 
+
 # Download Fennec's source code.
 RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ fennec \
  && cd fennec \
