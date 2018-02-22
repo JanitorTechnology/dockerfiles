@@ -46,4 +46,4 @@ RUN sudo chown user:user /home/user/janitor.json
 # && ./mach package
 
 # Configure Android Studio for Fennec.
-RUN ./mach gradle clean app:assembleLocalWithGeckoBinariesMinApi21PhotonDebug
+#RUN ./mach gradle clean app:assembleLocalWithGeckoBinariesMinApi21PhotonDebug
