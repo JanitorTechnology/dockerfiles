@@ -71,6 +71,20 @@ jobs:
             docker push janx/firefox-hg:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
+  rust:
+    docker:
+      - image: docker:stable
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          command: |
+            . .circleci/setup_docker_build.sh
+            cd rust
+            docker build -t janitortechnology/rust:$DOCKERHUB_TAG -f rust.dockerfile .
+            docker push janitortechnology/rust:$DOCKERHUB_TAG
+          no_output_timeout: 30m
+
   servo:
     docker:
       - image: docker:stable
@@ -114,6 +128,9 @@ workflows:
           requires:
             - ubuntu-dev
       - firefox-hg:
+          requires:
+            - ubuntu-dev
+      - rust:
           requires:
             - ubuntu-dev
       - servo:
