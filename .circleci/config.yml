@@ -10,11 +10,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd ubuntu-dev
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build --cache-from=janx/ubuntu-dev -t janx/ubuntu-dev -f ubuntu-dev.dockerfile .
-            docker push janx/ubuntu-dev
+            docker build --cache-from=janx/ubuntu-dev:latest -t janx/ubuntu-dev:$DOCKERHUB_TAG -f ubuntu-dev.dockerfile .
+            docker push janx/ubuntu-dev:$DOCKERHUB_TAG
 
   chromium:
     docker:
@@ -24,11 +23,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd chromium
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janx/chromium -f chromium.dockerfile .
-            docker push janx/chromium
+            docker build -t janx/chromium:$DOCKERHUB_TAG -f chromium.dockerfile .
+            docker push janx/chromium:$DOCKERHUB_TAG
           no_output_timeout: 90m
 
   fennec:
@@ -39,11 +37,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd fennec
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janitortechnology/fennec -f fennec.dockerfile .
-            docker push janitortechnology/fennec
+            docker build -t janitortechnology/fennec:$DOCKERHUB_TAG -f fennec.dockerfile .
+            docker push janitortechnology/fennec:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
   firefox-git:
@@ -54,11 +51,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd firefox
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janx/firefox -f firefox-git.dockerfile .
-            docker push janx/firefox
+            docker build -t janx/firefox:$DOCKERHUB_TAG -f firefox-git.dockerfile .
+            docker push janx/firefox:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
   firefox-hg:
@@ -69,11 +65,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd firefox
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janx/firefox-hg -f firefox-hg.dockerfile .
-            docker push janx/firefox-hg
+            docker build -t janx/firefox-hg:$DOCKERHUB_TAG -f firefox-hg.dockerfile .
+            docker push janx/firefox-hg:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
   servo:
@@ -84,11 +79,10 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd servo
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janx/servo -f servo.dockerfile .
-            docker push janx/servo
+            docker build -t janx/servo:$DOCKERHUB_TAG -f servo.dockerfile .
+            docker push janx/servo:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
   thunderbird:
@@ -99,21 +93,17 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
+            . .circleci/setup_docker_build.sh
             cd thunderbird
-            docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker pull janx/ubuntu-dev
-            docker build -t janx/thunderbird -f thunderbird.dockerfile .
-            docker push janx/thunderbird
+            docker build -t janx/thunderbird:$DOCKERHUB_TAG -f thunderbird.dockerfile .
+            docker push janx/thunderbird:$DOCKERHUB_TAG
           no_output_timeout: 30m
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - ubuntu-dev:
-          filters:
-            branches:
-              only: master
+      - ubuntu-dev
       - chromium:
           requires:
             - ubuntu-dev
