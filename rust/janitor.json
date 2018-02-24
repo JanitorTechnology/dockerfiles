@@ -1,0 +1,28 @@
+{
+  "name": "Rust",
+  "description": "Rust is a safe, concurrent, practical language.",
+  "icon": "https://janitor.technology/img/rust.svg",
+  "docker": {
+    "image": "janitortechnology/rust"
+  },
+  "ports": {
+    "22": {
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Build": "./x.py build",
+    "Build (stage1 quick)": "./x.py build --stage 1 src/libtest",
+    "Check": "./x.py check",
+    "Update source code": "git pull --rebase origin master",
+    "Send to code review": "hub pull-request"
+  }
+}
