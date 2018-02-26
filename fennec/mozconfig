@@ -1,14 +1,13 @@
 # Build Firefox for Android (Fennec):
 ac_add_options --enable-application=mobile/android
 #ac_add_options --enable-official-branding
-ac_add_options --enable-linker=lld
-ac_add_options --disable-elf-hack
-#ac_add_options --with-ccache
-ac_add_options --target=arm-linux-androideabi
+ac_add_options --with-ccache
+#ac_add_options --target=arm-linux-androideabi
+ac_add_options --target=i386-linux-android
 mk_add_options AUTOCLOBBER=1
 
 # With the following Android SDK:
-ac_add_options --with-android-sdk="/home/user/.mozbuild/android-sdk"
+ac_add_options --with-android-sdk="/home/user/.mozbuild/android-sdk-linux"
 
 # Back-end configuration (uncomment to build C++):
 ac_add_options --with-android-ndk="/home/user/.mozbuild/android-ndk-r15c"

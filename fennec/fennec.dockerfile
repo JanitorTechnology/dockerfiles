@@ -12,11 +12,12 @@ RUN mkdir /tmp/android-studio \
 # Install Fennec build dependencies.
 RUN sudo apt-get update -q \
  && sudo apt-get upgrade -qy \
- && sudo apt-get install -qy default-jdk \
+ && sudo apt-get install -qy default-jdk rsync yasm \
  && wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
  && python /tmp/bootstrap.py --no-interactive --application-choice=mobile_android \
  && rm -f /tmp/bootstrap.py \
- && rustup target add armv7-linux-androideabi
+ && rustup target add armv7-linux-androideabi \
+ && rustup target add i686-linux-android
 
 # Download Fennec's source code.
 RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-unified/ fennec \
@@ -29,8 +30,10 @@ ADD mozconfig /home/user/fennec/
 RUN sudo chown user:user /home/user/fennec/mozconfig
 
 # Set up additional Fennec build dependencies.
+# TODO: Remove proguard once https://bugzilla.mozilla.org/show_bug.cgi?id=1440428 is fixed.
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u \
+ && ./mach python python/mozboot/mozboot/android.py --no-interactive \
  && ./mach artifact toolchain --from-build proguard-jar \
  && mv proguard /home/user/.mozbuild/
 
@@ -42,8 +45,5 @@ ADD janitor.json /home/user/janitor.json
 RUN sudo chown user:user /home/user/janitor.json
 
 # Build Fennec APK.
-#RUN ./mach build \
-# && ./mach package
-
-# Configure Android Studio for Fennec.
-#RUN ./mach gradle clean app:assembleLocalWithGeckoBinariesMinApi21PhotonDebug
+RUN ./mach build \
+ && ./mach package
