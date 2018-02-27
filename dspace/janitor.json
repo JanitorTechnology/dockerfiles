@@ -1,0 +1,47 @@
+{
+  "name": "DSpace",
+  "description": "DSpace is a turnkey institutional repository application.",
+  "icon": "https://janitor.technology/img/dspace.svg",
+  "docker": {
+    "image": "janitortechnology/dspace"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "5432": {
+      "label": "DB",
+      "proxy": "https"
+    },
+    "8080": {
+      "label": "Web",
+      "proxy": "https",
+      "preview": true
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https",
+      "preview": true
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https",
+    }
+  },
+  "scripts": {
+    "Make an administrator": {
+      "cwd": "/dspace/bin",
+      "cmd": "sudo ./dspace create-administrator"
+    },
+    "Run DSpace": {
+      "cmd": [
+        "sudo service postgresql start",
+        "sudo service tomcat8 start"
+      ],
+      "openPort": "8080"
+    },
+    "Update source code": "git pull --rebase origin master",
+    "Send to code review": "git push origin master"
+  }
+}
