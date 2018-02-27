@@ -10,16 +10,7 @@
       "label": "SSH",
       "proxy": "none"
     },
-    "5432": {
-      "label": "DB",
-      "proxy": "https"
-    },
-    "8080": {
-      "label": "Web",
-      "proxy": "https",
-      "preview": true
-    },
-    "8088": {
+    "3000": {
       "label": "VNC",
       "proxy": "https",
       "preview": true
@@ -34,18 +25,24 @@
     }
   },
   "scripts": {
-    "Make an administrator": {
-      "cwd": "/dspace/bin",
-      "cmd": "sudo ./dspace create-administrator"
-    },
-    "Run DSpace": {
-      "cmd": [
-        "sudo service postgresql start",
-        "sudo service tomcat8 start"
-      ],
-      "openPort": "8080"
-    },
-    "Update source code": "git pull --rebase origin master",
-    "Send to code review": "git push origin master"
+      "Build": {
+        "cmd": [
+          "yarn run global",
+          "yarn install"
+        ]
+      },
+      "Start": {
+        "cmd": "yarn start",
+        "openPort": "3000"
+      },
+      "Watch": {
+        "cmd": "yarn run watch",
+        "openPort": "3000"
+      }
+      "Clean": "yarn run clean",
+      "Run test": "yarn run test",
+      "Run e2e": "yarn run e2e",
+      "Update source code": "git pull --rebase origin master",
+      "Send to code review": "hub pull-request"
   }
 }
