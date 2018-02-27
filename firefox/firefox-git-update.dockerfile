@@ -1,4 +1,4 @@
-FROM janx/firefox
+FROM janitortechnology/firefox
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages.

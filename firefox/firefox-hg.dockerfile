@@ -1,4 +1,4 @@
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 MAINTAINER Tim Nguyen "ntim.bugs@gmail.com"
 
 # Install Firefox build dependencies.

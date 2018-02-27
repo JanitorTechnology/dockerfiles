@@ -1,4 +1,4 @@
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 
 # Install the latest Android Studio.
 # Package source: https://developer.android.com/studio/index.html#downloads

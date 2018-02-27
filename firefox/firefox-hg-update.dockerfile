@@ -1,4 +1,4 @@
-FROM janx/firefox-hg
+FROM janitortechnology/firefox-hg
 MAINTAINER Tim Nguyen "ntim.bugs@gmail.com"
 
 # Upgrade all packages.

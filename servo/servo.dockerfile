@@ -1,4 +1,4 @@
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Servo build dependencies.

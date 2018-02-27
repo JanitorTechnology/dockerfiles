@@ -1,4 +1,4 @@
-FROM janx/chromium
+FROM janitortechnology/chromium
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages (temporarily regain administrator privileges).

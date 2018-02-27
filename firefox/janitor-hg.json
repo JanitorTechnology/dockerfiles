@@ -3,7 +3,7 @@
   "description": "The Firefox browser by Mozilla (Mercurial checkout).",
   "icon": "https://janitor.technology/img/firefox.svg",
   "docker": {
-    "image": "janx/firefox-hg"
+    "image": "janitortechnology/firefox-hg"
   },
   "ports": {
     "22": {

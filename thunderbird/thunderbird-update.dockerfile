@@ -1,4 +1,4 @@
-FROM janx/thunderbird
+FROM janitortechnology/thunderbird
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages.

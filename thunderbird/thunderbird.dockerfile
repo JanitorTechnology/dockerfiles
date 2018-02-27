@@ -1,4 +1,4 @@
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 MAINTAINER Philipp Kewisch "mozilla@kewis.ch"
 
 # Install Firefox build dependencies.

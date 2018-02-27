@@ -3,7 +3,7 @@
   "description": "The Firefox browser by Mozilla (Git checkout).",
   "icon": "https://janitor.technology/img/firefox.svg",
   "docker": {
-    "image": "janx/firefox-git"
+    "image": "janitortechnology/firefox-git"
   },
   "ports": {
     "22": {

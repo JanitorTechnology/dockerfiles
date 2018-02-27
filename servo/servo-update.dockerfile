@@ -1,4 +1,4 @@
-FROM janx/servo
+FROM janitortechnology/servo
 MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Upgrade all packages.

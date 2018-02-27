@@ -16,20 +16,20 @@ Most images here are based on `ubuntu-dev`, which is basically `ubuntu:16.04` wi
 - Remote access via `ssh`, [Cloud9 IDE](https://c9.io) and [noVNC](https://kanaka.github.io/noVNC/)
 - An extensible `supervisor` configuration
 
-To build [janx/ubuntu-dev](https://hub.docker.com/r/janx/ubuntu-dev/) yourself:
+To build [janitortechnology/ubuntu-dev](https://hub.docker.com/r/janitortechnology/ubuntu-dev/) yourself:
 
     cd ubuntu-dev
-    docker build -t janx/ubuntu-dev -f ubuntu-dev.dockerfile .
+    docker build -t janitortechnology/ubuntu-dev -f ubuntu-dev.dockerfile .
 
 ## Chromium
 
-    docker run -it --rm janx/chromium /bin/bash
+    docker run -it --rm janitortechnology/chromium /bin/bash
     user@container:~/chromium/src (master) $ ninja -C out/Release chrome -j18
 
-To build [janx/chromium](https://hub.docker.com/r/janx/chromium/) yourself:
+To build [janitortechnology/chromium](https://hub.docker.com/r/janitortechnology/chromium/) yourself:
 
     cd chromium
-    docker build -t janx/chromium -f chromium.dockerfile .
+    docker build -t janitortechnology/chromium -f chromium.dockerfile .
 
 ## Discourse
 
@@ -43,18 +43,18 @@ To build [janitortechnology/discourse](https://hub.docker.com/r/janitortechnolog
 
 ## Firefox
 
-    docker run -it --rm janx/firefox /bin/bash
+    docker run -it --rm janitortechnology/firefox /bin/bash
     user@container:~/firefox (master) $ ./mach build
 
-To build [janx/firefox](https://hub.docker.com/r/janx/firefox/) yourself:
+To build [janitortechnology/firefox](https://hub.docker.com/r/janitortechnology/firefox/) yourself:
 
     cd firefox
-    docker build -t janx/firefox -f firefox-git.dockerfile .
+    docker build -t janitortechnology/firefox -f firefox-git.dockerfile .
 
 Or for a Firefox image that uses Mercurial (`hg`) instead of Git:
 
     cd firefox
-    docker build -t janx/firefox-hg -f firefox-hg.dockerfile .
+    docker build -t janitortechnology/firefox-hg -f firefox-hg.dockerfile .
 
 ## Firefox for Android (Fennec)
 
@@ -66,25 +66,35 @@ To build [janitortechnology/fennec](https://hub.docker.com/r/janitortechnology/f
     cd fennec
     docker build -t janitortechnology/fennec -f fennec.dockerfile .
 
+## Rust
+
+    docker run -it --rm janitortechnology/rust /bin/bash
+    user@container:~/rust (master) $ ./x.py build
+
+To build [janitortechnology/rust](https://hub.docker.com/r/janitortechnology/rust/) yourself:
+
+    cd rust
+    docker build -t janitortechnology/rust -f rust.dockerfile .
+
 ## Servo
 
-    docker run -it --rm janx/servo /bin/bash
+    docker run -it --rm janitortechnology/servo /bin/bash
     user@container:~/servo (master) $ ./mach build -d
 
-To build [janx/servo](https://hub.docker.com/r/janx/servo/) yourself:
+To build [janitortechnology/servo](https://hub.docker.com/r/janitortechnology/servo/) yourself:
 
     cd servo
-    docker build -t janx/servo -f servo.dockerfile .
+    docker build -t janitortechnology/servo -f servo.dockerfile .
 
 ## Thunderbird
 
-    docker run -it --rm janx/thunderbird /bin/bash
+    docker run -it --rm janitortechnology/thunderbird /bin/bash
     user@container:~/thunderbird $ ./mozilla/mach build
 
-To build [janx/thunderbird](https://hub.docker.com/r/janx/thunderbird/) yourself:
+To build [janitortechnology/thunderbird](https://hub.docker.com/r/janitortechnology/thunderbird/) yourself:
 
     cd thunderbird
-    docker build -t janx/thunderbird -f thunderbird.dockerfile .
+    docker build -t janitortechnology/thunderbird -f thunderbird.dockerfile .
 
 ## Janitor
 
