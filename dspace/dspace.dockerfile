@@ -1,9 +1,14 @@
 FROM janx/ubuntu-dev
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 # Get dependencies
 =======
 >>>>>>> Add DSpace to Janitor
+=======
+
+# Get dependencies
+>>>>>>> Add comments and fix ports
 RUN sudo apt-get update -q \
   && sudo apt-get upgrade -qy \
   && sudo apt-get install -qy \
@@ -12,6 +17,7 @@ RUN sudo apt-get update -q \
      postgresql \
      tomcat8
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Get source code
 RUN git clone https://github.com/dspace/dspace /home/user/dspace
@@ -25,14 +31,23 @@ RUN sudo chown user:user /home/user/dspace/dspace/config/local.cfg
 COPY create_user.sql /tmp/
 # Add psql to supervisor configuration
 =======
+=======
+# Get source code
+>>>>>>> Add comments and fix ports
 RUN git clone https://github.com/dspace/dspace /home/user/dspace
 WORKDIR /home/user/dspace
 
-COPY local.cfg /home/user/dspace/dspace/config
+# Setup configurations
+COPY local.cfg /home/user/dspace/dspace/config/
 RUN sudo chown user:user /home/user/dspace/dspace/config/local.cfg
 
+# Add an SQL user
 COPY create_user.sql /tmp/
+<<<<<<< HEAD
 >>>>>>> Add DSpace to Janitor
+=======
+# Add psql to supervisor configuration
+>>>>>>> Add comments and fix ports
 COPY supervisord-append.conf /tmp/
 RUN sudo chown user:user /tmp/create_user.sql \
    && sudo chown user:user /tmp/supervisord-append.conf \
@@ -44,6 +59,7 @@ RUN sudo chown user:user /tmp/create_user.sql \
    && cd dspace/target/dspace-installer \
    && sudo ant update
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Add symlinks for tomcat8
 RUN sudo ln -s /home/user/dspace/webapps/ /var/lib/tomcat8/webapps/
@@ -57,10 +73,18 @@ RUN sudo chown user:user /home/user/janitor.json
 
 # For db and tomcat8
 =======
+=======
+# Add symlinks for tomcat8
+>>>>>>> Add comments and fix ports
 RUN sudo ln -s /home/user/dspace/webapps/ /var/lib/tomcat8/webapps/
 
+# Add Janitor configurations
 COPY janitor.json /home/user/
 RUN sudo chown user:user /home/user/janitor.json
 
+<<<<<<< HEAD
 >>>>>>> Add DSpace to Janitor
+=======
+# For db and tomcat8
+>>>>>>> Add comments and fix ports
 EXPOSE 5432 8080
