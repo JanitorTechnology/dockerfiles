@@ -12,7 +12,7 @@ RUN mkdir /tmp/android-studio \
 # Install Fennec build dependencies.
 RUN sudo apt-get update -q \
  && sudo apt-get upgrade -qy \
- && sudo apt-get install -qy default-jdk rsync yasm \
+ && sudo apt-get install -qy rsync yasm \
  && wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
  && python /tmp/bootstrap.py --no-interactive --application-choice=mobile_android \
  && rm -f /tmp/bootstrap.py \
@@ -30,12 +30,9 @@ ADD mozconfig /home/user/fennec/
 RUN sudo chown user:user /home/user/fennec/mozconfig
 
 # Set up additional Fennec build dependencies.
-# TODO: Remove proguard once https://bugzilla.mozilla.org/show_bug.cgi?id=1440428 is fixed.
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u \
- && ./mach python python/mozboot/mozboot/android.py --no-interactive \
- && ./mach artifact toolchain --from-build proguard-jar \
- && mv proguard /home/user/.mozbuild/
+ && ./mach python python/mozboot/mozboot/android.py --no-interactive
 
 # Configure Cloud9 to use Fennec's source directory as workspace (-w).
 RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/fennec/" /etc/supervisord.conf
