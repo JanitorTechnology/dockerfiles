@@ -36,6 +36,7 @@ RUN __LLVM_VERSION__="6.0" \
   gdb \
   gettext \
   htop \
+  icecc \
   less \
   libcurl4-openssl-dev \
   libexpat1-dev \
