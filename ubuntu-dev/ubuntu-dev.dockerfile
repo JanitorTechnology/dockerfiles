@@ -30,6 +30,7 @@ RUN __LLVM_VERSION__="6.0" \
   clang-tidy-${__LLVM_VERSION__} \
   cmake \
   curl \
+  default-jdk \
   emacs \
   fluxbox \
   gdb \
