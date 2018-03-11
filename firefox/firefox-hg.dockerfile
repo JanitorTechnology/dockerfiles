@@ -23,8 +23,8 @@ RUN sudo chown user:user /home/user/firefox/mozconfig
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u
 
-# Configure Cloud9 to use Firefox's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/firefox/" /etc/supervisord.conf
+# Configure the IDEs to use Firefox's source directory as workspace.
+ENV WORKSPACE /home/user/firefox/
 
 # Build Firefox.
 RUN ./mach build

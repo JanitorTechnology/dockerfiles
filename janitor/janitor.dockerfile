@@ -11,8 +11,8 @@ WORKDIR /home/user/janitor
 ADD db.json /home/user/janitor/
 RUN sudo chown user:user /home/user/janitor/db.json
 
-# Configure Cloud9 to use Janitor's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/janitor/" /etc/supervisord.conf
+# Configure the IDEs to use Janitor's source directory as workspace.
+ENV WORKSPACE /home/user/janitor/
 
 # Expose all Janitor server ports.
 EXPOSE 8080 8081

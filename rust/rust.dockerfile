@@ -6,8 +6,8 @@ FROM janx/ubuntu-dev
 RUN git clone https://github.com/rust-lang/rust /home/user/rust
 WORKDIR /home/user/rust
 
-# Configure Cloud9 to use Rust's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/rust/" /etc/supervisord.conf
+# Configure the IDEs to use Rust's source directory as workspace.
+ENV WORKSPACE /home/user/rust/
 
 # Add build configuration preset
 COPY config.toml /home/user/rust/

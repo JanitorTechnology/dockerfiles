@@ -23,8 +23,8 @@ RUN sudo chown user:user /home/user/thunderbird/.mozconfig
 RUN mkdir -p /home/user/.mozbuild \
  && ./mozilla/mach mercurial-setup -u
 
-# Configure Cloud9 to use Thunderbird's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/thunderbird/" /etc/supervisord.conf
+# Configure the IDEs to use Thunderbird's source directory as workspace.
+ENV WORKSPACE /home/user/thunderbird/
 
 # Build Thunderbird.
 RUN ./mozilla/mach build

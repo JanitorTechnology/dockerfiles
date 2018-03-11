@@ -34,8 +34,8 @@ RUN mkdir -p /home/user/.mozbuild \
  && ./mach mercurial-setup -u \
  && ./mach python python/mozboot/mozboot/android.py --no-interactive
 
-# Configure Cloud9 to use Fennec's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/fennec/" /etc/supervisord.conf
+# Configure the IDEs to use Fennec's source directory as workspace.
+ENV WORKSPACE /home/user/fennec/
 
 # Configure Janitor for Fennec.
 ADD janitor.json /home/user/janitor.json
