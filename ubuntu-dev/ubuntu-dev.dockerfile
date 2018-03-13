@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Install HTTPS transport for Ubuntu package sources.
 RUN apt-get update \
- && apt-get install -y --no-install-recommends apt-transport-https ca-certificates \
+ && apt-get install -y --no-install-recommends apt-transport-https ca-certificates software-properties-common \
  && rm -rf /var/lib/apt/lists/*
 
 # Add source for the latest Clang packages.
@@ -11,13 +11,14 @@ RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /et
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
+# Add source for the latest Git packages.
+RUN add-apt-repository ppa:git-core/ppa
+
 # Add source for the latest Mercurial packages.
-RUN echo "deb http://ppa.launchpad.net/mercurial-ppa/releases/ubuntu xenial main" > /etc/apt/sources.list.d/mercurial.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 41BD8711B1F0EC2B0D85B91CF59CE3A8323293EE
+RUN add-apt-repository ppa:mercurial-ppa/releases
 
 # Add source for the latest Neovim packages.
-RUN echo "deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main" > /etc/apt/sources.list.d/neovim.list \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
+RUN add-apt-repository ppa:neovim-ppa/stable
 
 # Install basic development packages.
 RUN __LLVM_VERSION__="6.0" \
@@ -37,6 +38,7 @@ RUN __LLVM_VERSION__="6.0" \
   fluxbox \
   gdb \
   gettext \
+  git \
   htop \
   icecc \
   less \
@@ -112,21 +114,9 @@ RUN mkdir /home/user/.ssh \
 RUN mkdir /home/user/.ccache \
  && echo "max_size = 10G" > /home/user/.ccache/ccache.conf
 
-# Install the latest Git.
-RUN __GIT_VERSION__="2.16.2" \
- && mkdir /tmp/git \
- && cd /tmp/git \
- && curl -L https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
- && cd git-${__GIT_VERSION__} \
- && make prefix=/usr all man -j18 \
- && sudo make prefix=/usr install install-man -j18 \
- && cp contrib/completion/git-completion.bash /home/user/.git-completion.bash \
- && cp contrib/completion/git-prompt.sh /home/user/.git-prompt.sh \
- && echo "\n# Git completion helpers." >> /home/user/.bashrc \
- && echo "source /home/user/.git-completion.bash" >> /home/user/.bashrc \
- && echo "source /home/user/.git-prompt.sh" >> /home/user/.bashrc \
- && echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 \" (%s)\") $ '" >> /home/user/.bashrc \
- && rm -rf /tmp/git
+# Configure bash prompt.
+RUN echo "\n# Colored and git aware prompt." >> /home/user/.bashrc \
+ && echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 \" (%s)\") $ '" >> /home/user/.bashrc
 
 # Install the latest GitHub helper.
 RUN __HUB_VERSION__="2.2.9" \
