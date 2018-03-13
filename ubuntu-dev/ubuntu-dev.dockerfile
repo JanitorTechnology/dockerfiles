@@ -172,7 +172,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
  && echo "PATH=\"\$PATH:/home/user/.cargo/bin\"" >> /home/user/.bashrc
 ENV PATH="${PATH}:/home/user/.cargo/bin"
 RUN rustup install nightly \
- && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion
+ && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion > /dev/null
 
 # Install the latest Rust Language Server.
 RUN rustup component add rls-preview \
