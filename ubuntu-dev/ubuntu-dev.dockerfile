@@ -1,8 +1,9 @@
 FROM ubuntu:16.04
 
 # Install HTTPS transport for Ubuntu package sources.
-RUN apt-get update -q \
- && apt-get install -qy apt-transport-https
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends apt-transport-https ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
 
 # Add source for the latest Clang packages.
 ADD llvm-snapshot.gpg.key /tmp
@@ -20,9 +21,8 @@ RUN echo "deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main" > /
 
 # Install basic development packages.
 RUN __LLVM_VERSION__="6.0" \
- && apt-get update -q \
- && apt-get upgrade -qy \
- && apt-get install -qy \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
   asciidoc \
   autoconf \
   automake \
@@ -63,13 +63,17 @@ RUN __LLVM_VERSION__="6.0" \
   sudo \
   supervisor \
   tmux \
+  unzip \
   valgrind \
+  wget \
   x11vnc \
+  xmlto \
   xvfb \
+ && rm -rf /var/lib/apt/lists/* \
  && mkdir /var/run/sshd \
- && pip install --upgrade pip \
- && pip install --upgrade virtualenv \
- && pip install requests \
+ && pip install --no-cache-dir --upgrade pip \
+ && pip install --no-cache-dir --upgrade virtualenv \
+ && pip install --no-cache-dir requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-6.0
