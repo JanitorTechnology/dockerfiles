@@ -25,8 +25,10 @@ WORKDIR /home/user/chromium
 RUN fetch --nohooks chromium
 
 # Install Chromium build dependencies (with administrator privileges).
-RUN echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
- && sudo src/build/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl
+RUN sudo apt update \
+ && echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | sudo debconf-set-selections \
+ && sudo src/build/install-build-deps.sh --no-prompt --no-arm --no-chromeos-fonts --no-nacl \
+ && sudo rm -rf /var/lib/apt/lists/*
 RUN cd /tmp \
  && wget -q https://launchpad.net/ubuntu/+archive/primary/+files/libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
  && sudo dpkg -i libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
