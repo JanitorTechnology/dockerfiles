@@ -108,7 +108,7 @@ RUN mkdir /home/user/.ccache \
 RUN __GIT_VERSION__="2.16.2" \
  && mkdir /tmp/git \
  && cd /tmp/git \
- && curl https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
+ && curl -L https://www.kernel.org/pub/software/scm/git/git-${__GIT_VERSION__}.tar.xz | tar xJ \
  && cd git-${__GIT_VERSION__} \
  && make prefix=/usr all man -j18 \
  && sudo make prefix=/usr install install-man -j18 \
