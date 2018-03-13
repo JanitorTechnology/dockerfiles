@@ -37,7 +37,7 @@ ENV WORKSPACE /home/user/chromium/src/
 
 # Update Chromium third_party repos and run pre-compile hooks.
 WORKDIR /home/user/chromium/src
-RUN gclient runhooks --jobs=18
+RUN gclient runhooks --jobs=`nproc`
 
 # Configure Chromium build.
 RUN gn gen out/Default --args="enable_nacl=false is_component_build=true"

@@ -197,7 +197,7 @@ RUN __VIM_VERSION__="8.0.1523" \
  && cd /tmp/vim \
  && curl -L https://github.com/vim/vim/archive/v${__VIM_VERSION__}.tar.gz | tar xz \
  && cd vim-${__VIM_VERSION__}/src \
- && make -j18 \
+ && make -j`nproc` \
  && sudo make install \
  && rm -rf /tmp/vim \
  && echo "\n# Make Vim the default editor.\nEDITOR=vim" >> /home/user/.bashrc
