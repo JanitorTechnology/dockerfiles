@@ -34,8 +34,8 @@ RUN sudo chown user:user /tmp/create_user.sql \
 # Add symlinks for tomcat8
 RUN sudo ln -s /home/user/dspace/webapps/ /var/lib/tomcat8/webapps/
 
-# Configure Cloud9 to use DSpace's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/dspace/" /etc/supervisord.conf
+# Configure the IDEs to use DSpace's source directory as workspace.
+ENV WORKSPACE /home/user/dspace/
 
 # Add Janitor configurations
 COPY janitor.json /home/user/

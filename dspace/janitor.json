@@ -26,7 +26,11 @@
     },
     "8089": {
       "label": "Cloud9",
-      "proxy": "https",
+      "proxy": "https"
+    },
+    "8090": {
+      "label": "Theia",
+      "proxy": "https"
     }
   },
   "scripts": {

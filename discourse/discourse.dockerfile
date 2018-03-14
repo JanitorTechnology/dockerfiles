@@ -43,8 +43,8 @@ RUN sudo mkdir /var/run/postgresql/9.5-main.pg_stat_tmp && sudo chown postgres:p
 
 WORKDIR /home/user/discourse
 
-# Configure Cloud9 to use Discourse's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/discourse/" /etc/supervisord.conf
+# Configure the IDEs to use Discourse's source directory as workspace.
+ENV WORKSPACE /home/user/discourse/
 
 # Configure Janitor for Discourse
 ADD janitor.json /home/user/

@@ -32,8 +32,8 @@ RUN cd /tmp \
  && sudo dpkg -i libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb \
  && rm -f libgcrypt11_1.5.3-2ubuntu4.2_amd64.deb
 
-# Configure Cloud9 to use Chromium's source directory as workspace (-w).
-RUN sudo sed -i "s/-w \/home\/user/-w \/home\/user\/chromium\/src/" /etc/supervisord.conf
+# Configure the IDEs to use Chromium's source directory as workspace.
+ENV WORKSPACE /home/user/chromium/src/
 
 # Update Chromium third_party repos and run pre-compile hooks.
 WORKDIR /home/user/chromium/src
