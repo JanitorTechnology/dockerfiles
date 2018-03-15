@@ -1,14 +1,9 @@
 {
-  "name": "DSpace",
-  "description": "DSpace is a turnkey institutional repository application.",
-  "icon": "https://janitor.technology/img/dspace.svg",
-  "docker": {
-    "image": "janitortechnology/dspace"
-  },
-  "ports": {
-    "22": {
-      "label": "SSH",
-      "proxy": "none"
+    "name": "DSpace",
+    "description": "DSpace is a turnkey institutional repository application.",
+    "icon": "https://janitor.technology/img/dspace.svg",
+    "docker": {
+      "image": "janitortechnology/dspace"
     },
     "3000": {
       "label": "VNC",

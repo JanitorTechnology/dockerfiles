@@ -2,6 +2,7 @@ FROM janx/ubuntu-dev
 <<<<<<< HEAD
 <<<<<<< HEAD
 
+<<<<<<< HEAD
 # Get dependencies
 =======
 >>>>>>> Add DSpace to Janitor
@@ -9,13 +10,12 @@ FROM janx/ubuntu-dev
 
 # Get dependencies
 >>>>>>> Add comments and fix ports
+=======
+# Get updates if there are any
+>>>>>>> Update DSpace to DSpace-Angular
 RUN sudo apt-get update -q \
   && sudo apt-get upgrade -qy \
-  && sudo apt-get install -qy \
-     ant \
-     maven \
-     postgresql \
-     tomcat8
+  && sudo apt-get install -qy
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -33,6 +33,7 @@ COPY create_user.sql /tmp/
 =======
 =======
 # Get source code
+<<<<<<< HEAD
 >>>>>>> Add comments and fix ports
 RUN git clone https://github.com/dspace/dspace /home/user/dspace
 WORKDIR /home/user/dspace
@@ -77,14 +78,26 @@ RUN sudo chown user:user /home/user/janitor.json
 # Add symlinks for tomcat8
 >>>>>>> Add comments and fix ports
 RUN sudo ln -s /home/user/dspace/webapps/ /var/lib/tomcat8/webapps/
+=======
+RUN git clone https://github.com/dspace/dspace-angular /home/user/dspace-angular
+WORKDIR /home/user/dspace-angular
+
+RUN yarn run global \
+  && yarn install
+>>>>>>> Update DSpace to DSpace-Angular
 
 # Add Janitor configurations
 COPY janitor.json /home/user/
 RUN sudo chown user:user /home/user/janitor.json
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Add DSpace to Janitor
 =======
 # For db and tomcat8
 >>>>>>> Add comments and fix ports
 EXPOSE 5432 8080
+=======
+# For Angular
+EXPOSE 3000
+>>>>>>> Update DSpace to DSpace-Angular
