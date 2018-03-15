@@ -9,3 +9,4 @@ RUN cd /home/user/dspace \
   && git reset --hard origin/master \
   && yarn run clean \
   && yarn install
+  

@@ -33,7 +33,7 @@
       "Watch": {
         "cmd": "yarn run watch",
         "openPort": "3000"
-      }
+      },
       "Clean": "yarn run clean",
       "Run test": "yarn run test",
       "Run e2e": "yarn run e2e",
