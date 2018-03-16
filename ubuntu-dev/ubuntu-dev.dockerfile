@@ -70,6 +70,7 @@ RUN __LLVM_VERSION__="6.0" \
 ENV SHELL /bin/bash
 ENV CC clang-6.0
 ENV CXX clang++-6.0
+ENV DISPLAY :98
 
 # Disallow logging in to SSH with a password.
 RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
