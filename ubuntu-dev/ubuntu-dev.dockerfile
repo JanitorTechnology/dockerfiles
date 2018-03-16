@@ -230,6 +230,9 @@ RUN cd /home/user/.theia/ \
  && yarn \
  && yarn theia build
 
+# Configure language server executable for Theia.
+ENV CPP_CLANGD_COMMAND clangd-6.0
+
 # Install TypeScript globally to provide a language server fallback.
 RUN npm install -g typescript
 
