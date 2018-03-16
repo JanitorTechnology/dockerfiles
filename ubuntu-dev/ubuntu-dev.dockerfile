@@ -230,6 +230,9 @@ RUN cd /home/user/.theia/ \
  && yarn \
  && yarn theia build
 
+# Install TypeScript globally to provide a language server fallback.
+RUN npm install -g typescript
+
 # Add default Supervisor configuration.
 ADD supervisord.conf /etc/
 
