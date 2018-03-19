@@ -3,7 +3,7 @@
   "description": "The Chromium browser by Google.",
   "icon": "https://janitor.technology/img/chromium.svg",
   "docker": {
-    "image": "janx/chromium"
+    "image": "janitortechnology/chromium"
   },
   "ports": {
     "22": {

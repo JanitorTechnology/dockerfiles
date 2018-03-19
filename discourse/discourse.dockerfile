@@ -1,6 +1,6 @@
 # Based on Discourse's https://github.com/discourse/discourse/blob/master/docs/DEVELOPER-ADVANCED.md
 # Does not use RVM because we're just running Discourse on here.
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 MAINTAINER Michael Howell "michael@notriddle.com"
 
 ADD supervisord-append.conf /tmp

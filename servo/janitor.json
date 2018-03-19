@@ -3,7 +3,7 @@
   "description": "Servo is a modern, high-performance browser engine designed for both application and embedded use.",
   "icon": "https://janitor.technology/img/servo.svg",
   "docker": {
-    "image": "janx/servo"
+    "image": "janitortechnology/servo"
   },
   "ports": {
     "22": {

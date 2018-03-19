@@ -1,4 +1,4 @@
-FROM janx/ubuntu-dev
+FROM janitortechnology/ubuntu-dev
 
 # Install Chromium's depot_tools.
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git

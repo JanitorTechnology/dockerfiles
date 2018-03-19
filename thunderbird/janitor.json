@@ -3,7 +3,7 @@
   "description": "The email client by Mozilla foundation.",
   "icon": "https://janitor.technology/img/thunderbird.svg",
   "docker": {
-    "image": "janx/thunderbird"
+    "image": "janitortechnology/thunderbird"
   },
   "ports": {
     "22": {

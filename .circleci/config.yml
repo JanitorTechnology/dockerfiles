@@ -1,7 +1,6 @@
 version: 2.0
 
 jobs:
-
   ubuntu-dev:
     docker:
       - image: docker:stable
@@ -10,10 +9,12 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd ubuntu-dev
-            docker build --cache-from=janx/ubuntu-dev:latest -t janx/ubuntu-dev:$DOCKERHUB_TAG -f ubuntu-dev.dockerfile .
-            docker push janx/ubuntu-dev:$DOCKERHUB_TAG
+            ./.circleci/build_image.sh ubuntu-dev/ubuntu-dev.dockerfile janitortechnology/ubuntu-dev
+            docker save janitortechnology/ubuntu-dev -o ubuntu-dev.tar
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ubuntu-dev.tar
 
   chromium:
     docker:
@@ -21,12 +22,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd chromium
-            docker build -t janx/chromium:$DOCKERHUB_TAG -f chromium.dockerfile .
-            docker push janx/chromium:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh chromium/chromium.dockerfile janitortechnology/chromium
           no_output_timeout: 90m
 
   fennec:
@@ -35,12 +36,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd fennec
-            docker build -t janitortechnology/fennec:$DOCKERHUB_TAG -f fennec.dockerfile .
-            docker push janitortechnology/fennec:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh fennec/fennec.dockerfile janitortechnology/fennec
           no_output_timeout: 30m
 
   firefox-git:
@@ -49,12 +50,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd firefox
-            docker build -t janx/firefox:$DOCKERHUB_TAG -f firefox-git.dockerfile .
-            docker push janx/firefox:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh firefox/firefox-git.dockerfile janitortechnology/firefox
           no_output_timeout: 30m
 
   firefox-hg:
@@ -63,12 +64,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd firefox
-            docker build -t janx/firefox-hg:$DOCKERHUB_TAG -f firefox-hg.dockerfile .
-            docker push janx/firefox-hg:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh firefox/firefox-hg.dockerfile janitortechnology/firefox-hg
           no_output_timeout: 30m
 
   rust:
@@ -77,12 +78,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd rust
-            docker build -t janitortechnology/rust:$DOCKERHUB_TAG -f rust.dockerfile .
-            docker push janitortechnology/rust:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh rust/rust.dockerfile janitortechnology/rust
           no_output_timeout: 30m
 
   servo:
@@ -91,12 +92,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd servo
-            docker build -t janx/servo:$DOCKERHUB_TAG -f servo.dockerfile .
-            docker push janx/servo:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh servo/servo.dockerfile janitortechnology/servo
           no_output_timeout: 30m
 
   thunderbird:
@@ -105,12 +106,12 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - attach_workspace:
+          at: .
       - run:
           command: |
-            . .circleci/setup_docker_build.sh
-            cd thunderbird
-            docker build -t janx/thunderbird:$DOCKERHUB_TAG -f thunderbird.dockerfile .
-            docker push janx/thunderbird:$DOCKERHUB_TAG
+            docker load -i ubuntu-dev.tar
+            ./.circleci/build_image.sh thunderbird/thunderbird.dockerfile janitortechnology/thunderbird
           no_output_timeout: 30m
 
 workflows:
