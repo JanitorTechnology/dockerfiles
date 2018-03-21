@@ -12,13 +12,15 @@ IMAGE_NAME=$2
 
 docker build -t $IMAGE_NAME -f $DOCKERFILE $DIR
 
-if [[ ! -z $DOCKER_USER && ! -z $DOCKER_PASS ]]; then
+if [[ ! -z $DOCKER_USER ]]; then
   # Log in to Docker Hub.
-  docker login -u $DOCKER_USER -p $DOCKER_PASS
-  # Decide whether Docker Hub images should be tagged ":pull-request-X", ":branch-Y" or ":latest".
-  if [[ ! -z $CIRCLE_PULL_REQUEST ]]; then
-    DOCKERHUB_TAG="pull-request-$CIRCLE_PULL_REQUEST"
-  elif [[ $CIRCLE_BRANCH != "master" ]]; then
+  # Use heredoc to avoid variable getting exposed in trace output.
+  # Use << (<<< herestring is not available in busybox ash).
+  docker login -u $DOCKER_USER --password-stdin << EOF
+$DOCKER_PASS
+EOF
+  # Decide whether Docker Hub images should be tagged ":branch-Y" or ":latest".
+  if [[ $CIRCLE_BRANCH != "master" ]]; then
     DOCKERHUB_TAG="branch-$CIRCLE_BRANCH"
   else
     DOCKERHUB_TAG="latest"
