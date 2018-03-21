@@ -74,7 +74,7 @@ jobs:
 
   kde:
     docker:
-      - image: docker:stable
+      - image: docker:stable-git
     steps:
       - checkout
       - setup_remote_docker
