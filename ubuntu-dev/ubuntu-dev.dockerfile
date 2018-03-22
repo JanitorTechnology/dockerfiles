@@ -62,6 +62,7 @@ RUN __LLVM_VERSION__="6.0" \
   valgrind \
   x11vnc \
   xvfb \
+  python-dev \
  && mkdir /var/run/sshd \
  && pip install --upgrade pip \
  && pip install --upgrade virtualenv \
@@ -211,6 +212,18 @@ RUN git clone https://github.com/kanaka/noVNC /home/user/.novnc/ \
  && cd /home/user/.novnc \
  && npm install \
  && node ./utils/use_require.js --as commonjs --with-app
+ 
+# Install dependencies to enable codeintel (https://github.com/c9/c9.ide.language.codeintel)
+RUN virtualenv --python=python2 $HOME/.c9/python2
+ && source $HOME/.c9/python2/bin/activate
+ && mkdir /tmp/codeintel
+ && pip download -d /tmp/codeintel codeintel==0.9.3
+ && cd /tmp/codeintel
+ && tar xf CodeIntel-0.9.3.tar.gz
+ && mv CodeIntel-0.9.3/SilverCity CodeIntel-0.9.3/silvercity
+ && tar czf CodeIntel-0.9.3.tar.gz CodeIntel-0.9.3
+ && pip install -U --no-index --find-links=/tmp/codeintel codeintel
+ && rm -rf /tmp/codeintel
 
 # Install the latest Cloud9 SDK with some useful IDE plugins.
 RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
