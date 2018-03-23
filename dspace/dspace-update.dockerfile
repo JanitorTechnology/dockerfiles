@@ -8,5 +8,6 @@ RUN cd /home/user/dspace \
   && git fetch origin \
   && git reset --hard origin/master \
   && yarn run clean \
-  && yarn install
+  && yarn install \
+  && yarn prestart
   

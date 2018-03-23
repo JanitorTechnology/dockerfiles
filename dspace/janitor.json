@@ -5,39 +5,39 @@
     "docker": {
       "image": "janitortechnology/dspace"
     },
-    "3000": {
-      "label": "VNC",
-      "proxy": "https",
-      "preview": true
-    },
-    "8089": {
-      "label": "Cloud9",
-      "proxy": "https"
-    },
-    "8090": {
-      "label": "Theia",
-      "proxy": "https"
-    }
-  },
-  "scripts": {
-      "Build": {
-        "cmd": [
-          "yarn run global",
-          "yarn install"
-        ]
+    "ports": {
+      "22": {
+        "label": "SSH",
+        "proxy": "none"
       },
+      "3000": {
+        "label": "Web",
+        "proxy": "https",
+        "preview": true
+      },
+      "8088": {
+        "label": "VNC",
+        "proxy": "https",
+        "preview": true
+      },
+      "8089": {
+        "label": "Cloud9",
+        "proxy": "https"
+      }
+    },
+    "scripts": {
+      "Run server": {
+        "cmd": "yarn run server",
+        "openPort": "3000"
+      },
+      "Install global dependencies": "yarn run global",
+      "Install local dependencies": "yarn install",
       "Start": {
         "cmd": "yarn start",
         "openPort": "3000"
       },
-      "Watch": {
-        "cmd": "yarn run watch",
-        "openPort": "3000"
-      },
       "Clean": "yarn run clean",
-      "Run test": "yarn run test",
-      "Run e2e": "yarn run e2e",
       "Update source code": "git pull --rebase origin master",
       "Send to code review": "hub pull-request"
-  }
+    }
 }
