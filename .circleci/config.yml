@@ -83,7 +83,7 @@ jobs:
       - run:
           command: |
             docker load -i ubuntu-dev.tar
-            git submodule update --rebase --remote kde
+            git submodule update --init --rebase --remote kde
             ./.circleci/build_image.sh kde/dockerfile janitortechnology/kde
 
   rust:
