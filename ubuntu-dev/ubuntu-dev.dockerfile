@@ -141,6 +141,16 @@ RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
  && echo ". /home/user/.ninja-bash-completion" >> /home/user/.bashrc \
  && rm -rf /tmp/ninja
 
+# Install the latest watchman.
+RUN git clone https://github.com/facebook/watchman.git /tmp/watchman \
+ && cd /tmp/watchman \
+ && git checkout v4.9.0 \
+ && ./autogen.sh \
+ && ./configure \
+ && make -j`nproc` \
+ && sudo make install \
+ && rm -rf /tmp/watchman
+
 # Install the latest Node Version Manager.
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
 
