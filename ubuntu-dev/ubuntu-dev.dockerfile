@@ -24,6 +24,8 @@ RUN __LLVM_VERSION__="6.0" \
  && apt-get upgrade -qy \
  && apt-get install -qy \
   asciidoc \
+  autoconf \
+  automake \
   build-essential \
   ccache \
   clang-${__LLVM_VERSION__} \
@@ -43,6 +45,7 @@ RUN __LLVM_VERSION__="6.0" \
   libgl1-mesa-dev \
   libnotify-bin \
   libssl-dev \
+  libtool \
   lld-${__LLVM_VERSION__} \
   lldb-${__LLVM_VERSION__} \
   locales \
@@ -54,6 +57,7 @@ RUN __LLVM_VERSION__="6.0" \
   openssh-server \
   php \
   php-curl \
+  pkg-config \
   python-pip \
   python-virtualenv \
   sudo \
