@@ -24,6 +24,8 @@ RUN __LLVM_VERSION__="6.0" \
  && apt-get upgrade -qy \
  && apt-get install -qy \
   asciidoc \
+  autoconf \
+  automake \
   build-essential \
   ccache \
   clang-${__LLVM_VERSION__} \
@@ -43,6 +45,7 @@ RUN __LLVM_VERSION__="6.0" \
   libgl1-mesa-dev \
   libnotify-bin \
   libssl-dev \
+  libtool \
   lld-${__LLVM_VERSION__} \
   lldb-${__LLVM_VERSION__} \
   locales \
@@ -54,6 +57,7 @@ RUN __LLVM_VERSION__="6.0" \
   openssh-server \
   php \
   php-curl \
+  pkg-config \
   python-pip \
   python-virtualenv \
   sudo \
@@ -140,6 +144,16 @@ RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
  && echo "\n# Ninja completion helpers." >> /home/user/.bashrc \
  && echo ". /home/user/.ninja-bash-completion" >> /home/user/.bashrc \
  && rm -rf /tmp/ninja
+
+# Install the latest watchman.
+RUN git clone https://github.com/facebook/watchman.git /tmp/watchman \
+ && cd /tmp/watchman \
+ && git checkout v4.9.0 \
+ && ./autogen.sh \
+ && ./configure \
+ && make -j`nproc` \
+ && sudo make install \
+ && sudo rm -rf /tmp/watchman
 
 # Install the latest Node Version Manager.
 RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
