@@ -24,7 +24,6 @@ RUN add-apt-repository ppa:neovim-ppa/stable
 RUN __LLVM_VERSION__="6.0" \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
-  asciidoc \
   autoconf \
   automake \
   build-essential \
@@ -69,7 +68,6 @@ RUN __LLVM_VERSION__="6.0" \
   valgrind \
   wget \
   x11vnc \
-  xmlto \
   xvfb \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /var/run/sshd \
