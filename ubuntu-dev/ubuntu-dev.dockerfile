@@ -59,6 +59,7 @@ RUN __LLVM_VERSION__="6.0" \
   php \
   php-curl \
   pkg-config \
+  python-dev \
   python-pip \
   python-virtualenv \
   sudo \
