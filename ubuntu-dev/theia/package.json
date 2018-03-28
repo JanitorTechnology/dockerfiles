@@ -24,7 +24,6 @@
         "@theia/terminal": "next",
         "@theia/typescript": "next",
         "@theia/userstorage": "next",
-        "theia-yang-extension": "latest",
         "@theia/search-in-workspace": "next"
     },
     "devDependencies": {
