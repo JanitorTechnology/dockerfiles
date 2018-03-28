@@ -10,12 +10,12 @@ RUN mkdir /tmp/android-studio \
  && rm -rf /tmp/android-studio
 
 # Install Fennec build dependencies.
-RUN sudo apt-get update -q \
- && sudo apt-get upgrade -qy \
- && sudo apt-get install -qy rsync yasm \
+RUN sudo apt-get update \
+ && sudo apt-get install -y --no-install-recommends rsync yasm \
  && wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
  && python /tmp/bootstrap.py --no-interactive --application-choice=mobile_android \
  && rm -f /tmp/bootstrap.py \
+ && sudo rm -rf /var/lib/apt/lists/* \
  && rustup target add armv7-linux-androideabi \
  && rustup target add i686-linux-android
 

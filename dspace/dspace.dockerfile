@@ -1,10 +1,5 @@
 FROM janitortechnology/ubuntu-dev
 
-# Get updates if there are any
-RUN sudo apt-get update -q \
-  && sudo apt-get upgrade -qy \
-  && sudo apt-get install -qy
-
 # Get source code
 RUN git clone https://github.com/dspace/dspace-angular /home/user/dspace-angular/
 WORKDIR /home/user/dspace-angular/

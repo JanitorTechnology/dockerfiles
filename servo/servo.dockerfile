@@ -4,10 +4,10 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 # Install Servo build dependencies.
 # Packages are from https://github.com/servo/servo/blob/master/README.md#on-debian-based-linuxes
 # and https://github.com/servo/servo/issues/7512#issuecomment-216665988
-RUN sudo apt-get update -q \
- && sudo apt-get upgrade -qy \
- && sudo DEBIAN_FRONTEND=noninteractive apt-get install -qy \
-  freeglut3-dev \
+RUN sudo apt-get update \
+ && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  git \
+  curl \
   autoconf \
   libx11-dev \
   libfreetype6-dev \
@@ -29,10 +29,12 @@ RUN sudo apt-get update -q \
   libgles2-mesa-dev \
   libegl1-mesa-dev \
   libdbus-1-dev \
-  libpulse-dev \
+  libharfbuzz-dev \
+  ccache \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
-  xpra
+  xpra \
+ && sudo rm -rf /var/lib/apt/lists/*
 
 # Sadly, Servo can't be built with Clang yet.
 ENV CC gcc

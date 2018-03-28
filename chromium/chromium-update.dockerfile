@@ -12,5 +12,5 @@ RUN cd /home/user/depot_tools \
 RUN cd /home/user/chromium/src \
  && git fetch origin \
  && git reset --hard origin/master \
- && gclient sync --delete --jobs=18 \
- && ninja -C out/Default chrome -j18
+ && gclient sync --delete --jobs=`nproc` \
+ && ninja -C out/Default chrome -j`nproc`
