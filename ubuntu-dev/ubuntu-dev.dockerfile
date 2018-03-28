@@ -26,6 +26,7 @@ RUN __LLVM_VERSION__="6.0" \
  && apt-get install -y --no-install-recommends \
   autoconf \
   automake \
+  bash-completion \
   build-essential \
   ccache \
   clang-${__LLVM_VERSION__} \
