@@ -5,7 +5,7 @@ MAINTAINER Jan Keromnes "janx@linux.com"
 # Packages are from https://github.com/servo/servo/blob/master/README.md#on-debian-based-linuxes
 # and https://github.com/servo/servo/issues/7512#issuecomment-216665988
 RUN sudo apt-get update \
- && sudo apt-get install -y --no-install-recommends \
+ && sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   git \
   curl \
   autoconf \
