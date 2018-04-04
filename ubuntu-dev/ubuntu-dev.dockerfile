@@ -63,6 +63,7 @@ RUN __LLVM_VERSION__="6.0" \
   python-dev \
   python-pip \
   python-virtualenv \
+  python-yaml \
   sudo \
   supervisor \
   tmux \
