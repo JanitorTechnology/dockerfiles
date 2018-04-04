@@ -42,7 +42,7 @@ WORKDIR /home/user/chromium/src
 RUN gclient runhooks --jobs=`nproc`
 
 # Configure Chromium build.
-RUN gn gen out/Default --args="enable_nacl=false is_component_build=true"
+RUN gn gen out/Default --args="enable_nacl=false is_component_build=true use_jumbo_build=true symbol_level=1"
 
 # Configure Janitor for Chromium
 COPY janitor.json /home/user/
