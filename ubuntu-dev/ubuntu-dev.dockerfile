@@ -71,6 +71,7 @@ RUN __LLVM_VERSION__="6.0" \
   valgrind \
   wget \
   x11vnc \
+  xterm \
   xvfb \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /var/run/sshd \
