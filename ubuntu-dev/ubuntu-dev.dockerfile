@@ -78,10 +78,12 @@ RUN __LLVM_VERSION__="6.0" \
  && pip install --no-cache-dir --upgrade pip \
  && pip install --no-cache-dir --upgrade virtualenv \
  && pip install --no-cache-dir requests \
- && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
+ && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}\nHOST_CC=clang-${__LLVM_VERSION__}\nHOST_CXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-6.0
 ENV CXX clang++-6.0
+ENV HOST_CC clang-6.0
+ENV HOST_CXX clang++-6.0
 
 # Disallow logging in to SSH with a password.
 RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
