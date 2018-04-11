@@ -14,9 +14,6 @@ RUN echo "deb https://apt.llvm.org/artful/ llvm-toolchain-artful-6.0 main" > /et
 # Add source for the latest Git packages.
 RUN add-apt-repository ppa:git-core/ppa
 
-# Add source for the latest Mercurial packages.
-RUN add-apt-repository ppa:mercurial-ppa/releases
-
 # Add source for the latest Neovim packages.
 RUN add-apt-repository ppa:neovim-ppa/stable
 
