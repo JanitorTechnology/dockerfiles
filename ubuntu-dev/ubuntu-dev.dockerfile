@@ -84,6 +84,7 @@ ENV CC clang-6.0
 ENV CXX clang++-6.0
 ENV HOST_CC clang-6.0
 ENV HOST_CXX clang++-6.0
+RUN update-alternatives --install "/usr/bin/ld" "ld" "/usr/bin/ld.lld-6.0" 20
 
 # Disallow logging in to SSH with a password.
 RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
