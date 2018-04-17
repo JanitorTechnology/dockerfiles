@@ -133,27 +133,6 @@ workflows:
   build-and-deploy:
     jobs:
       - ubuntu-dev
-      - chromium:
-          requires:
-            - ubuntu-dev
-      - fennec:
-          requires:
-            - ubuntu-dev
-      - firefox-git:
-          requires:
-            - ubuntu-dev
-      - firefox-hg:
-          requires:
-            - ubuntu-dev
-      - kde:
-          requires:
-            - ubuntu-dev
       - rust:
-          requires:
-            - ubuntu-dev
-      - servo:
-          requires:
-            - ubuntu-dev
-      - thunderbird:
           requires:
             - ubuntu-dev
