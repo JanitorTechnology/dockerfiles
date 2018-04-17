@@ -62,6 +62,7 @@ RUN __LLVM_VERSION__="6.0" \
   pkg-config \
   python-dev \
   python-pip \
+  python-requests \
   python-virtualenv \
   python-yaml \
   sudo \
@@ -69,15 +70,13 @@ RUN __LLVM_VERSION__="6.0" \
   tmux \
   unzip \
   valgrind \
+  virtualenv \
   wget \
   x11vnc \
   xterm \
   xvfb \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /var/run/sshd \
- && pip install --no-cache-dir --upgrade pip \
- && pip install --no-cache-dir --upgrade virtualenv \
- && pip install --no-cache-dir requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}\nHOST_CC=clang-${__LLVM_VERSION__}\nHOST_CXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
 ENV CC clang-6.0
