@@ -5,7 +5,7 @@ FROM janitortechnology/ubuntu-dev
 # Download Rust's source code.
 RUN git clone https://github.com/rust-lang/rust /home/user/rust
 WORKDIR /home/user/rust
-RUN git checkout 4d239ab14e0053edef396d8728828e1f73ce1342
+RUN git checkout 46492ffabd7194bb134035cadcd66d47f1b97db8
 
 # Configure the IDEs to use Rust's source directory as workspace.
 ENV WORKSPACE /home/user/rust/
