@@ -75,7 +75,7 @@ RUN __LLVM_VERSION__="6.0" \
   xvfb \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /var/run/sshd \
- && pip install --no-cache-dir --upgrade pip \
+ && pip install --no-cache-dir --upgrade pip==9.0.3 \
  && pip install --no-cache-dir --upgrade virtualenv \
  && pip install --no-cache-dir requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}\nHOST_CC=clang-${__LLVM_VERSION__}\nHOST_CXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
