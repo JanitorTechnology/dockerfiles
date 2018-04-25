@@ -18,6 +18,10 @@
     "8089": {
       "label": "Cloud9",
       "proxy": "https"
+    },
+    "8090": {
+      "label": "Theia",
+      "proxy": "https"
     }
   },
   "scripts": {
@@ -30,6 +34,7 @@
     },
     "Clobber build": "./mach clobber",
     "Update source code": "hg pull -u",
-    "Send to code review": "hg push review"
+    "Send to code review (Phabricator)": "arc diff",
+    "Send to code review (MozReview)": "hg push review"
   }
 }
