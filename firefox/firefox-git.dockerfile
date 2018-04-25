@@ -1,5 +1,4 @@
 FROM janitortechnology/ubuntu-dev
-MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Firefox build dependencies.
 # One-line setup command from:
@@ -23,8 +22,7 @@ RUN git clone https://github.com/mozilla/gecko-dev /home/user/firefox
 WORKDIR /home/user/firefox
 
 # Add Firefox build configuration.
-ADD mozconfig /home/user/firefox/
-RUN sudo chown user:user /home/user/firefox/mozconfig
+COPY --chown=user:user mozconfig /home/user/firefox/
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
@@ -39,5 +37,4 @@ ENV WORKSPACE /home/user/firefox/
 RUN ./mach build
 
 # Configure Janitor for Firefox
-ADD janitor-git.json /home/user/janitor.json
-RUN sudo chown user:user /home/user/janitor.json
+COPY --chown=user:user janitor-git.json /home/user/janitor.json
