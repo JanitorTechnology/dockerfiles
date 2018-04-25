@@ -154,7 +154,7 @@ RUN git clone https://github.com/facebook/watchman.git /tmp/watchman \
  && sudo rm -rf /tmp/watchman
 
 # Install the latest Node Version Manager.
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.10/install.sh | bash
 
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
