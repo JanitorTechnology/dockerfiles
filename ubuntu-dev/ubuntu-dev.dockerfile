@@ -6,7 +6,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Add source for the latest Clang packages.
-ADD llvm-snapshot.gpg.key /tmp
+COPY llvm-snapshot.gpg.key /tmp
 RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
@@ -233,11 +233,10 @@ RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && ./scripts/install-sdk.sh \
  && git checkout -- node_modules \
  && npm install -g c9
-ADD workspace-janitor.js /home/user/.c9sdk/configs/ide/
-RUN sudo chown user:user /home/user/.c9sdk/configs/ide/workspace-janitor.js
+COPY --chown=user:user workspace-janitor.js /home/user/.c9sdk/configs/ide/
 
 # Install the Theia IDE with all features available.
-COPY --chown=user theia /home/user/.theia/
+COPY --chown=user:user theia /home/user/.theia/
 RUN cd /home/user/.theia/ \
  && yarn \
  && yarn theia build
@@ -246,7 +245,7 @@ RUN cd /home/user/.theia/ \
 ENV CPP_CLANGD_COMMAND clangd-6.0
 
 # Add default Supervisor configuration.
-ADD supervisord.conf /etc/
+COPY supervisord.conf /etc/
 
 # Expose remote access ports.
 EXPOSE 22 8087 8088 8089 8090
