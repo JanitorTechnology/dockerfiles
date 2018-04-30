@@ -178,16 +178,13 @@ ENV PATH="${PATH}:/home/user/.cargo/bin"
 RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion > /dev/null
 
-# Install the latest Rust Language Server.
-RUN rustup component add rls-preview \
- && rustup component add rust-analysis \
- && rustup component add rust-src \
+# Install additional Rust components.
+RUN rustup component add rls-preview rustfmt-preview rust-analysis rust-src \
  && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
 
-# Install the latest fd, ripgrep, rustfmt and clippy.
+# Install the latest fd, ripgrep and clippy.
 RUN cargo install fd-find \
  && cargo install ripgrep \
- && cargo install rustfmt --force \
  && cargo +nightly install clippy --git https://github.com/rust-lang-nursery/rust-clippy.git
 
 # Install the latest z.
