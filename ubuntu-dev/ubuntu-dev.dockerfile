@@ -20,7 +20,7 @@ RUN add-apt-repository ppa:neovim-ppa/stable
 # Install basic development packages.
 RUN __LLVM_VERSION__="6.0" \
  && apt-get update \
- && apt-get install -y --no-install-recommends \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   autoconf \
   automake \
   bash-completion \
