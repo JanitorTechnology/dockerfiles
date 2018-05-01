@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 
 # Install HTTPS transport for Ubuntu package sources.
 RUN apt-get update \
- && apt-get install -y --no-install-recommends apt-transport-https ca-certificates software-properties-common \
+ && apt-get install -y --no-install-recommends apt-transport-https ca-certificates software-properties-common gpg-agent \
  && rm -rf /var/lib/apt/lists/*
 
 # Add source for the latest Clang packages.
