@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Install HTTPS transport for Ubuntu package sources.
 RUN apt-get update \
@@ -7,15 +7,12 @@ RUN apt-get update \
 
 # Add source for the latest Clang packages.
 COPY llvm-snapshot.gpg.key /tmp
-RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list \
+RUN echo "deb https://apt.llvm.org/bionic/ llvm-toolchain-bionic-6.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
 # Add source for the latest Git packages.
 RUN add-apt-repository ppa:git-core/ppa
-
-# Add source for the latest Mercurial packages.
-RUN add-apt-repository ppa:mercurial-ppa/releases
 
 # Add source for the latest Neovim packages.
 RUN add-apt-repository ppa:neovim-ppa/stable
