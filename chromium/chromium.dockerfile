@@ -4,7 +4,10 @@ FROM janitortechnology/ubuntu-dev
 RUN git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ENV PATH $PATH:/home/user/depot_tools
 RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
- && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc
+ && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc \
+
+# Make default Ninja parallelism use 8 parallel jobs.
+RUN echo "\nalias ninja='ninja -j8'" >> .bash_aliases
 
 # Enable bash completion for git cl.
 RUN echo "\n# The next line enables bash completion for git cl." >> .bashrc \
