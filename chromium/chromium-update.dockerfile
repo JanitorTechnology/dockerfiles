@@ -10,9 +10,8 @@ RUN cd /home/user/depot_tools \
 
 # Remove the parallelism limited Ninja alias and
 # update and rebuild Chromium's source code.
-RUN unalias ninja \
- && cd /home/user/chromium/src \
+RUN cd /home/user/chromium/src \
  && git fetch origin \
  && git reset --hard origin/master \
  && gclient sync --delete --jobs=`nproc` \
- && ninja -C out/Default chrome -j`nproc`
+ && ninja -C out/Default chrome
