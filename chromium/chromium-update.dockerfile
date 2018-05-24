@@ -8,8 +8,7 @@ RUN sudo apt-get update -q && sudo apt-get upgrade -qy
 RUN cd /home/user/depot_tools \
  && git pull --rebase origin master
 
-# Remove the parallelism limited Ninja alias and
-# update and rebuild Chromium's source code.
+# Update and rebuild Chromium's source code.
 RUN cd /home/user/chromium/src \
  && git fetch origin \
  && git reset --hard origin/master \
