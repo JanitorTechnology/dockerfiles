@@ -41,6 +41,7 @@ RUN __LLVM_VERSION__="6.0" \
   git \
   htop \
   icecc \
+  jq \
   less \
   libcurl4-openssl-dev \
   libexpat1-dev \
