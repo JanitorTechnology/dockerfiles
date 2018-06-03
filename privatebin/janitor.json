@@ -1,0 +1,38 @@
+{
+  "name": "PrivateBin",
+  "description": "PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data. Data is encrypted and decrypted in the browser using 256bit AES in Galois Counter mode.",
+  "icon": "https://janitor.technology/img/privatebin.svg",
+  "docker": {
+    "image": "janitortechnology/privatebin"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "80": {
+      "label": "PrivateBin",
+      "proxy": "https",
+      "preview": true
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    },
+    "8090": {
+      "label": "Theia",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Run all (phpunit & mocha) tests": "unit-test",
+    "Run frontend (mocha) tests": "cd /home/user/privatebin/js && mocha",
+    "Run backend (phpunit) tests": "cd /home/user/privatebin/tst && phpunit",
+    "Update source code": "git pull --rebase origin master",
+    "Send to code review": "hub pull-request"
+  }
+}
