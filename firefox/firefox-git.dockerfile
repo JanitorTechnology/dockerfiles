@@ -17,6 +17,12 @@ RUN git clone https://github.com/mozilla/moz-git-tools /home/user/.moz-git-tools
 RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.moz-git-tools\"" >> /home/user/.bashrc
 
+# Install git-cinnabar.
+RUN git clone https://github.com/glandium/git-cinnabar /home/user/.git-cinnabar \
+ && /home/user/.git-cinnabar/git-cinnabar download \
+ && echo "\n# Add git-cinnabar to the PATH." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.git-cinnabar\"" >> /home/user/.bashrc
+
 # Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev /home/user/firefox
 WORKDIR /home/user/firefox
