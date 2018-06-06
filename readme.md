@@ -106,6 +106,16 @@ To build [janitortechnology/janitor](https://hub.docker.com/r/janitortechnology/
     cd janitor
     docker build -t janitortechnology/janitor -f janitor.dockerfile .
 
+## PrivateBin
+
+    docker run -it --rm janitortechnology/privatebin /bin/bash
+    user@container:~/janitor (master) $ unit-test
+
+To build [janitortechnology/privatebin](https://hub.docker.com/r/janitortechnology/privatebin/) yourself:
+
+    cd privatebin
+    docker build -t janitortechnology/privatebin -f privatebin.dockerfile .
+
 # More Dockerfiles
 
 There are other great development Dockerfiles out there:
