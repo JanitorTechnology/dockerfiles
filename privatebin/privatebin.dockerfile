@@ -35,4 +35,5 @@ ENV WORKSPACE /home/user/privatebin/
 EXPOSE 80
 
 # Configure Janitor for PrivateBin
-COPY --chown=user:user janitor.json /home/user/
+COPY janitor.json /home/user/
+RUN sudo chown user:user /home/user/janitor.json
