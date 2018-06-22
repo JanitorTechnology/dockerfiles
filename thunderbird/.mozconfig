@@ -1,7 +1,6 @@
 # Thunderbird build options.
-ac_add_options --enable-application=mail
+ac_add_options --enable-application=comm/mail
 ac_add_options --enable-calendar
-ac_add_options --enable-extensions=default,inspector
 ac_add_options --enable-linker=lld
 ac_add_options --disable-elf-hack
 ac_add_options --with-ccache

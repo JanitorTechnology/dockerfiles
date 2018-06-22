@@ -2,9 +2,8 @@ FROM janitortechnology/ubuntu-dev
 MAINTAINER Philipp Kewisch "mozilla@kewis.ch"
 
 # Download Thunderbird's source code.
-RUN hg clone --uncompressed https://hg.mozilla.org/comm-central/ thunderbird \
- && cd thunderbird \
- && python client.py checkout
+RUN hg clone --uncompressed https://hg.mozilla.org/mozilla-central/ thunderbird \
+ && hg clone --uncompressed https://hg.mozilla.org/comm-central/ thunderbird/comm
 WORKDIR thunderbird
 
 # Add Thunderbird build configuration.
@@ -20,13 +19,13 @@ RUN sudo apt-get update \
 
 # Set up Mercurial so mach doesn't complain.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mozilla/mach vcs-setup -u
+ && ./mach vcs-setup -u
 
 # Configure the IDEs to use Thunderbird's source directory as workspace.
 ENV WORKSPACE /home/user/thunderbird/
 
 # Build Thunderbird.
-RUN ./mozilla/mach build
+RUN ./mach build
 
 # Configure Janitor for Thunderbird
 ADD janitor.json /home/user/
