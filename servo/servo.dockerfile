@@ -55,7 +55,7 @@ ENV WORKSPACE /home/user/servo/
 
 # Work around a Servo build problem.
 RUN echo "\n# Work around https://github.com/servo/servo/issues/20712." >> /home/user/.bashrc \
- && echo "HARFBUZZ_SYS_NO_PKG_CONFIG=1" >> /home/user/.bashrc
+ && echo "export HARFBUZZ_SYS_NO_PKG_CONFIG=1" >> /home/user/.bashrc
 ENV HARFBUZZ_SYS_NO_PKG_CONFIG 1
 
 # Build Servo.
