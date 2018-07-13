@@ -125,7 +125,7 @@ RUN echo "\n# Colored and git aware prompt." >> /home/user/.bashrc \
  && echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 \" (%s)\") $ '" >> /home/user/.bashrc
 
 # Install the latest GitHub helper.
-RUN __HUB_VERSION__="2.2.9" \
+RUN __HUB_VERSION__="2.5.0" \
  && mkdir /tmp/hub \
  && cd /tmp/hub \
  && curl -L https://github.com/github/hub/releases/download/v${__HUB_VERSION__}/hub-linux-amd64-${__HUB_VERSION__}.tgz | tar xz \
