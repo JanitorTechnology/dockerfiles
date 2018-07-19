@@ -182,12 +182,12 @@ RUN rustup install nightly \
 
 # Install additional Rust components.
 RUN rustup component add rls-preview rustfmt-preview rust-analysis rust-src \
+ && rustup component add clippy-preview --toolchain=nightly \
  && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
 
-# Install the latest fd, ripgrep and clippy.
+# Install the latest fd and ripgrep.
 RUN cargo install fd-find \
- && cargo install ripgrep \
- && cargo +nightly install clippy --git https://github.com/rust-lang-nursery/rust-clippy.git
+ && cargo install ripgrep
 
 # Install the latest z.
 RUN git clone https://github.com/rupa/z /home/user/.z.sh \
