@@ -22,6 +22,7 @@ RUN git clone https://github.com/glandium/git-cinnabar /home/user/.git-cinnabar 
  && /home/user/.git-cinnabar/git-cinnabar download \
  && echo "\n# Add git-cinnabar to the PATH." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.git-cinnabar\"" >> /home/user/.bashrc
+ENV PATH $PATH:/home/user/.git-cinnabar
 
 # Download Firefox's source code.
 RUN git clone https://github.com/mozilla/gecko-dev /home/user/firefox
