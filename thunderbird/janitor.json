@@ -1,6 +1,6 @@
 {
   "name": "Thunderbird",
-  "description": "The email client by Mozilla foundation.",
+  "description": "The email client by Mozilla Foundation.",
   "icon": "https://janitor.technology/img/thunderbird.svg",
   "docker": {
     "image": "janitortechnology/thunderbird"
