@@ -44,8 +44,8 @@ RUN sudo apt-get update \
 # Sadly, Servo can't be built with Clang yet.
 ENV CC gcc
 ENV CXX g++
-RUN sudo sed -i "s/CC=clang-5\.0/CC=gcc/" /etc/environment \
- && sudo sed -i "s/CXX=clang++-5\.0/CXX=g++/" /etc/environment
+RUN sudo sed -i "s/CC=clang-[0-9.]\+/CC=gcc/" /etc/environment \
+ && sudo sed -i "s/CXX=clang++-[0-9.]\+/CXX=g++/" /etc/environment
 
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
