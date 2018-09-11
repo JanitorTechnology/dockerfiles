@@ -5,7 +5,7 @@
 
 Popular development environments as Docker containers.
 
-All images are available on Docker Hub under [/janitortechnology/](https://hub.docker.com/u/janitortechnology/) (previously under [/janx/](https://hub.docker.com/u/janx/)).
+Core images are available on Docker Hub under [/janitortechnology/](https://hub.docker.com/u/janitortechnology/).
 
 ## Ubuntu-dev
 
