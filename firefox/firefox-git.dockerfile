@@ -1,14 +1,5 @@
 FROM janitortechnology/ubuntu-dev
 
-# Install Firefox build dependencies.
-# One-line setup command from:
-# https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Most_Distros_-_One_Line_Bootstrap_Command
-RUN sudo apt-get update \
- && wget -O /tmp/bootstrap.py https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py \
- && python /tmp/bootstrap.py --no-interactive --application-choice=browser \
- && rm -f /tmp/bootstrap.py \
- && sudo rm -rf /var/lib/apt/lists/*
-
 # Install Mozilla's moz-git-tools.
 RUN git clone https://github.com/mozilla/moz-git-tools /home/user/.moz-git-tools \
  && cd /home/user/.moz-git-tools \
@@ -30,6 +21,13 @@ WORKDIR /home/user/firefox
 
 # Add Firefox build configuration.
 COPY --chown=user:user mozconfig /home/user/firefox/
+
+# Install Firefox build dependencies.
+# One-line setup command from:
+# https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Build_Instructions/Linux_Prerequisites#Most_Distros_-_One_Line_Bootstrap_Command
+RUN sudo apt-get update \
+ && python python/mozboot/bin/bootstrap.py --no-interactive --application-choice=browser \
+ && sudo rm -rf /var/lib/apt/lists/*
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
