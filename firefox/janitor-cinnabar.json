@@ -1,0 +1,39 @@
+{
+  "name": "Firefox (cinnabar)",
+  "description": "The Firefox browser by Mozilla (Git-cinnabar checkout).",
+  "icon": "https://janitor.technology/img/firefox.svg",
+  "docker": {
+    "image": "janitortechnology/firefox-cinnabar"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https",
+      "preview": true
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    },
+    "8090": {
+      "label": "Theia",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Build Firefox": "./mach build",
+    "Build faster": "./mach build faster",
+    "Build binaries": "./mach build binaries",
+    "Run Firefox": {
+      "cmd": "./mach run",
+      "openPort": "8088"
+    },
+    "Clobber build": "./mach clobber",
+    "Update source code": "git pull --rebase origin master",
+    "Send to code review (Phabricator)": "arc diff"
+  }
+}
