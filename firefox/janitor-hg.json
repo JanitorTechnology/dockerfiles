@@ -34,7 +34,6 @@
     },
     "Clobber build": "./mach clobber",
     "Update source code": "hg pull -u",
-    "Send to code review (Phabricator)": "arc diff",
-    "Send to code review (MozReview)": "hg push review"
+    "Send to code review": "arc diff"
   }
 }
