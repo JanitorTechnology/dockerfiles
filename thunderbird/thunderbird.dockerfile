@@ -20,7 +20,7 @@ RUN sudo apt-get update \
 
 # Set up Mercurial so mach doesn't complain.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mozilla/mach mercurial-setup -u
+ && ./mozilla/mach vcs-setup -u
 
 # Configure the IDEs to use Thunderbird's source directory as workspace.
 ENV WORKSPACE /home/user/thunderbird/

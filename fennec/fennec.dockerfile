@@ -29,7 +29,7 @@ RUN sudo apt-get update \
 
 # Set up additional Fennec build dependencies.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mach mercurial-setup -u \
+ && ./mach vcs-setup -u \
  && ./mach python python/mozboot/mozboot/android.py --no-interactive
 
 # Configure the IDEs to use Fennec's source directory as workspace.

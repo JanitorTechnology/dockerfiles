@@ -18,7 +18,7 @@ RUN sudo apt-get update \
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mach mercurial-setup -u
+ && ./mach vcs-setup -u
 
 # Configure the IDEs to use Firefox's source directory as workspace.
 ENV WORKSPACE /home/user/firefox/

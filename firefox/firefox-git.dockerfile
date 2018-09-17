@@ -31,7 +31,7 @@ RUN sudo apt-get update \
 
 # Set up Mercurial extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
- && ./mach mercurial-setup -u \
+ && ./mach vcs-setup -u \
  && echo "\n# Add Mozilla's git commands to the PATH." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> /home/user/.bashrc
 
