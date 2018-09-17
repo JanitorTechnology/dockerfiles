@@ -1,5 +1,4 @@
 FROM janitortechnology/ubuntu-dev
-MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Servo build dependencies.
 # Packages are from https://github.com/servo/servo/blob/master/README.md#on-debian-based-linuxes
@@ -62,6 +61,9 @@ ENV WORKSPACE /home/user/servo/
 RUN echo "\n# Work around https://github.com/servo/servo/issues/20712." >> /home/user/.bashrc \
  && echo "export HARFBUZZ_SYS_NO_PKG_CONFIG=1" >> /home/user/.bashrc
 ENV HARFBUZZ_SYS_NO_PKG_CONFIG 1
+
+# Install a more recent GStreamer.
+RUN ./mach bootstrap-gstreamer
 
 # Build Servo.
 RUN ./mach build -d
