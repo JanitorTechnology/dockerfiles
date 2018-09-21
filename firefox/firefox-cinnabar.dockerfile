@@ -7,8 +7,19 @@ RUN git clone https://github.com/glandium/git-cinnabar /home/user/.git-cinnabar 
  && echo "PATH=\"\$PATH:/home/user/.git-cinnabar\"" >> /home/user/.bashrc
 ENV PATH $PATH:/home/user/.git-cinnabar
 
-# Download Firefox's source code.
-RUN git -c cinnabar.clone=https://github.com/glandium/gecko clone hg::https://hg.mozilla.org/mozilla-unified /home/user/firefox
+# Download Firefox's source code using git-cinnabar.
+# Source: https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development
+RUN git -c cinnabar.clone=https://github.com/glandium/gecko clone hg::https://hg.mozilla.org/mozilla-unified /home/user/firefox \
+ && cd /home/user/firefox \
+ && git config fetch.prune true \
+ && git remote add try hg::https://hg.mozilla.org/try \
+ && git config remote.try.skipDefaultUpdate true \
+ && git remote set-url --push try hg::ssh://hg.mozilla.org/try \
+ && git config remote.try.push +HEAD:refs/heads/branches/default/tip \
+ && git remote add inbound hg::ssh://hg.mozilla.org/integration/mozilla-inbound \
+ && git config remote.inbound.skipDefaultUpdate true \
+ && git config remote.inbound.push +HEAD:refs/heads/branches/default/tip \
+ && git fetch --tags hg::tags: tag "*"
 WORKDIR /home/user/firefox
 
 # Add Firefox build configuration.
