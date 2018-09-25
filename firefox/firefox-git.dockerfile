@@ -29,11 +29,16 @@ RUN sudo apt-get update \
  && python python/mozboot/bin/bootstrap.py --no-interactive --application-choice=browser \
  && sudo rm -rf /var/lib/apt/lists/*
 
-# Set up Mercurial extensions for Firefox.
+# Set up VCS extensions for Firefox.
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach vcs-setup -u \
- && echo "\n# Add Mozilla's git commands to the PATH." >> /home/user/.bashrc \
+ && echo "\n# Add Mozilla's Git commands to the PATH." >> /home/user/.bashrc \
  && echo "PATH=\"\$PATH:/home/user/.mozbuild/version-control-tools/git/commands\"" >> /home/user/.bashrc
+
+# Install Phlay to support uploading multiple commits to Phabricator.
+RUN git clone https://github.com/mystor/phlay/ /home/user/.phlay \
+ && echo "\n# Add Phlay to the PATH." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.phlay\"" >> /home/user/.bashrc
 
 # Configure the IDEs to use Firefox's source directory as workspace.
 ENV WORKSPACE /home/user/firefox/

@@ -20,6 +20,11 @@ RUN sudo apt-get update \
 RUN mkdir -p /home/user/.mozbuild \
  && ./mach vcs-setup -u
 
+# Install moz-phab to support uploading multiple commits to Phabricator.
+RUN git clone https://github.com/mozilla-conduit/review/ /home/user/.moz-phab \
+ && echo "\n# Add moz-phab to the PATH." >> /home/user/.bashrc \
+ && echo "PATH=\"\$PATH:/home/user/.moz-phab\"" >> /home/user/.bashrc
+
 # Configure the IDEs to use Firefox's source directory as workspace.
 ENV WORKSPACE /home/user/firefox/
 
