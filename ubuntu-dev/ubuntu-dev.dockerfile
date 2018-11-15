@@ -161,9 +161,9 @@ RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
- && nvm install v9.9.0 \
+ && nvm install v10.13.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v9.9.0/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v10.13.0/bin"
 
 # Install the latest rr.
 RUN __RR_VERSION__="5.2.0" \
