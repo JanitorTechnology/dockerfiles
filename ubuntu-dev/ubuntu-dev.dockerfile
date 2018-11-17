@@ -6,7 +6,7 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 # Add source for the latest Clang packages.
-ADD llvm-snapshot.gpg.key /tmp
+COPY llvm-snapshot.gpg.key /tmp
 RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
@@ -41,6 +41,8 @@ RUN __LLVM_VERSION__="6.0" \
   git \
   htop \
   icecc \
+  iputils-ping \
+  jq \
   less \
   libcurl4-openssl-dev \
   libexpat1-dev \
@@ -122,7 +124,7 @@ RUN echo "\n# Colored and git aware prompt." >> /home/user/.bashrc \
  && echo "PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(__git_ps1 \" (%s)\") $ '" >> /home/user/.bashrc
 
 # Install the latest GitHub helper.
-RUN __HUB_VERSION__="2.2.9" \
+RUN __HUB_VERSION__="2.6.0" \
  && mkdir /tmp/hub \
  && cd /tmp/hub \
  && curl -L https://github.com/github/hub/releases/download/v${__HUB_VERSION__}/hub-linux-amd64-${__HUB_VERSION__}.tgz | tar xz \
@@ -153,17 +155,17 @@ RUN git clone https://github.com/facebook/watchman.git /tmp/watchman \
  && sudo rm -rf /tmp/watchman
 
 # Install the latest Node Version Manager.
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
 # Install latest Node.js, npm and Yarn.
 ENV NVM_DIR="/home/user/.nvm"
 RUN . $NVM_DIR/nvm.sh \
- && nvm install v9.9.0 \
+ && nvm install v10.13.0 \
  && npm install -g yarn
-ENV PATH="${PATH}:${NVM_DIR}/versions/node/v9.9.0/bin"
+ENV PATH="${PATH}:${NVM_DIR}/versions/node/v10.13.0/bin"
 
 # Install the latest rr.
-RUN __RR_VERSION__="5.1.0" \
+RUN __RR_VERSION__="5.2.0" \
  && cd /tmp \
  && wget -qO rr.deb https://github.com/mozilla/rr/releases/download/${__RR_VERSION__}/rr-${__RR_VERSION__}-Linux-$(uname -m).deb \
  && sudo dpkg -i rr.deb \
@@ -177,17 +179,14 @@ ENV PATH="${PATH}:/home/user/.cargo/bin"
 RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion > /dev/null
 
-# Install the latest Rust Language Server.
-RUN rustup component add rls-preview \
- && rustup component add rust-analysis \
- && rustup component add rust-src \
+# Install additional Rust components.
+RUN rustup component add rls-preview rustfmt-preview rust-analysis rust-src \
+ && rustup component add clippy-preview --toolchain=nightly \
  && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
 
-# Install the latest fd, ripgrep, rustfmt and clippy.
+# Install the latest fd and ripgrep.
 RUN cargo install fd-find \
- && cargo install ripgrep \
- && cargo install rustfmt --force \
- && cargo +nightly install clippy
+ && cargo install ripgrep
 
 # Install the latest z.
 RUN git clone https://github.com/rupa/z /home/user/.z.sh \
@@ -195,7 +194,7 @@ RUN git clone https://github.com/rupa/z /home/user/.z.sh \
  && echo ". /home/user/.z.sh/z.sh" >> /home/user/.bashrc
 
 # Install the latest Vim.
-RUN __VIM_VERSION__="8.0.1523" \
+RUN __VIM_VERSION__="8.1.0526" \
  && mkdir /tmp/vim \
  && cd /tmp/vim \
  && curl -L https://github.com/vim/vim/archive/v${__VIM_VERSION__}.tar.gz | tar xz \
@@ -232,11 +231,10 @@ RUN git clone https://github.com/c9/core.git /home/user/.c9sdk \
  && ./scripts/install-sdk.sh \
  && git checkout -- node_modules \
  && npm install -g c9
-ADD workspace-janitor.js /home/user/.c9sdk/configs/ide/
-RUN sudo chown user:user /home/user/.c9sdk/configs/ide/workspace-janitor.js
+COPY --chown=user:user workspace-janitor.js /home/user/.c9sdk/configs/ide/
 
 # Install the Theia IDE with all features available.
-COPY --chown=user theia /home/user/.theia/
+COPY --chown=user:user theia /home/user/.theia/
 RUN cd /home/user/.theia/ \
  && yarn \
  && yarn theia build
@@ -245,7 +243,7 @@ RUN cd /home/user/.theia/ \
 ENV CPP_CLANGD_COMMAND clangd-6.0
 
 # Add default Supervisor configuration.
-ADD supervisord.conf /etc/
+COPY supervisord.conf /etc/
 
 # Expose remote access ports.
 EXPOSE 22 8087 8088 8089 8090

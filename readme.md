@@ -5,7 +5,7 @@
 
 Popular development environments as Docker containers.
 
-All images are available on Docker Hub under [/janitortechnology/](https://hub.docker.com/u/janitortechnology/) (previously under [/janx/](https://hub.docker.com/u/janx/)).
+Core images are available on Docker Hub under [/janitortechnology/](https://hub.docker.com/u/janitortechnology/).
 
 ## Ubuntu-dev
 
@@ -105,6 +105,16 @@ To build [janitortechnology/janitor](https://hub.docker.com/r/janitortechnology/
 
     cd janitor
     docker build -t janitortechnology/janitor -f janitor.dockerfile .
+
+## PrivateBin
+
+    docker run -it --rm janitortechnology/privatebin /bin/bash
+    user@container:~/janitor (master) $ unit-test
+
+To build [janitortechnology/privatebin](https://hub.docker.com/r/janitortechnology/privatebin/) yourself:
+
+    cd privatebin
+    docker build -t janitortechnology/privatebin -f privatebin.dockerfile .
 
 # More Dockerfiles
 

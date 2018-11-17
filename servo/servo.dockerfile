@@ -1,5 +1,4 @@
 FROM janitortechnology/ubuntu-dev
-MAINTAINER Jan Keromnes "janx@linux.com"
 
 # Install Servo build dependencies.
 # Packages are from https://github.com/servo/servo/blob/master/README.md#on-debian-based-linuxes
@@ -31,6 +30,11 @@ RUN sudo apt-get update \
   libdbus-1-dev \
   libharfbuzz-dev \
   ccache \
+  clang \
+  libgstreamer1.0-dev \
+  libgstreamer-plugins-base1.0-dev \
+  libgstreamer-plugins-bad1.0-dev \
+  autoconf2.13 \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
   xpra \
@@ -39,8 +43,8 @@ RUN sudo apt-get update \
 # Sadly, Servo can't be built with Clang yet.
 ENV CC gcc
 ENV CXX g++
-RUN sudo sed -i "s/CC=clang-5\.0/CC=gcc/" /etc/environment \
- && sudo sed -i "s/CXX=clang++-5\.0/CXX=g++/" /etc/environment
+RUN sudo sed -i "s/CC=clang-[0-9.]\+/CC=gcc/" /etc/environment \
+ && sudo sed -i "s/CXX=clang++-[0-9.]\+/CXX=g++/" /etc/environment
 
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
@@ -52,6 +56,14 @@ WORKDIR servo
 
 # Configure the IDEs to use Servo's source directory as workspace.
 ENV WORKSPACE /home/user/servo/
+
+# Work around a Servo build problem.
+RUN echo "\n# Work around https://github.com/servo/servo/issues/20712." >> /home/user/.bashrc \
+ && echo "export HARFBUZZ_SYS_NO_PKG_CONFIG=1" >> /home/user/.bashrc
+ENV HARFBUZZ_SYS_NO_PKG_CONFIG 1
+
+# Install a more recent GStreamer.
+RUN ./mach bootstrap-gstreamer
 
 # Build Servo.
 RUN ./mach build -d

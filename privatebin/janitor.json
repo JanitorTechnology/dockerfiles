@@ -1,0 +1,44 @@
+{
+  "name": "PrivateBin",
+  "description": "PrivateBin is a pastebin service where the server has zero knowledge of pasted data.",
+  "icon": "https://janitor.technology/img/privatebin.svg",
+  "docker": {
+    "image": "janitortechnology/privatebin"
+  },
+  "ports": {
+    "22": {
+      "label": "SSH",
+      "proxy": "none"
+    },
+    "80": {
+      "label": "PrivateBin",
+      "proxy": "https",
+      "preview": true
+    },
+    "8088": {
+      "label": "VNC",
+      "proxy": "https"
+    },
+    "8089": {
+      "label": "Cloud9",
+      "proxy": "https"
+    },
+    "8090": {
+      "label": "Theia",
+      "proxy": "https"
+    }
+  },
+  "scripts": {
+    "Run all tests": "unit-test",
+    "Run frontend tests": {
+      "cmd":  "mocha",
+      "cwd": "/js"
+    },
+    "Run backend tests": {
+      "cmd":  "phpunit",
+      "cwd": "/tst"
+    },
+    "Update source code": "git pull --rebase origin master",
+    "Send to code review": "hub pull-request"
+  }
+}

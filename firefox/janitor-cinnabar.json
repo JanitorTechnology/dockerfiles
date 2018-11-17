@@ -1,9 +1,9 @@
 {
-  "name": "Firefox (git)",
-  "description": "The Firefox browser by Mozilla (Git checkout).",
+  "name": "Firefox (cinnabar)",
+  "description": "The Firefox browser by Mozilla (Git-cinnabar checkout).",
   "icon": "https://janitor.technology/img/firefox.svg",
   "docker": {
-    "image": "janitortechnology/firefox-git"
+    "image": "janitortechnology/firefox-cinnabar"
   },
   "ports": {
     "22": {

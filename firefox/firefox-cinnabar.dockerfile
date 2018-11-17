@@ -1,13 +1,5 @@
 FROM janitortechnology/ubuntu-dev
 
-# Install Mozilla's moz-git-tools.
-RUN git clone https://github.com/mozilla/moz-git-tools /home/user/.moz-git-tools \
- && cd /home/user/.moz-git-tools \
- && git submodule init \
- && git submodule update
-RUN echo "\n# Add Mozilla's moz-git-tools to the PATH." >> /home/user/.bashrc \
- && echo "PATH=\"\$PATH:/home/user/.moz-git-tools\"" >> /home/user/.bashrc
-
 # Install git-cinnabar.
 RUN git clone https://github.com/glandium/git-cinnabar /home/user/.git-cinnabar \
  && /home/user/.git-cinnabar/git-cinnabar download \
@@ -15,8 +7,19 @@ RUN git clone https://github.com/glandium/git-cinnabar /home/user/.git-cinnabar 
  && echo "PATH=\"\$PATH:/home/user/.git-cinnabar\"" >> /home/user/.bashrc
 ENV PATH $PATH:/home/user/.git-cinnabar
 
-# Download Firefox's source code.
-RUN git clone https://github.com/mozilla/gecko-dev /home/user/firefox
+# Download Firefox's source code using git-cinnabar.
+# Source: https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development
+RUN git -c cinnabar.clone=https://github.com/glandium/gecko clone hg::https://hg.mozilla.org/mozilla-unified /home/user/firefox \
+ && cd /home/user/firefox \
+ && git config fetch.prune true \
+ && git remote add try hg::https://hg.mozilla.org/try \
+ && git config remote.try.skipDefaultUpdate true \
+ && git remote set-url --push try hg::ssh://hg.mozilla.org/try \
+ && git config remote.try.push +HEAD:refs/heads/branches/default/tip \
+ && git remote add inbound hg::ssh://hg.mozilla.org/integration/mozilla-inbound \
+ && git config remote.inbound.skipDefaultUpdate true \
+ && git config remote.inbound.push +HEAD:refs/heads/branches/default/tip \
+ && git fetch --tags hg::tags: tag "*"
 WORKDIR /home/user/firefox
 
 # Add Firefox build configuration.
@@ -47,4 +50,4 @@ ENV WORKSPACE /home/user/firefox/
 RUN ./mach build
 
 # Configure Janitor for Firefox
-COPY --chown=user:user janitor-git.json /home/user/janitor.json
+COPY --chown=user:user janitor-cinnabar.json /home/user/janitor.json
