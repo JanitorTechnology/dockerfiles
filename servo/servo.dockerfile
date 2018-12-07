@@ -43,6 +43,8 @@ RUN sudo apt-get update \
 # Sadly, Servo can't be built with Clang yet.
 ENV CC gcc
 ENV CXX g++
+ENV HOST_CC gcc
+ENV HOST_CXX g++
 RUN sudo sed -i "s/CC=clang-[0-9.]\+/CC=gcc/" /etc/environment \
  && sudo sed -i "s/CXX=clang++-[0-9.]\+/CXX=g++/" /etc/environment
 
