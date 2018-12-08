@@ -181,8 +181,7 @@ RUN rustup install nightly \
  && rustup completions bash | sudo tee /etc/bash_completion.d/rustup.bash-completion > /dev/null
 
 # Install additional Rust components.
-RUN rustup component add rls-preview rustfmt-preview rust-analysis rust-src \
- && rustup component add clippy-preview --toolchain=nightly \
+RUN rustup component add clippy rls-preview rustfmt-preview rust-analysis rust-src \
  && echo "RUST_SRC_PATH=\"/home/user/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src\"" >> /home/user/.bashrc
 
 # Install the latest fd and ripgrep.
