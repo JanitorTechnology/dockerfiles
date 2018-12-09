@@ -39,7 +39,8 @@ RUN sudo mkdir /var/run/postgresql/9.5-main.pg_stat_tmp && sudo chown postgres:p
     cd /home/user/discourse && \
     bundle install && \
     bundle exec rake db:create db:migrate && \
-    RAILS_ENV=test bundle exec rake db:create db:migrate
+    RAILS_ENV=test bundle exec rake db:create db:migrate && \
+    gem install discourse_theme
 
 WORKDIR /home/user/discourse
 
