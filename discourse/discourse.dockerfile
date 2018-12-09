@@ -9,7 +9,7 @@ ADD supervisord-append.conf /tmp
 RUN sudo add-apt-repository ppa:chris-lea/redis-server && \
     sudo add-apt-repository ppa:brightbox/ruby-ng && \
     sudo apt-get update && \
-    sudo apt-get -y install --no-install-recommends ruby2.3 vim expect debconf-utils zlib1g-dev libssl-dev openssl libcurl4-openssl-dev libreadline6-dev libpcre3 libpcre3-dev imagemagick postgresql postgresql-contrib-9.5 libpq-dev postgresql-server-dev-9.5 redis-server advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant gnupg2 ruby2.3-dev libsqlite3-dev && \
+    sudo apt-get -y install --no-install-recommends ruby2.5 vim expect debconf-utils zlib1g-dev libssl-dev openssl libcurl4-openssl-dev libreadline6-dev libpcre3 libpcre3-dev imagemagick postgresql postgresql-contrib-9.5 libpq-dev postgresql-server-dev-9.5 redis-server advancecomp gifsicle jhead jpegoptim libjpeg-turbo-progs optipng pngcrush pngquant gnupg2 ruby2.3-dev libsqlite3-dev && \
     sudo rm -rf /var/lib/apt/lists/* && \
     echo 'gem: --no-document' >> /home/user/.gemrc && \
     sudo gem install bundler mailcatcher && \
