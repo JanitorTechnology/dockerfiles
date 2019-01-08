@@ -6,6 +6,10 @@ ENV PATH $PATH:/home/user/depot_tools
 RUN echo "\n# Add Chromium's depot_tools to the PATH." >> .bashrc \
  && echo "export PATH=\"\$PATH:/home/user/depot_tools\"" >> .bashrc
 
+# Make default Ninja parallelism use 8 parallel jobs.
+# TODO(phistuck) - remove this once host-level affinity settings are implemented.
+RUN echo "\nalias ninja='ninja -j8'" >> .bash_aliases
+
 # Enable bash completion for git cl.
 RUN echo "\n# The next line enables bash completion for git cl." >> .bashrc \
  && echo "if [ -f \"/home/user/depot_tools/git_cl_completion.sh\" ]; then" >> .bashrc \

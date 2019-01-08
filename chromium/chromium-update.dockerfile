@@ -13,4 +13,4 @@ RUN cd /home/user/chromium/src \
  && git fetch origin \
  && git reset --hard origin/master \
  && gclient sync --delete --jobs=`nproc` \
- && ninja -C out/Default chrome -j`nproc`
+ && ninja -C out/Default chrome
