@@ -30,7 +30,6 @@ RUN sudo apt-get update \
   libdbus-1-dev \
   libharfbuzz-dev \
   ccache \
-  clang \
   libgstreamer1.0-dev \
   libgstreamer-plugins-base1.0-dev \
   libgstreamer-plugins-bad1.0-dev \
@@ -40,13 +39,9 @@ RUN sudo apt-get update \
   xpra \
  && sudo rm -rf /var/lib/apt/lists/*
 
-# Sadly, Servo can't be built with Clang yet.
-ENV CC gcc
-ENV CXX g++
-ENV HOST_CC gcc
-ENV HOST_CXX g++
-RUN sudo sed -i "s/CC=clang-[0-9.]\+/CC=gcc/" /etc/environment \
- && sudo sed -i "s/CXX=clang++-[0-9.]\+/CXX=g++/" /etc/environment
+# Help clang-sys find LLVM.
+# See https://github.com/servo/servo/issues/22384#issuecomment-453240318
+ENV CLANG_BASE /usr/lib/llvm-6.0/lib/
 
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
@@ -68,7 +63,7 @@ ENV HARFBUZZ_SYS_NO_PKG_CONFIG 1
 RUN ./mach bootstrap-gstreamer
 
 # Build Servo.
-RUN ./mach build -d
+RUN ./mach build -d -j1
 
 # Configure Janitor for Servo
 ADD janitor.json /home/user/
