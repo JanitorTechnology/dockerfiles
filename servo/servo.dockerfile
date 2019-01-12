@@ -63,7 +63,7 @@ ENV HARFBUZZ_SYS_NO_PKG_CONFIG 1
 RUN ./mach bootstrap-gstreamer
 
 # Build Servo.
-RUN ./mach build -d
+RUN ./mach build -d -j1
 
 # Configure Janitor for Servo
 ADD janitor.json /home/user/
