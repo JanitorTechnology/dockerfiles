@@ -41,7 +41,7 @@ RUN sudo apt-get update \
 
 # Help clang-sys find LLVM.
 # See https://github.com/servo/servo/issues/22384#issuecomment-453240318
-ENV CLANG_BASE /usr/lib/llvm-6.0/lib/
+ENV CLANG_BASE /usr/lib/llvm-7/lib/
 
 # Enable required Xvfb extensions for Servo.
 # Source: https://github.com/servo/servo/issues/7512#issuecomment-216665988
