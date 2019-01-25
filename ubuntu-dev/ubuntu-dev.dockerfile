@@ -7,7 +7,7 @@ RUN apt-get update \
 
 # Add source for the latest Clang packages.
 COPY llvm-snapshot.gpg.key /tmp
-RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list \
+RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-7 main" > /etc/apt/sources.list.d/llvm.list \
  && apt-key add /tmp/llvm-snapshot.gpg.key \
  && rm -f /tmp/llvm-snapshot.gpg.key
 
@@ -21,7 +21,7 @@ RUN add-apt-repository ppa:mercurial-ppa/releases
 RUN add-apt-repository ppa:neovim-ppa/stable
 
 # Install basic development packages.
-RUN __LLVM_VERSION__="6.0" \
+RUN __LLVM_VERSION__="7" \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
   autoconf \
@@ -82,10 +82,10 @@ RUN __LLVM_VERSION__="6.0" \
  && pip install --no-cache-dir requests \
  && echo "SHELL=/bin/bash\nTERM=xterm-256color\nDISPLAY=:98\nCC=clang-${__LLVM_VERSION__}\nCXX=clang++-${__LLVM_VERSION__}\nHOST_CC=clang-${__LLVM_VERSION__}\nHOST_CXX=clang++-${__LLVM_VERSION__}" >> /etc/environment
 ENV SHELL /bin/bash
-ENV CC clang-6.0
-ENV CXX clang++-6.0
-ENV HOST_CC clang-6.0
-ENV HOST_CXX clang++-6.0
+ENV CC clang-7
+ENV CXX clang++-7
+ENV HOST_CC clang-7
+ENV HOST_CXX clang++-7
 
 # Disallow logging in to SSH with a password.
 RUN sed -ri "s/^[#\s]*PasswordAuthentication\s+[yn].*$/PasswordAuthentication no/" /etc/ssh/sshd_config \
@@ -252,7 +252,7 @@ RUN cd /home/user/.theia/ \
  && yarn theia build
 
 # Configure language server executable for Theia.
-ENV CPP_CLANGD_COMMAND clangd-6.0
+ENV CPP_CLANGD_COMMAND clangd-7
 
 # Add default Supervisor configuration.
 COPY supervisord.conf /etc/
