@@ -145,6 +145,18 @@ RUN git clone https://github.com/ninja-build/ninja /tmp/ninja \
  && echo ". /home/user/.ninja-bash-completion" >> /home/user/.bashrc \
  && rm -rf /tmp/ninja
 
+# Install the latest nasm.
+RUN __NASM_VERSION__="2.14.02" \
+ && mkdir /tmp/nasm \
+ && cd /tmp/nasm \
+ && wget -qOnasm.tar.xz https://www.nasm.us/pub/nasm/releasebuilds/${__NASM_VERSION__}/nasm-${__NASM_VERSION__}.tar.xz \
+ && tar xf nasm.tar.xz \
+ && cd nasm-${__NASM_VERSION__}/ \
+ && ./configure \
+ && make \
+ && sudo make install \
+ && sudo rm -rf /tmp/nasm
+
 # Install the latest watchman.
 RUN git clone https://github.com/facebook/watchman.git /tmp/watchman \
  && cd /tmp/watchman \
