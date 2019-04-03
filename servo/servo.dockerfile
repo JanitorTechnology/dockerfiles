@@ -30,9 +30,6 @@ RUN sudo apt-get update \
   libdbus-1-dev \
   libharfbuzz-dev \
   ccache \
-  libgstreamer1.0-dev \
-  libgstreamer-plugins-base1.0-dev \
-  libgstreamer-plugins-bad1.0-dev \
   autoconf2.13 \
   xserver-xorg-input-void \
   xserver-xorg-video-dummy \
