@@ -35,6 +35,7 @@ RUN sudo apt-get update \
   xserver-xorg-video-dummy \
   xpra \
   libunwind-dev \
+  liblzma-dev \
  && sudo rm -rf /var/lib/apt/lists/*
 
 # Help clang-sys find LLVM.
