@@ -70,7 +70,7 @@ jobs:
           command: |
             docker load -i ubuntu-dev.tar
             ./.circleci/build_image.sh firefox/firefox-cinnabar.dockerfile janitortechnology/firefox-cinnabar
-          no_output_timeout: 60m
+          no_output_timeout: 120m
 
   firefox-hg:
     docker:
