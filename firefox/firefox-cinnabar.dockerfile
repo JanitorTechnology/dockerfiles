@@ -9,7 +9,7 @@ ENV PATH $PATH:/home/user/.git-cinnabar
 
 # Download Firefox's source code using git-cinnabar.
 # Source: https://github.com/glandium/git-cinnabar/wiki/Mozilla:-A-git-workflow-for-Gecko-development
-RUN git -c cinnabar.clone=https://github.com/glandium/gecko clone hg::https://hg.mozilla.org/mozilla-unified /home/user/firefox \
+RUN git clone hg::https://hg.mozilla.org/mozilla-unified /home/user/firefox \
  && cd /home/user/firefox \
  && git config fetch.prune true \
  && git remote add try hg::https://hg.mozilla.org/try \
